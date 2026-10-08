@@ -141,17 +141,36 @@ This document outlines the diagnosis, planned fixes, and implementation log for 
    - Wired all Horizon buttons ("See how it works" in Product and Allocation sections) across `index.html` and `concept-85.html` to direct to `horizon.html`.
    - Updated `vite.config.js` to bundle `horizon.html` and `horizon-01.html` into production builds.
 
+10. **Created Kurtosis Ratings Methodology Page (`ratings-methodology.html` & `methodology.html`)**:
+    - Created comprehensive branded methodology page (`ratings-methodology.html`) detailing the 4-layer evaluation framework:
+      - 01. Legal & Regulatory Wrapper (bankruptcy remoteness, governing law, SPV structuring)
+      - 02. Collateral Integrity & Asset Quality (lien perfection, valuation haircuts, physical verification)
+      - 03. Servicer & Counterparty Operations (underwriting track record, backup servicing, SLA monitoring)
+      - 04. Cashflow Architecture & Structural Subordination (waterfall priorities, reserve triggers, liquidity buffers)
+    - Included rating scale breakdown (AAA to C/D), methodology governance, and dual CTAs ("Explore Ratings" and "Request a Walkthrough").
+    - Created `methodology.html` redirect alias for clean routing.
+    - Wired sidebar and footer "Methodology" links across `ratings.html`, `index.html`, and `concept-85.html`.
+    - Added `methodology` and `methodologyRedirect` entry points to `vite.config.js`.
+
 ---
 
 ### 3.2 Verification
 
 - **Production Build:**
   - Command: `npm run build`
-  - Output: Built successfully in ~760ms. Emitted `dist/ratings.html`, `dist/horizon.html`, `dist/horizon-01.html`, `dist/index.html`, and `dist/concept-85.html`.
+  - Output: Built successfully (0 errors, 26 modules transformed). Emitted:
+    - `dist/index.html` (homepage)
+    - `dist/concept-85.html` (concept entry)
+    - `dist/ratings.html` (ratings console)
+    - `dist/horizon.html` (horizon coming soon)
+    - `dist/horizon-01.html` (horizon redirect)
+    - `dist/ratings-methodology.html` (methodology framework)
+    - `dist/methodology.html` (methodology redirect)
 - **Live Preview Server:**
   - Active at `http://localhost:4173/`
   - Ratings page preview: `http://localhost:4173/ratings.html`
   - Horizon "Coming Soon" page preview: `http://localhost:4173/horizon.html`
+  - Methodology page preview: `http://localhost:4173/ratings-methodology.html`
 - **Viewport Testing:**
   - Mobile (360px–430px): No horizontal page overflow; tabs scroll horizontally; KPI block spans full width; text is legible.
   - Tablet (768px–1024px): Balanced grid alignment; cards reflow cleanly.

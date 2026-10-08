@@ -103,12 +103,62 @@
   .hz-hero {
     flex: 1;
     position: relative;
-    padding: 80px 24px 100px;
+    padding: 80px 24px 110px;
     background: radial-gradient(80% 60% at 50% 0%, #d8ecfd 0%, #edf6fd 45%, #ffffff 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    overflow: hidden;
+  }
+  /* Landing page mountain backdrop */
+  .hz-mountain-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .hz-mountain-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 68%;
+    min-height: 440px;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .hz-mountain-layer.bg {
+    background-image: url("assets/hero3/bg.webp");
+    opacity: 0.95;
+  }
+  .hz-mountain-layer.mg {
+    background-image: url("assets/hero3/mg.webp");
+    opacity: 0.95;
+  }
+  .hz-mountain-layer.fg {
+    background-image: url("assets/hero3/fg.webp");
+    opacity: 0.95;
+  }
+  /* Subtle bottom fade dissolving seamlessly into the page */
+  .hz-mountain-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 140px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.75) 45%, #ffffff 100%);
+  }
+  .hz-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1040px;
+    width: 100%;
   }
   .hz-badge {
     display: inline-flex;
@@ -289,6 +339,13 @@
     .hz-brand .sub { font-size: 14px; }
     .hz-nav a:not(.btn-nav) { display: none; }
     .hz-hero { padding: 50px 16px 70px; }
+    .hz-mountain-layer {
+      height: 60%;
+      min-height: 320px;
+    }
+    .hz-mountain-layer.bg { background-image: url("assets/hero3/m-bg.webp"); }
+    .hz-mountain-layer.mg { background-image: url("assets/hero3/m-mg.webp"); }
+    .hz-mountain-layer.fg { background-image: url("assets/hero3/m-fg.webp"); }
     .hz-title { margin-top: 20px; font-size: 36px; }
     .hz-actions { flex-direction: column; width: 100%; max-width: 320px; }
     .hz-actions a { width: 100%; justify-content: center; }
