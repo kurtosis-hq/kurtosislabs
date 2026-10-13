@@ -33,7 +33,7 @@
   .rl-body{display:grid; grid-template-columns:311px minmax(0,1fr)}
 
   /* ---------- sidebar ---------- */
-  .rl-side{align-self:start; background:#eef7ff}
+  .rl-side{align-self:stretch; background:#eef7ff}
   .rl-cov{height:632px; border-bottom:2.5px solid #ced5d9; padding-top:33px;
     background:linear-gradient(172deg, #a6d7ff 0%, #b9e0ff 22%, #cfeaff 52%, #e3f2fe 80%, #edf7ff 100%)}
   .rl-cov-head{display:flex; align-items:center; justify-content:space-between; padding:0 30px 0 35px; height:12px}
@@ -1071,6 +1071,7 @@
 
 <div class="rl-body">
   <aside class="rl-side" aria-label="Coverage universe">
+    <div class="rl-side-inner">
     <div class="rl-cov">
       <div class="rl-cov-head">
         <h2 class="rl-h">Coverage universe</h2>
@@ -1090,6 +1091,7 @@
         <li><a href="ratings-methodology.html">Methodology</a></li>
         <li><a href="#top">Assessment</a></li>
       </ul>
+    </div>
     </div>
   </aside>
 

@@ -3,6 +3,18 @@ html { scroll-padding-top: 88px; }
 .badge { display: none; }
 .rl-dialog-close { display: none; }
 
+/* The desktop rail spans the assessment; its navigation follows the viewport. */
+@media (min-width: 901px) {
+  .rl-side-inner {
+    position: sticky; top: 0; max-height: 100dvh;
+    overflow-y: auto;
+  }
+  .rl-cov {
+    height: auto; min-height: min(632px, calc(100dvh - 160px));
+    padding-bottom: 32px;
+  }
+}
+
 /* Reset desktop offsets when the Exit Routes controls enter normal flow. */
 @media (max-width: 1240px) {
   .rl-ex2 .rl-sct { left: auto !important; top: auto !important; }
