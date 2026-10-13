@@ -78,9 +78,21 @@ html { scroll-padding-top: 88px; }
   }
 }
 
-/* Reset desktop offsets when the Exit Routes controls enter normal flow. */
-@media (max-width: 1240px) {
-  .rl-ex2 .rl-sct { left: auto !important; top: auto !important; }
+/* Each exit scenario has an equal share of the selector, without scrolling. */
+.rl-ex2 .rl-sct {
+  position: relative !important; inset: auto !important;
+  display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100% !important; max-width: none; height: auto !important;
+  margin-top: 24px; gap: 0 !important; padding: 0 !important;
+  overflow: visible;
+}
+.rl-ex2 .rl-sc {
+  position: relative !important; inset: auto !important;
+  min-width: 0; width: 100%; height: auto; min-height: 44px;
+  padding: 10px 8px; line-height: 1.3; white-space: normal;
+}
+.rl-ex2 .rl-sc[aria-selected="true"]::after {
+  left: 8px; right: 8px; bottom: 0; height: 3px; border-radius: 3px;
 }
 
 /* The sidebar reduces the snapshot's usable width on laptops. */
