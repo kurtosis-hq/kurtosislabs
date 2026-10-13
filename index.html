@@ -1177,13 +1177,15 @@
       <h2 class="pv2-vh">Kurtosis Vaults</h2>
       <p class="pv2-vlbl">Layer 2 · Allocate with intent</p>
       <h3 class="pv2-vs">One view of every decision.</h3>
-      <p class="pv2-vp">Horizon allocates capital on Kurtosis Ratings. Ratings decide what qualifies, how much it holds and when a position is rebalanced or exited, all managed around a defined investment horizon. Holdings, ratings, risk controls and the decision record sit in one place. Every figure in this preview is illustrative.</p>
+      <div class="pv2-vault-copy">
+        <p class="pv2-vp">Horizon allocates capital on Kurtosis Ratings. Ratings decide what qualifies, how much it holds and when a position is rebalanced or exited, all managed around a defined investment horizon. Holdings, ratings, risk controls and the decision record sit in one place. Every figure in this preview is illustrative.</p>
+        <p class="pv2-vnote"><span>Ratings explain the decisions.</span> <span>Horizon executes them.</span> <span>Outcomes feed the next rating.</span></p>
+      </div>
 
       <a class="pv2-vbtn" href="horizon.html">See how it works</a>
       <div class="pv2-dash is-pic" role="img" aria-label="Illustrative Kurtosis vault dashboard: settlement asset USDC, target-date strategy, evergreen portfolio, rules-based process; example allocation 55% floating exposure, 30% fixed to maturity, 15% liquid reserve.">
         <picture class="pv2-pic"><source media="(max-width:560px)" srcset="assets/pics/dash-m.webp" width="1950" height="1878"><source media="(max-width:900px)" srcset="assets/pics/dash-t.webp" width="1942" height="1162"><img src="assets/pics/dash-d.webp" width="3260" height="1558" alt="" decoding="async" loading="lazy"></picture>
       </div>
-      <p class="pv2-vnote"><span>Ratings explain the decisions.</span> <span>Horizon executes them.</span> <span>Outcomes feed the next rating.</span></p>
     </div>
   </section>
 
@@ -2032,7 +2034,7 @@
   var sec = document.getElementById('product'); if (!sec) return;
   function fit() {
     var w = document.documentElement.clientWidth;
-    var z = w > 900 ? Math.min(1, w / 1573) : 1;
+    var z = window.matchMedia('(min-width:901px)').matches ? Math.min(1, w / 1573) : 1;
     sec.style.setProperty('--pvz', z.toFixed(4));
     document.documentElement.style.setProperty('--pvz', z.toFixed(4));   /* horizon stage + shared sky share the scale */
   }

@@ -167,12 +167,22 @@ html { scroll-padding-top: 88px; }
 .ratings-preview-meter { height: 10px; margin-top: 14px; border-radius: 5px; background: #e5f3ff; }
 .ratings-preview-meter span { display: block; width: 28.96%; height: 100%; border-radius: inherit; background: #59b5ee; }
 .ratings-preview-card .ratings-preview-caution { font-size: 11px; color: #4a5a75; }
-.pv2-stage > .pv2-vnote {
+.pv2-vault-copy {
+  position: absolute; left: 0; right: 0; top: 1424px;
+  max-width: 820px; margin: 0 auto; text-align: center;
+}
+.pv2-vault-copy > .pv2-vp { position: static; width: auto; max-width: none; margin: 0; }
+.pv2-vault-copy > .pv2-vnote {
+  position: static;
   display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px;
-  max-width: 1100px; margin-inline: auto; padding: 0; border-radius: 0;
+  max-width: 1100px; margin: 18px auto 0; padding: 0; border-radius: 0;
   background: none; color: #182841; font-weight: 400; text-shadow: none; line-height: 1.5;
 }
 .pv2-vnote span { white-space: nowrap; }
+
+@media (min-width: 901px) {
+  .pv2 .pv2-dash { top: 1650px; }
+}
 
 @media (max-width: 900px) {
   .pv2 .pv2-rate { display: flex; flex-direction: column; padding: 28px 24px 24px; }
@@ -180,7 +190,8 @@ html { scroll-padding-top: 88px; }
   .pv2-rate > .pv2-rate-copy { order: 1; margin-top: 20px; }
   .pv2-rate > .pv2-go { order: 2; align-self: flex-start; margin-top: 22px; }
   .pv2-rate > .ratings-preview { order: 3; margin-top: 24px; }
-  .pv2-stage > .pv2-vnote { max-width: 680px; font-size: 15px; }
+  .pv2-stage > .pv2-vault-copy { max-width: 620px; margin-top: 20px; }
+  .pv2-vault-copy > .pv2-vnote { max-width: 680px; font-size: 15px; }
 }
 
 @media (max-width: 560px) {
