@@ -41,7 +41,6 @@
     content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:linear-gradient(to bottom, rgba(15,27,46,.52), rgba(15,27,46,0));
   }
-  .nav.is-scrolled::before{background:rgba(24,40,65,.96); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px)}
   .nav-brand{display:flex; align-items:center; gap:10px; text-decoration:none; padding:7px}
   .nav-brand img{display:block; height:28px; width:auto}
   .nav-brand span{font-weight:700; font-size:16px; letter-spacing:.02em; color:#fff}
@@ -1136,25 +1135,57 @@
       <article class="pv2-rate">
         <h3>Kurtosis Ratings</h3>
         <a class="pv2-go" href="ratings.html">Find out more<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="m13 5.5 6.5 6.5-6.5 6.5"/></svg></a>
-        <p class="pv2-lbl">Layer 1 · Understand the position</p>
-        <h4 class="pv2-rh">Know what your yield is built on.</h4>
-        <p class="body">Ratings look through the token to the yield source underneath: the asset, the protocol, how you exit, and what each depends on. Every rating comes with its reasoning and the conditions that would change it.</p>
-        <p class="pv2-det">Layer-by-layer risk attribution · Research preview</p>
-        <a class="pv2-prev is-pic" href="ratings.html" aria-label="Explore Kurtosis Ratings preview">
-        <picture class="pv2-pic"><source media="(max-width:560px)" srcset="assets/pics/prev-m.webp" width="1950" height="1506"><source media="(max-width:900px)" srcset="assets/pics/prev-t.webp" width="2040" height="1265"><img src="assets/pics/prev-d.webp" width="2270" height="1520" alt="" decoding="async" loading="lazy"></picture>
-      </a>
+        <div class="pv2-rate-copy">
+          <p class="pv2-lbl">Layer 1 · Understand the position</p>
+          <h4 class="pv2-rh">Know what your yield is built on.</h4>
+          <p class="body">Ratings look through the token to the yield source underneath: the asset, the protocol, how you exit, and what each depends on. Every rating comes with its reasoning and the conditions that would change it.</p>
+          <p class="pv2-det">Layer-by-layer risk attribution · Research preview</p>
+        </div>
+        <a class="pv2-prev ratings-preview" href="ratings.html" aria-label="Explore Kurtosis Ratings preview">
+          <div class="ratings-preview-header"><span>Research preview</span><span>PT-srONyc <span aria-hidden="true">↗</span></span></div>
+          <div class="ratings-preview-grid">
+            <section class="ratings-preview-card ratings-preview-own">
+              <h5>What you actually own</h5>
+              <p class="ratings-preview-intro">Follow the position to its underlying exposure.</p>
+              <ol class="ratings-preview-chain">
+                <li class="is-held"><b>PT-srONyc</b><span>Principal token · Position held</span></li>
+                <li><b>wsrONyc / Exponent vault</b><span>Wrapper and vault</span></li>
+                <li><b>srONyc</b><span>Senior tranche claim</span></li>
+                <li><b>ONyc</b><span>Underlying pool</span></li>
+                <li><b>OnRe segregated account</b><span>Economic exposure</span></li>
+              </ol>
+            </section>
+            <div class="ratings-preview-details">
+              <section class="ratings-preview-card">
+                <h5>Position held</h5>
+                <p class="ratings-preview-token">PT-srONyc</p>
+                <p>Principal token on senior ONyc.</p>
+                <p class="ratings-preview-scrutiny"><b>What needs scrutiny</b><br>Maturity execution and the underlying realization path.</p>
+              </section>
+              <section class="ratings-preview-card">
+                <h5>Senior protection snapshot</h5>
+                <p class="ratings-preview-percent">28.96%</p>
+                <p>Junior share of total effective NAV.</p>
+                <div class="ratings-preview-meter" aria-hidden="true"><span></span></div>
+                <p class="ratings-preview-caution">First-loss support can be depleted. This is not a risk score or guaranteed protection.</p>
+              </section>
+            </div>
+          </div>
+        </a>
       </article>
 
       <h2 class="pv2-vh">Kurtosis Vaults</h2>
       <p class="pv2-vlbl">Layer 2 · Allocate with intent</p>
       <h3 class="pv2-vs">One view of every decision.</h3>
-      <p class="pv2-vp">Horizon allocates capital on Kurtosis Ratings. Ratings decide what qualifies, how much it holds and when a position is rebalanced or exited, all managed around a defined investment horizon. Holdings, ratings, risk controls and the decision record sit in one place. Every figure in this preview is illustrative.</p>
+      <div class="pv2-vault-copy">
+        <p class="pv2-vp">Horizon allocates capital on Kurtosis Ratings. Ratings decide what qualifies, how much it holds and when a position is rebalanced or exited, all managed around a defined investment horizon. Holdings, ratings, risk controls and the decision record sit in one place. Every figure in this preview is illustrative.</p>
+        <p class="pv2-vnote"><span>Ratings explain the decisions.</span> <span>Horizon executes them.</span> <span>Outcomes feed the next rating.</span></p>
+      </div>
 
       <a class="pv2-vbtn" href="horizon.html">See how it works</a>
       <div class="pv2-dash is-pic" role="img" aria-label="Illustrative Kurtosis vault dashboard: settlement asset USDC, target-date strategy, evergreen portfolio, rules-based process; example allocation 55% floating exposure, 30% fixed to maturity, 15% liquid reserve.">
         <picture class="pv2-pic"><source media="(max-width:560px)" srcset="assets/pics/dash-m.webp" width="1950" height="1878"><source media="(max-width:900px)" srcset="assets/pics/dash-t.webp" width="1942" height="1162"><img src="assets/pics/dash-d.webp" width="3260" height="1558" alt="" decoding="async" loading="lazy"></picture>
       </div>
-      <p class="pv2-vnote">Ratings explain the decisions. Horizon executes them. Outcomes feed the next rating.</p>
     </div>
   </section>
 
@@ -2003,7 +2034,7 @@
   var sec = document.getElementById('product'); if (!sec) return;
   function fit() {
     var w = document.documentElement.clientWidth;
-    var z = w > 900 ? Math.min(1, w / 1573) : 1;
+    var z = window.matchMedia('(min-width:901px)').matches ? Math.min(1, w / 1573) : 1;
     sec.style.setProperty('--pvz', z.toFixed(4));
     document.documentElement.style.setProperty('--pvz', z.toFixed(4));   /* horizon stage + shared sky share the scale */
   }
@@ -2053,8 +2084,6 @@
 /* phone menu */
 (function () {
   var nav = document.querySelector('.nav'), b = document.querySelector('.nav-burger'); if (!nav) return;
-  function updateBackground() { nav.classList.toggle('is-scrolled', window.scrollY > 24); }
-  updateBackground(); window.addEventListener('scroll', updateBackground, { passive: true });
   if (!b) return;
   function set(o) { nav.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); }
   b.addEventListener('click', function () { set(!nav.classList.contains('open')); });

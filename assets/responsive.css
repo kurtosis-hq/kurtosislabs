@@ -95,6 +95,110 @@ html { scroll-padding-top: 88px; }
   left: 8px; right: 8px; bottom: 0; height: 3px; border-radius: 3px;
 }
 
+/* The evidence filter reserves its own row above the evidence cards. */
+.rl-ev2 > .flt {
+  position: relative !important; inset: auto !important;
+  display: flex !important; margin: 18px 0 0 !important;
+  width: max-content; max-width: 100%; height: auto; min-height: 44px;
+  padding: 10px 12px; font-size: 13px;
+}
+.rl-tabsbar button[aria-selected="true"]::after {
+  width: min(109px, 100%); margin-left: 0; transform: translateX(-50%);
+}
+
+/* The Ratings preview uses flowing content instead of cropped screenshots. */
+.pv2 .pv2-rate {
+  display: grid; grid-template-columns: 350px minmax(0, 1fr);
+  gap: 28px 32px; height: auto; padding: 36px 40px 40px 50px;
+}
+.pv2-rate > h3 {
+  position: static; grid-column: 1 / -1; grid-row: 1;
+  margin: 0; padding-right: 300px;
+}
+.pv2-rate > .pv2-go {
+  position: static; grid-column: 2; grid-row: 1;
+  justify-self: end; align-self: center; margin: 0;
+}
+.pv2-rate > .pv2-rate-copy { grid-column: 1; grid-row: 2; min-width: 0; }
+.pv2-rate .pv2-rate-copy > * { position: static; inset: auto; width: auto; margin: 0; }
+.pv2-rate .pv2-rate-copy .pv2-rh { margin-top: 14px; }
+.pv2-rate .pv2-rate-copy .body { margin-top: 18px; }
+.pv2-rate .pv2-rate-copy .pv2-det { margin-top: 18px; }
+.pv2-rate > .ratings-preview {
+  position: static; grid-column: 2; grid-row: 2; align-self: start;
+  display: block; width: 100%; height: auto; padding: 16px;
+  border: 1px solid #a9cfe8; border-radius: 16px;
+  background: linear-gradient(145deg, #d7edfc, #eef7fd);
+  box-shadow: none; color: #182841; text-decoration: none;
+}
+.ratings-preview:focus-visible { outline: 2px solid #1dacf3; outline-offset: 4px; }
+.ratings-preview-header {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px;
+  margin-bottom: 12px; font-size: 12px; line-height: 1.4; font-weight: 600;
+}
+.ratings-preview-header > span:first-child { text-transform: uppercase; letter-spacing: .08em; }
+.ratings-preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.ratings-preview-card {
+  min-width: 0; padding: 16px; border: 1px solid #c4d6e4; border-radius: 12px;
+  background: #fff;
+}
+.ratings-preview-card h5 {
+  margin: 0; font-size: 11px; line-height: 1.45; letter-spacing: .03em; text-transform: uppercase;
+}
+.ratings-preview-card p { margin: 10px 0 0; font-size: 13px; line-height: 1.5; }
+.ratings-preview-chain { list-style: none; display: grid; gap: 8px; margin: 16px 0 0; padding: 0; counter-reset: preview-layer; }
+.ratings-preview-chain li {
+  position: relative; min-width: 0; padding: 10px 10px 10px 38px;
+  border: 1px solid #b9cfe2; border-radius: 8px; background: #f5faff;
+  counter-increment: preview-layer;
+}
+.ratings-preview-chain li::before {
+  content: counter(preview-layer); position: absolute; left: 10px; top: 11px;
+  display: grid; place-items: center; width: 20px; height: 20px;
+  border-radius: 50%; background: #d4ecfc; font-size: 11px; font-weight: 700;
+}
+.ratings-preview-chain li.is-held { background: #d9f0ff; border-color: #7dbce6; }
+.ratings-preview-chain b { display: block; font-size: 13px; line-height: 1.35; overflow-wrap: anywhere; }
+.ratings-preview-chain span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; color: #4a5a75; }
+.ratings-preview-details { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.ratings-preview-card .ratings-preview-token { font-size: 28px; line-height: 1.15; font-weight: 700; color: #459fe0; overflow-wrap: anywhere; }
+.ratings-preview-card .ratings-preview-scrutiny { margin-top: 16px; }
+.ratings-preview-card .ratings-preview-percent { font-size: 32px; line-height: 1.15; font-weight: 700; color: #459fe0; }
+.ratings-preview-meter { height: 10px; margin-top: 14px; border-radius: 5px; background: #e5f3ff; }
+.ratings-preview-meter span { display: block; width: 28.96%; height: 100%; border-radius: inherit; background: #59b5ee; }
+.ratings-preview-card .ratings-preview-caution { font-size: 11px; color: #4a5a75; }
+.pv2-vault-copy {
+  position: absolute; left: 0; right: 0; top: 1424px;
+  max-width: 820px; margin: 0 auto; text-align: center;
+}
+.pv2-vault-copy > .pv2-vp { position: static; width: auto; max-width: none; margin: 0; }
+.pv2-vault-copy > .pv2-vnote {
+  position: static;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px;
+  max-width: 1100px; margin: 18px auto 0; padding: 0; border-radius: 0;
+  background: none; color: #182841; font-weight: 400; text-shadow: none; line-height: 1.5;
+}
+.pv2-vnote span { white-space: nowrap; }
+
+@media (min-width: 901px) {
+  .pv2 .pv2-dash { top: 1650px; }
+}
+
+@media (max-width: 900px) {
+  .pv2 .pv2-rate { display: flex; flex-direction: column; padding: 28px 24px 24px; }
+  .pv2-rate > h3 { order: 0; padding-right: 0; }
+  .pv2-rate > .pv2-rate-copy { order: 1; margin-top: 20px; }
+  .pv2-rate > .pv2-go { order: 2; align-self: flex-start; margin-top: 22px; }
+  .pv2-rate > .ratings-preview { order: 3; margin-top: 24px; }
+  .pv2-stage > .pv2-vault-copy { max-width: 620px; margin-top: 20px; }
+  .pv2-vault-copy > .pv2-vnote { max-width: 680px; font-size: 15px; }
+}
+
+@media (max-width: 560px) {
+  .pv2-rate > .ratings-preview { padding: 12px; }
+  .ratings-preview-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* The sidebar reduces the snapshot's usable width on laptops. */
 @media (min-width: 901px) and (max-width: 1440px) {
   .rl-snap { height: auto; padding: 28px; }
