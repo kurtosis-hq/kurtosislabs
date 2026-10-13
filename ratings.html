@@ -1061,6 +1061,7 @@
   .rl-pos .note{margin-top:26px; max-width:610px; font-size:12.4px; line-height:17px; color:#5d6266}
   .rl-ctrl .note{margin-top:22px; font-size:11.2px; line-height:16px; color:#5d6266}
 </style>
+<link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body>
 <div class="rl">
@@ -1982,16 +1983,24 @@
   function openPos(btn) {
     if (!mq.matches || !posP) return;
     lastBtn = btn; posP.classList.add('mopen'); shade.classList.add('on'); d.body.classList.add('rl-noscroll');
-    posP.setAttribute('role', 'dialog'); posP.setAttribute('aria-modal', 'true'); posP.tabIndex = -1; posP.focus();
+    posP.setAttribute('role', 'dialog'); posP.setAttribute('aria-modal', 'true'); posP.setAttribute('aria-labelledby', 'lyT'); posP.tabIndex = -1; posP.querySelector('.rl-dialog-close').focus();
   }
   function closePos() {
     if (!posP || !posP.classList.contains('mopen')) return;
     posP.classList.remove('mopen'); shade.classList.remove('on'); d.body.classList.remove('rl-noscroll');
-    posP.removeAttribute('role'); posP.removeAttribute('aria-modal');
+    posP.removeAttribute('role'); posP.removeAttribute('aria-modal'); posP.removeAttribute('aria-labelledby');
     if (lastBtn && d.body.contains(lastBtn)) lastBtn.focus();
   }
   shade.addEventListener('click', closePos);
-  d.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePos(); });
+  d.addEventListener('keydown', function (e) {
+    if (!posP || !posP.classList.contains('mopen')) return;
+    if (e.key === 'Escape') { closePos(); return; }
+    if (e.key !== 'Tab') return;
+    var focusable = [].slice.call(posP.querySelectorAll('button, a[href]')).filter(function (el) { return el.offsetWidth && el.offsetHeight; });
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && d.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && d.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   mq.addEventListener && mq.addEventListener('change', closePos);
 
   /* ---------- "What you actually own": timeline + branch arrows follow the reflowed cards ---------- */
@@ -2054,6 +2063,12 @@
     if (tabAt && ptabs[tabAt]) showTab(ptabs[tabAt]);
 
     posP = pv.querySelector('.rl-pos');
+    if (posP) {
+      var closeButton = d.createElement('button');
+      closeButton.type = 'button'; closeButton.className = 'rl-dialog-close';
+      closeButton.textContent = 'Close'; closeButton.setAttribute('aria-label', 'Close layer details');
+      closeButton.addEventListener('click', closePos); posP.appendChild(closeButton);
+    }
     nodes = Array.prototype.slice.call(pv.querySelectorAll('.rl-node, .rl-cnode'));
     nodes.sort(function (a, b) { return +a.getAttribute('data-i') - +b.getAttribute('data-i'); });
     stops = Array.prototype.slice.call(pv.querySelectorAll('.rl-dot'));

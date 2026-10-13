@@ -951,303 +951,7 @@
   @media (max-width:980px){ .v-sky .wc-cols{margin-top:120px; gap:12px} .v-sky .wc-col + .wc-col{border-top:1px solid rgba(255,255,255,.9); padding-left:30px} }
 </style>
 <style id="m-landing">
-  /* ===== desktop guards for phone-only additions ===== */
   .nav-burger,.pv2-vbtn,.m-br,.m-only{display:none}
-
-  /* ======================= PHONE LANDING (client mobile design) ======================= */
-  @media (max-width:560px){
-    .m-hide{display:none}
-    .m-br{display:inline}
-    /* nav */
-    .nav{position:absolute; padding:38px 24px 0 27px; align-items:center}
-    .nav::before{display:none}
-    .nav-brand{padding:0; gap:11px}
-    .nav-brand img{height:33px; border-radius:6px}
-    .nav-brand span{font-weight:500; font-size:17px; letter-spacing:-.005em; color:#1d3557}
-    .nav-burger{display:flex; flex-direction:column; justify-content:center; gap:4.5px; width:26px; height:26px; padding:0 3px; background:none; border:0; cursor:pointer}
-    .nav-burger span{display:block; height:2.2px; border-radius:2px; background:#343841; transition:transform .25s ease, opacity .2s ease}
-    .nav.open .nav-burger span:nth-child(1){transform:translateY(6.7px) rotate(45deg)}
-    .nav.open .nav-burger span:nth-child(2){opacity:0}
-    .nav.open .nav-burger span:nth-child(3){transform:translateY(-6.7px) rotate(-45deg)}
-    .nav-links{display:none; position:absolute; top:64px; right:16px; flex-direction:column; align-items:stretch; gap:4px; min-width:210px; padding:10px; border-radius:16px;
-      background:rgba(255,255,255,.96); box-shadow:0 14px 34px -10px rgba(15,27,46,.35)}
-    .nav.open .nav-links{display:flex}
-    .nav-links li{display:block !important}
-    .nav-links a{display:block; padding:10px 12px; border:0; color:#1d3557; font-size:14px}
-    .nav-links a.btn-nav{margin-top:4px; text-align:center; background:#1d3557; color:#fff; border-radius:999px}
-    .nav-burger:focus-visible{outline:2px solid #1dacf3; outline-offset:2px; border-radius:4px}
-
-    /* hero: photo sits low under a sky band. The desktop entrance runs here too: while
-       body.entrance is set the sticky fills the screen for the aperture, then eases back to
-       the composed hero; the layers' depth parallax is driven by JS as it scrolls away.
-       The hero runs 65px past the visible 683 so the scenery continues behind the logo band and
-       fades into the section colour beneath it (desktop's --fade), as on the desktop page. */
-    .scene{height:829px}
-    .scene-sticky{position:sticky; top:0; height:829px; transition:height .7s cubic-bezier(.22,1,.36,1)}
-    body.entrance .scene-sticky{height:100vh; height:100svh}
-    body.entrance .partners{opacity:0; visibility:hidden}
-    .partners{transition:opacity .6s ease .25s}
-    .hero{position:absolute; inset:0; background:linear-gradient(180deg,rgb(78,168,248) 0,rgb(81,174,250) 230px,rgb(81,174,250) 500px,#f7f6f3 500px)}
-    .rig .layer{filter:saturate(1.2) brightness(1.06)}   /* the mobile design's livelier sky and grass */
-    /* phone layers, rebuilt from the clean PNGs ("hero background png"): m-bg is one opaque plate
-       (sky + range + mountains, no smeared hole-fills), m-mg the clean cut-out, m-fg the clean grass
-       with 300 mirrored rows below (1726x1380) so the rising foreground never shows its edge */
-    .rig .layer-bg{background-image:url("assets/hero3/m-bg.webp")}
-    .rig .layer-mg{background-image:url("assets/hero3/m-mg.webp")}
-    .rig .layer-fg{background-image:url("assets/hero3/m-fg.webp")}
-    /* client "hero image mobile": photo box set so the peak tips land at (33,300) and (344,322) */
-    .rig .layer.layer-fg{transform:scale(2); transform-origin:50% 382px !important; height:604.4px !important}   /* grass scaled about its top edge so the real (sharp) meadow reaches the logo band */
-    .rig .layer-bg{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 40px); mask-image:linear-gradient(180deg,transparent 0,#000 40px)}
-    .rig .layer{inset:auto !important; bottom:auto !important; left:-189.5px !important; top:203px !important; width:756px !important; height:473px !important;
-      background-size:100% 100% !important; will-change:transform}
-    .hero-copy-scrim{display:none}
-    .ring svg{width:100%; height:100%}   /* svg was fixed at 300px inside the 240px ring box: off-centre */
-    .hero-copy{position:absolute; inset:0; padding:0; display:block; text-align:center; transform:none !important; opacity:1 !important}
-    .hero .eyebrow{position:absolute; left:0; right:0; top:452px; margin:0 auto; width:max-content; height:30px; display:flex; align-items:center; justify-content:center;
-      padding:0 18px; border-radius:999px; background:rgba(218,234,250,.78); border:1px solid rgba(255,255,255,.7); color:#0d1b2a;
-      font-weight:600; font-size:12.4px; line-height:15.5px; letter-spacing:.12em; white-space:nowrap; text-shadow:none}
-    .hero .hero-h1{position:absolute; left:0; right:0; top:150px; margin:0 auto; max-width:none !important; font-size:108px; line-height:1}
-    .hero-h1 .h1a{font-size:.48em}
-    .hero-h1 .h1b{margin-top:-.16em; -webkit-mask-image:none; mask-image:none}
-    .hero-h1 .h1b .w{display:block; line-height:.95; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
-      -webkit-mask-image:linear-gradient(180deg,#000 0,#000 66%,rgba(0,0,0,.8) 88%,rgba(0,0,0,.58) 100%); mask-image:linear-gradient(180deg,#000 0,#000 66%,rgba(0,0,0,.8) 88%,rgba(0,0,0,.58) 100%)}
-    .hero-h1 .h1b{-webkit-text-stroke:.034em #fff}
-    .hero-h1 .h1b .w:first-child{letter-spacing:-.022em}
-    .hero-h1 .h1b .w + .w{margin-top:-.33em; font-size:.9em; letter-spacing:-.055em}
-    .hero-h1 .h1c{margin-top:.02em; font-size:.28em}
-    /* phone design: the whole headline sits in front of the peaks (front twin shows all three lines; the real h1 stays for assistive tech) */
-    .hero-h1-front .h1a,.hero-h1-front .h1b{visibility:visible}
-    h1.hero-h1 .h1a,h1.hero-h1 .h1b{opacity:0}
-    .hero h1 .h1-with{font-size:1em; margin:0}
-    .hero h1 br.m-br{display:block}
-    .hero-sub{position:absolute; left:0; right:0; top:416px; width:332px; margin:0 auto; font-weight:600; font-size:14.8px; line-height:18.3px; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.6), 0 0 12px rgba(0,0,0,.4)}
-    #cBtn{position:absolute; left:0; right:0; top:532px; width:max-content; margin:0 auto}
-    #cBtn .btn{display:inline-flex; align-items:center; justify-content:center; width:204px; height:39px; padding:0; border-radius:999px; background:#fff; color:#111; font-size:14.4px; font-weight:600; letter-spacing:0; border:0; box-shadow:none}
-
-    /* partner strip */
-    html.js .partners.is-marquee{margin-top:0 !important; position:absolute; left:0; right:0; top:764px}
-    html.js .partners.is-marquee .partners-band{padding:0; height:65px; display:flex; align-items:center; background:rgba(238,238,238,.62); box-shadow:0 3px 6px -2px rgba(15,27,46,.25)}
-    /* reduced motion (no marquee): the same strip, one static row */
-    .partners:not(.is-marquee){margin-top:0; padding-top:0; background:transparent; position:absolute; left:0; right:0; top:764px; z-index:2}
-    .partners:not(.is-marquee) .partners-band{padding:0; height:65px; display:flex; align-items:center; background:rgba(238,238,238,.62); box-shadow:0 3px 6px -2px rgba(15,27,46,.25)}
-    .partners:not(.is-marquee) .partners-track,.partners:not(.is-marquee) .partners-set{flex-wrap:nowrap; justify-content:flex-start}
-    .partners:not(.is-marquee) .plogo{background:#7F8898}
-    .partners-set li{padding:0 21.5px}
-    .partners-set{zoom:.575}   /* logo row at the phone band scale */
-
-    /* ---------- product: 390px design stage scaled to the phone width ---------- */
-    #product.pv2{height:calc(1559px * var(--pvz,1)) !important; padding:0 !important; margin-top:0; background:#f7f6f3}
-    .pv2-stage{width:390px !important; height:1559px !important; padding:0 !important; zoom:var(--pvz,1) !important}
-    .pv2-stage > *{position:absolute !important}
-    .pv2-bg{inset:0 !important}
-    .pv2-photo{top:436px !important; left:50% !important; width:760px !important; transform:translateX(-50%) !important; bottom:0;
-      -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 90px); mask-image:linear-gradient(180deg,transparent 0,#000 90px)}
-    .pv2 h2.pv2-h{top:58px !important; left:0 !important; right:0 !important; margin:0 auto !important; width:270px; font-size:30.5px !important; line-height:37px !important; letter-spacing:-.02em}
-    .pv2 h2.pv2-h br{display:inline}
-    .pv2-sub{top:160px !important; left:0 !important; right:0 !important; margin:0 auto !important; width:310px; font-size:13.4px !important; line-height:22px !important; color:#4a5a75}
-    .pv2-sub br{display:none}
-    .pv2-rate{top:280px !important; left:40px !important; width:310px !important; height:450px !important; margin:0 !important; padding:0 !important; border-radius:24px}
-    .pv2-rate::before{width:8px}
-    .pv2-rate h3{position:absolute !important; left:25px; top:24px; font-size:26.5px !important; line-height:34px !important; padding:0 !important; letter-spacing:-.01em}
-    .pv2-go{position:absolute !important; margin:0 !important; left:25px !important; right:auto !important; top:265px !important; width:137px !important; height:24.5px !important; padding:0 0 0 20px !important; gap:12px !important; font-size:12.4px !important; font-weight:500 !important}
-    .pv2-go svg{width:16px !important; height:16px !important}
-    .pv2-rate .body{position:absolute !important; left:25px; width:262px; margin:0 !important; font-size:14.6px !important; line-height:20.2px !important}
-    /* Layer 1 copy: label / heading / body / detail */
-    .pv2-rate .pv2-lbl{position:absolute !important; left:25px; top:72px; width:270px; margin:0; font-size:9.6px !important; line-height:12px !important; letter-spacing:.12em}
-    .pv2-rate .pv2-rh{position:absolute !important; left:25px; top:90px; width:262px; margin:0; font-size:17px !important; line-height:21px !important}
-    .pv2-rate .body{top:138px !important; width:262px !important; font-size:12.4px !important; line-height:16.4px !important}
-    .pv2-rate .pv2-det{position:absolute !important; left:25px; top:226px; width:262px; margin:0; font-size:10.6px !important; line-height:14px !important}
-    .pv2-rate .body br{display:none}
-    .pv2-prev{position:absolute !important; left:61px !important; top:760px !important; margin:0 !important; zoom:.41 !important; width:820px !important; height:520px !important}
-    .pv2-vh{top:812px !important; left:0 !important; right:0 !important; margin:0 !important; font-size:30.5px !important; line-height:40px !important; text-transform:none !important; letter-spacing:.005em}
-    .pv2-vlbl{position:absolute !important; top:861px !important; left:0 !important; right:0 !important; width:auto !important; margin:0 !important; text-align:center !important; font-weight:700; font-size:10.6px; line-height:13px; letter-spacing:.08em; text-transform:uppercase; color:#0f2a4a}
-    .pv2-vs{top:879px !important; left:0 !important; right:0 !important; margin:0 !important; font-size:20px !important; line-height:25px !important; font-weight:600}
-    .pv2-vp{top:917px !important; left:0 !important; right:0 !important; margin:0 auto !important; width:350px; font-size:14.9px !important; line-height:17.3px !important; font-weight:500}
-    .pv2-vp br{display:none}
-    .pv2-vnote{position:absolute !important; top:1405px !important; left:0 !important; right:0 !important; margin:0 auto !important; width:330px !important; text-align:center !important; font-weight:600; font-size:12.4px; line-height:16px; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.6), 0 0 12px rgba(0,0,0,.4)}
-    .pv2-vbtn{display:flex !important; top:1462px !important; left:0 !important; right:0 !important; margin:0 auto !important; width:calc(204px / var(--pvz,1)); height:calc(39px / var(--pvz,1)); align-items:center; justify-content:center; border-radius:999px; background:#1b2a41; color:#fff; font-size:calc(14.4px / var(--pvz,1)); font-weight:600; text-decoration:none; border:1px solid rgba(255,255,255,.55)}
-    /* dashboard: mobile arrangement at 2x, scaled to half */
-    .pv2-dash{top:2200px !important; left:50px !important; width:680px !important; height:575px !important; zoom:.5 !important; margin:0 !important; border-radius:30px}
-    .pv2-side{width:165px !important}
-    .pv2-logo{left:24px !important; top:32px !important; font-size:18px !important; gap:7px !important}
-    .pv2-logo svg{width:19px !important; height:19px !important}
-    .pv2-yv{left:24px !important; top:78px !important; font-size:11.5px !important}
-    .pv2-nav{left:24px !important; top:102px !important; width:126px !important}
-    .pv2-nav li{height:26px !important; margin-bottom:4px !important; padding-left:30px !important; font-size:12px !important}
-    .pv2-nav li::before{left:8px !important; width:11px !important; height:11px !important; margin-top:-5.5px !important}
-    .pv2-dt{left:193px !important; top:32px !important; font-size:21px !important; line-height:28px !important}
-    .pv2-ic{top:39px !important; width:14px !important; height:14px !important}
-    .pv2-ic:nth-of-type(1){left:565px !important}
-    .pv2-ic:nth-of-type(2){left:594px !important}
-    .pv2-ic:nth-of-type(3){left:623px !important}
-    .pv2-ic.pv2-av{left:621.25px !important; top:36.75px !important; width:17.5px !important; height:17.5px !important}   /* avatar is 1.25x the line icons, as in the design */
-    .pv2-facts{left:193px !important; top:74px !important; width:455px !important; height:42px !important}
-    .pv2-facts small{left:12px !important; top:8px !important; font-size:6px !important}
-    .pv2-facts b{top:22px !important; font-size:11px !important}
-    .pv2-alloc{left:254.6px !important; top:167.5px !important; width:600px !important; height:325px !important; zoom:.758 !important}
-    .pv2-mix{left:193px !important; top:385px !important; width:455px !important; height:168px !important}
-    .pv2-mix .t{left:16px !important; top:14px !important; font-size:7.4px !important}
-    .pv2-mix .s{left:16px !important; top:28px !important; font-size:7.4px !important}
-    .pv2-mix ul{left:16px !important; right:auto !important; width:250px !important; top:62px !important}
-    .pv2-mix li{height:15px !important; font-size:7.6px !important; border-bottom:0 !important}
-    .pv2-mix li i{width:8px !important; height:8px !important}
-    .pv2-mix .fn{left:16px !important; top:140px !important; font-size:7.4px !important}
-    .pv2-donut{left:auto !important; right:28px !important; top:20px !important; width:127px !important; height:127px !important}
-    .pv2-donut svg{width:127px !important; height:127px !important}
-    .pv2-donut p{font-size:10.6px !important; line-height:12.5px !important}
-  }
-
-  /* ---------- horizon: allocation against time ---------- */
-  @media (max-width:560px){
-    .hx-scope .v2{padding:64px 26px 72px !important; background:#f7f6f3 !important}
-    .hx-scope .v2-head{text-align:center}
-    .hx-scope .hx-title{font-size:30px !important; line-height:38px !important; letter-spacing:-.01em}
-    .hx-scope .hx-title br{display:inline}
-    .hx-scope .hx-label{margin-top:22px !important; font-size:14.5px !important; font-weight:500 !important; letter-spacing:0 !important; color:#0d0d0d !important}
-    .hx-scope .hx-para{margin:24px auto 0 !important; max-width:330px !important; font-size:14.2px !important; line-height:17.2px !important; font-weight:500 !important; color:#0d0d0d}
-    .hx-scope .hx-btn{display:none !important}
-    .hx-scope .v2 .hx-tabs{margin:46px auto 0 !important; width:100% !important; max-width:none !important; height:26px; padding:2px 3px !important; display:flex; justify-content:space-between; overflow:visible !important;
-      background:#f3f8fd; border:1px solid #c8dcf0; box-shadow:0 2px 6px -3px rgba(15,27,46,.2)}
-    .hx-scope .v2 .hx-tab{flex:0 0 auto !important; padding:0 13px !important; height:20px; font-size:9.6px !important; font-weight:600}
-    .hx-scope .v2-row{display:flex !important; flex-direction:column; gap:20px !important; margin-top:25px !important}
-    .hx-scope .v2-row > .hx-box.chart{order:-1}
-    .hx-scope .v2-cards{display:flex !important; flex-direction:column; gap:20px !important; min-height:0 !important}
-    .hx-scope .hx-box,.hx-scope .v2-cards > div{border-radius:16px !important; border:1px solid #d5d8dc !important; padding:0 !important;
-      background:linear-gradient(110deg,#fff 55%,#e6f3fd 100%) !important; box-shadow:2px 6px 14px -6px rgba(15,27,46,.3) !important}
-    .hx-scope .v2 .hx-box.chart{padding:24px 28px 22px 29px !important; height:438px}
-    .hx-scope .hx-ch{zoom:.85; width:100%}
-    .hx-scope .hx-ch .hd{flex-direction:column; gap:0 !important}
-    .hx-scope .hx-ch .sub{max-width:280px; line-height:1.2 !important; margin-top:4px !important}
-    .hx-scope .hx-lg{display:grid !important; align-self:flex-end; padding-top:24px !important; gap:9px !important}
-    .hx-scope .hx-bars{margin-top:-58px !important; transform:scaleY(.814); transform-origin:50% 0; margin-bottom:-71px}
-    .hx-scope .hx-axis{margin-top:32px !important}
-    .hx-scope .v2-cards > .tint{padding:22px 28px 24px !important; min-height:230px}
-    .hx-scope .v2-cards > .hx-box{padding:27px 28px 24px !important; min-height:254px}
-    .hx-scope .hx-st{font-size:12.4px !important; font-weight:500 !important; letter-spacing:.005em}
-    .hx-scope .hx-dh{margin-top:14px; font-size:20.5px !important; line-height:25px !important}
-    .hx-scope .v2-cards > .hx-box .hx-dh{margin-top:0}
-    .hx-scope .hx-dp{margin-top:10px; font-size:14px !important; line-height:17.3px !important}
-    .hx-scope .hx-dp b{display:block; margin-top:8px; font-size:13.5px; text-transform:uppercase}
-    .hx-scope .v2-cards [data-full]{gap:0 !important}
-    .hx-scope .v2-cards > div{display:block !important}
-    .hx-scope .hx-dh{display:block}
-  }
-
-  /* ---------- what changes the allocation ---------- */
-  .wc-mbtn{display:none}
-  @media (max-width:560px){
-    .wc.v-sky{padding:0 0 82px !important; background:linear-gradient(180deg,#f7f6f3 0,#f7f6f3 120px,#c9e0f6 190px,#8fc0f0 330px,#86bdf1 100%) !important}
-    .v-sky .wc-bg{background:url(assets/meadow-ridge-aerial.png) center bottom / 100% auto no-repeat !important; top:auto !important; height:900px !important;
-      -webkit-mask-image:linear-gradient(180deg,transparent 0,transparent 120px,#000 380px); mask-image:linear-gradient(180deg,transparent 0,transparent 120px,#000 380px)}
-    .v-sky .wc-bg::after{display:none !important}
-    .wc-in{padding:0 26px}
-    .wc-head{display:block !important; text-align:center; padding-top:16px}
-    .wc-head > div{display:flex; flex-direction:column}
-    .wc-h{order:1; margin:0 auto !important; max-width:260px; font-size:28px !important; line-height:36px !important; color:#0d0d0d !important; letter-spacing:-.01em}
-    .wc-eye{order:2; display:block !important; margin-top:32px; font-weight:500 !important; font-size:14px !important; letter-spacing:0 !important; color:#0d0d0d !important}
-    .wc-eye i{display:none}
-    .wc-side{margin:26px auto 0 !important; padding:0 !important; max-width:322px !important; font-size:14px !important; line-height:17.3px !important; color:#0d0d0d !important; font-weight:500}
-    .v-sky .wc-cols{display:block !important; margin-top:46px !important; padding:36px 26px 34px 32px; border-radius:24px; gap:0 !important;
-      background:rgba(232,242,252,.78); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,.85); box-shadow:0 10px 26px -12px rgba(15,27,46,.35)}
-    .v-sky .wc-col{display:grid !important; grid-template-columns:43px 1fr; padding:0 !important; background:none !important; border:0 !important; border-radius:0 !important; box-shadow:none !important; backdrop-filter:none !important}
-    .v-sky .wc-col + .wc-col{margin-top:22px; padding-top:24px !important; border-top:1.5px solid rgba(255,255,255,.95) !important}
-    .wc-top{grid-column:1; grid-row:1; display:block !important}
-    .wc-ic{width:22px !important; height:22px !important}
-    .wc-ic svg{width:22px !important; height:22px !important}
-    .wc-n{display:none}
-    .v-sky .wc-col h3{grid-column:2; grid-row:1; margin:1px 0 0 !important; font-size:15.6px !important; line-height:18px !important; color:#0d0d0d !important}
-    .v-sky .wc-col p{grid-column:2; margin-top:10px !important; font-size:14px !important; line-height:17.3px !important; color:#0d0d0d !important}
-    .v-sky .wc-note{display:block !important; margin-top:23px !important; padding:34px 26px 40px !important; text-align:center; border-radius:24px; border:1px solid rgba(255,255,255,.85) !important;
-      background:rgba(244,246,236,.78) !important; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); font-size:14px !important; line-height:17.3px !important; color:#0d0d0d !important}
-    .v-sky .wc-note i{display:none}
-    .v-sky .wc-note b{display:block; margin:0 auto 22px; max-width:270px; font-size:18.6px; line-height:24px; color:#0d0d0d}
-    .wc-mbtn{display:flex; margin:26px auto 0; width:94px; height:19px; align-items:center; justify-content:center; border-radius:999px; background:#fff; color:#111; font-size:7.8px; font-weight:600; text-decoration:none}
-  }
-
-  /* ---------- who we serve ---------- */
-  @media (max-width:560px){
-    .k52-who.asc-sec{padding:0 26px 0 !important; background:linear-gradient(180deg,#fff 0,#f2f8fe 300px,#eef6fd 75%,#fff 100%) !important}
-    .k52-who .shell{padding:0 !important}
-    .k52-who .k52-st{text-align:center; padding-top:70px}
-    .k52-who .label{display:none !important}
-    .k52-who h2{margin:0 auto !important; max-width:330px; font-size:30px !important; line-height:38px !important; color:#0d0d0d !important; letter-spacing:-.01em}
-    .k52-who .k52-sup{margin:16px auto 0 !important; max-width:300px !important; font-size:13.8px !important; line-height:17.3px !important; color:#0d0d0d !important; font-weight:500}
-    .asc{padding:18px 0 0 !important}
-    .asc-step{padding:0 0 70px 50px !important}
-    .asc-step:last-child{padding-bottom:0 !important}
-    /* the desktop route, vertical: the Sky ink draws down the rail over a dotted track as the
-       page scrolls (script's ≤900px mode), each waypoint fills + haloes as the ink reaches it */
-    .asc-link{display:none !important}
-    .asc-rail{display:block !important; left:20px !important; top:20px !important; width:2px !important; height:100% !important}
-    .asc-ink{stroke:#4ba1e6; stroke-width:1.4}
-    .asc-track{stroke:#9aa8b4; stroke-width:1.4; stroke-dasharray:.01 3.4}
-    .asc-dot{box-sizing:border-box; left:21px !important; top:20px !important; width:18px !important; height:18px !important; margin:-9px 0 0 -9px !important; background:#2b8fe0 !important; border:0 !important;
-      box-shadow:0 0 0 6px rgba(43,143,224,.2) !important}
-    .asc-live .asc-dot:not(.on){background:#fff !important; border:2px solid #2b8fe0 !important; box-shadow:0 0 0 0 rgba(43,143,224,0) !important}
-    .asc-step h3 .lc{text-transform:none}
-    .asc-num{margin:0 0 16px !important; font-size:30px !important; letter-spacing:0 !important; line-height:40px !important; color:#2b8fe0 !important}
-    .asc-step h3{margin:0 0 14px !important; font-size:13.6px !important; line-height:17px !important; text-transform:uppercase; color:#0d0d0d !important; letter-spacing:.005em}
-    .asc-step p{margin:0 !important; max-width:252px; font-size:13.6px !important; line-height:17.3px !important; color:#0d0d0d !important; font-weight:500}
-    .asc-ridge{position:relative !important; display:block; left:-26px !important; right:auto !important; bottom:auto !important; width:calc(100% + 52px); height:auto !important; aspect-ratio:3/2; margin-top:36px;
-      --rw:476px !important; --rx:-29px !important; transform:scaleX(-1) !important;
-      background:linear-gradient(180deg,#cfe3f5 0%,#d9eaf8 55%,rgba(238,246,253,0) 100%) !important}
-    .asc{display:flex; flex-direction:column}
-    /* the silhouette scales with the ridge's width (was a fixed 476px mask): same framing as at 390px */
-    .asc-ridge{-webkit-mask-size:122.05% auto !important; mask-size:122.05% auto !important; -webkit-mask-position:33.7% 151% !important; mask-position:33.7% 151% !important}
-    .asc-ridge{order:2}
-  }
-
-  /* ---------- why it matters ---------- */
-  @media (max-width:560px){
-    #why{padding:42px 33px 64px !important}
-    #why .shell{padding:0 !important}
-    #why .label,#why .tag{display:none !important}
-    #why .k52-st{text-align:center; margin-bottom:0 !important; padding-bottom:0 !important}
-    #why h2{margin:0 auto !important; max-width:300px; font-size:30px !important; line-height:38px !important; color:#0d0d0d !important; letter-spacing:-.01em}
-    #why .k52-sup{margin:32px auto 0 !important; max-width:300px !important; font-size:13.6px !important; line-height:17.3px !important; color:#0d0d0d !important; font-weight:500}
-    .why-tiles{display:flex !important; flex-direction:column; gap:20px !important; margin-top:36px !important}
-    .why-tiles .tile{min-height:300px; padding:28px 28px 30px !important; border-radius:24px !important; background:#edf1f6 !important; border:1px solid #e3e8ee !important;
-      box-shadow:0 6px 14px -6px rgba(15,27,46,.25) !important; display:block !important}
-    .why-tiles .tile-icon{width:44px !important; height:44px !important; border-radius:11px !important; background:#fff !important; display:grid !important; place-items:center; margin:0 !important}
-    .why-tiles .tile-num{display:block; margin-top:22px !important; font-size:11px !important; letter-spacing:.2em !important; color:#7a8798 !important}
-    .why-tiles .tile h3{margin-top:18px !important; font-size:17.8px !important; line-height:22px !important; color:#14263b !important}
-    .why-tiles .tile p{margin-top:16px !important; max-width:262px; font-size:14.2px !important; line-height:23.5px !important; color:#4e6080 !important}
-  }
-
-  /* ---------- philosophy, contact, footer ---------- */
-  @media (max-width:560px){
-    .cine{min-height:807px !important; height:807px !important; padding:0 14px !important; align-items:flex-start !important}
-    .cine-inner{padding-top:226px !important; max-width:345px !important; text-align:center; margin:0 auto}
-    .cine .label{font-size:13.6px !important; letter-spacing:.24em !important; color:#d9ecfb !important}
-    .cine h2{margin-top:20px !important; font-size:26.5px !important; line-height:33px !important; letter-spacing:-.01em}
-    .cine p{margin-top:18px !important; font-size:14.2px !important; line-height:24.4px !important}
-    .cine-rule{margin-top:12px !important; padding-top:14px !important; font-size:14.4px !important; line-height:26px !important; letter-spacing:.24em !important}
-    .k52-cta{padding:66px 14px 96px !important}
-    .k52-cta .label{font-size:9.6px !important; letter-spacing:.2em}
-    .k52-cta h2 .k52-ln,.k52-cta h2 .k52-ln-in{display:inline !important}
-    .k52-cta h2 .k52-ln + .k52-ln::before{content:" "}
-    .k52-cta h2{margin:24px auto 0 !important; max-width:340px; font-size:33px !important; line-height:38px !important; letter-spacing:-.02em}
-    .k52-cta .k52-sup{margin:24px auto 0 !important; max-width:362px !important; font-size:15.6px !important; line-height:26.8px !important}
-    .k52-cta .btn{margin-top:28px !important; width:190px; height:47px; display:inline-flex !important; align-items:center; justify-content:center; padding:0 !important; font-size:13px !important}
-    .cta-mail{margin-top:22px !important; font-size:10.6px !important}
-    footer{padding:46px 14px 0 !important}
-    .foot{display:grid !important; grid-template-columns:150px 52px minmax(0,1fr) !important; column-gap:0 !important; row-gap:36px !important; padding-bottom:80px !important; max-width:none !important}
-    .foot-id{grid-column:1 / 3; gap:14px !important}
-    .foot-brandrow img{width:15px !important; height:15px !important}
-    .foot-brand{font-size:13px !important}
-    .foot-copy{font-size:8.7px !important}
-    .foot-col{min-width:0}
-    .foot-col:nth-of-type(1){grid-column:3; grid-row:1}
-    .foot-col:nth-of-type(2){grid-column:1; grid-row:2}
-    .foot-col:nth-of-type(3){grid-column:2 / 4; grid-row:2}
-    .foot-col:nth-of-type(4){grid-column:1; grid-row:3}
-    .foot-col h3{font-size:9.6px !important; letter-spacing:.24em !important; margin-bottom:22px !important}
-    .foot-col ul{gap:19px !important}
-    .foot-col li{line-height:13.7px !important}
-    .foot-col a{font-size:10.5px !important; line-height:13px}
-    .foot-ghost{font-size:13.2vw !important; line-height:1 !important; margin-bottom:-.12em}
-  }
-
 </style>
 <style id="d-landing">
   /* product previews are pictures of their own rendering: identical in every browser, immune to minimum-font-size settings */
@@ -1345,6 +1049,7 @@
     .wc-eye,.label,.tag{font-size:13px; font-weight:700; letter-spacing:.16em}
   }
 </style>
+<link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body id="top">
 
@@ -1433,7 +1138,7 @@
         <p class="body">Ratings look through the token to the yield source underneath: the asset, the protocol, how you exit, and what each depends on. Every rating comes with its reasoning and the conditions that would change it.</p>
         <p class="pv2-det">Layer-by-layer risk attribution · Research preview</p>
         <a class="pv2-prev is-pic" href="ratings.html" aria-label="Explore Kurtosis Ratings preview">
-        <picture class="pv2-pic"><source media="(max-width:560px)" srcset="assets/pics/prev-m.webp"><source media="(max-width:900px)" srcset="assets/pics/prev-t.webp"><img src="assets/pics/prev-d.webp" alt="" decoding="async" loading="lazy"></picture>
+        <picture class="pv2-pic"><source media="(max-width:560px)" srcset="assets/pics/prev-m.webp" width="1950" height="1506"><source media="(max-width:900px)" srcset="assets/pics/prev-t.webp" width="2040" height="1265"><img src="assets/pics/prev-d.webp" width="2270" height="1520" alt="" decoding="async" loading="lazy"></picture>
       </a>
       </article>
 
@@ -1444,7 +1149,7 @@
 
       <a class="pv2-vbtn" href="horizon.html">See how it works</a>
       <div class="pv2-dash is-pic" role="img" aria-label="Illustrative Kurtosis vault dashboard: settlement asset USDC, target-date strategy, evergreen portfolio, rules-based process; example allocation 55% floating exposure, 30% fixed to maturity, 15% liquid reserve.">
-        <picture class="pv2-pic"><source media="(max-width:560px)" srcset="assets/pics/dash-m.webp"><source media="(max-width:900px)" srcset="assets/pics/dash-t.webp"><img src="assets/pics/dash-d.webp" alt="" decoding="async" loading="lazy"></picture>
+        <picture class="pv2-pic"><source media="(max-width:560px)" srcset="assets/pics/dash-m.webp" width="1950" height="1878"><source media="(max-width:900px)" srcset="assets/pics/dash-t.webp" width="1942" height="1162"><img src="assets/pics/dash-d.webp" width="3260" height="1558" alt="" decoding="async" loading="lazy"></picture>
       </div>
       <p class="pv2-vnote">Ratings explain the decisions. Horizon executes them. Outcomes feed the next rating.</p>
     </div>
@@ -1627,8 +1332,8 @@
   html.classList.add('js');
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var phone = window.matchMedia('(max-width:560px)').matches;
-  var runEntrance = !reduced;   /* the aperture plays on every load (phones too) */
+  var phone = window.matchMedia('(max-width:900px)').matches;
+  var runEntrance = !reduced && !phone;   /* mobile opens directly on the readable hero */
   var PH = 829;                 /* phone hero height incl. the run under the logo band (m-landing CSS) */
 
   var scene   = d.getElementById('scene');
@@ -1678,6 +1383,17 @@
   var forceTimer = 0;
 
   function measure(){
+    phone = window.matchMedia('(max-width:900px)').matches;
+    if (phone) {
+      if (!done) { P = 1; render(1); complete(); }
+      hero.classList.remove('rig-live');
+      [lBg, lMg, lFg].forEach(function (layer) { layer.removeAttribute('style'); });
+      scene.style.height = '';
+      hero.style.clipPath = 'none';
+      body.classList.add('nav-in');
+      return;
+    }
+    if (!reduced && !rafId && done) rafId = requestAnimationFrame(frame);
     coverR = Math.hypot(sticky.clientWidth || window.innerWidth,
                         sticky.clientHeight || window.innerHeight) / 2 + 60;
     if (!phone) layoutRig();   /* reduced motion gets the same composed framing, just static */
@@ -1864,6 +1580,7 @@
   /* ---------------- main loop ---------------- */
   var rafId = 0;
   function frame(now){
+    if (phone) { rafId = 0; return; }
     rafId = requestAnimationFrame(frame);
     var panA = 0;
 
@@ -2283,7 +2000,7 @@
   var sec = document.getElementById('product'); if (!sec) return;
   function fit() {
     var w = document.documentElement.clientWidth;
-    var z = w > 900 ? Math.min(1, w / 1573) : (w <= 560 ? w / 390 : 1);
+    var z = w > 900 ? Math.min(1, w / 1573) : 1;
     sec.style.setProperty('--pvz', z.toFixed(4));
     document.documentElement.style.setProperty('--pvz', z.toFixed(4));   /* horizon stage + shared sky share the scale */
   }

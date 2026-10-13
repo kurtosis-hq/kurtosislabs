@@ -132,6 +132,7 @@ This document outlines the diagnosis, planned fixes, and implementation log for 
 
 9. **Created Kurtosis Horizon "Coming Soon" Landing Page (`horizon.html` & `horizon-01.html`)**:
    - Built a branded, responsive temporary landing page (`horizon.html`) featuring:
+     - The signature Kurtosis mountain range backdrop (rendered with `hero3` registered landscape layers: background sky & mountain range, midground peaks, and foreground ridges with seamless mobile responsive art direction).
      - "Research Preview · Coming Soon" badge and overview of Kurtosis Horizon explainable vaults
      - Direct CTA button back to `ratings.html` ("Explore Kurtosis Ratings")
      - "Request a Walkthrough" contact CTA

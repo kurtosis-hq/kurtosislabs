@@ -354,6 +354,7 @@
     .hz-foot-links { flex-wrap: wrap; gap: 16px; }
   }
 </style>
+<link rel="stylesheet" href="assets/responsive.css">
 </head>
 <body>
 
@@ -373,47 +374,57 @@
 </header>
 
 <main class="hz-hero">
-  <div class="hz-badge">
-    <span class="dot"></span>
-    Research Preview · Coming Soon
+  <!-- Landing page mountain backdrop -->
+  <div class="hz-mountain-bg" aria-hidden="true">
+    <div class="hz-mountain-layer bg"></div>
+    <div class="hz-mountain-layer mg"></div>
+    <div class="hz-mountain-layer fg"></div>
+    <div class="hz-mountain-fade"></div>
   </div>
 
-  <h1 class="hz-title">A horizon for your capital.</h1>
+  <div class="hz-hero-content">
+    <div class="hz-badge">
+      <span class="dot"></span>
+      Research Preview · Coming Soon
+    </div>
 
-  <p class="hz-sub">
-    Explainable vaults and target-date allocation for on-chain fixed income.
-  </p>
+    <h1 class="hz-title">A horizon for your capital.</h1>
 
-  <p class="hz-desc">
-    Horizon is an evergreen vault that rotates capital from floating yields to maturity-aligned fixed positions based directly on Kurtosis Ratings. We are currently finalizing the research preview interface.
-  </p>
+    <p class="hz-sub">
+      Explainable vaults and target-date allocation for on-chain fixed income.
+    </p>
 
-  <div class="hz-actions">
-    <a class="hz-btn-primary" href="ratings.html">
-      Explore Kurtosis Ratings
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-    </a>
-    <a class="hz-btn-sec" href="mailto:kai@kurtosislabs.com">
-      Request a Walkthrough
-    </a>
-  </div>
+    <p class="hz-desc">
+      Horizon is an evergreen vault that rotates capital from floating yields to maturity-aligned fixed positions based directly on Kurtosis Ratings. We are currently finalizing the research preview interface.
+    </p>
 
-  <div class="hz-cards">
-    <article class="hz-card">
-      <span class="hz-card-tag">Layer 2 Architecture</span>
-      <h3>Evergreen Cycles</h3>
-      <p>Capital runs in disciplined cycles, smoothly transitioning from flexible floating-rate yield toward fixed-to-maturity positions as the target date approaches.</p>
-    </article>
-    <article class="hz-card">
-      <span class="hz-card-tag">Research-Led Execution</span>
-      <h3>Ratings-Driven Allocation</h3>
-      <p>Every qualification, weighting, and rebalance directly reflects Kurtosis Ratings risk attribution, counterparty scrutiny, and approved position constraints.</p>
-    </article>
-    <article class="hz-card">
-      <span class="hz-card-tag">Institutional Transparency</span>
-      <h3>Explainable Decision Record</h3>
-      <p>See holdings, ratings, risk controls, and the transparent rationale behind every capital change. No black box signals or unverified claims.</p>
-    </article>
+    <div class="hz-actions">
+      <a class="hz-btn-primary" href="ratings.html">
+        Explore Kurtosis Ratings
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="hz-btn-sec" href="mailto:kai@kurtosislabs.com">
+        Request a Walkthrough
+      </a>
+    </div>
+
+    <div class="hz-cards">
+      <article class="hz-card">
+        <span class="hz-card-tag">Layer 2 Architecture</span>
+        <h3>Evergreen Cycles</h3>
+        <p>Capital runs in disciplined cycles, smoothly transitioning from flexible floating-rate yield toward fixed-to-maturity positions as the target date approaches.</p>
+      </article>
+      <article class="hz-card">
+        <span class="hz-card-tag">Research-Led Execution</span>
+        <h3>Ratings-Driven Allocation</h3>
+        <p>Every qualification, weighting, and rebalance directly reflects Kurtosis Ratings risk attribution, counterparty scrutiny, and approved position constraints.</p>
+      </article>
+      <article class="hz-card">
+        <span class="hz-card-tag">Institutional Transparency</span>
+        <h3>Explainable Decision Record</h3>
+        <p>See holdings, ratings, risk controls, and the transparent rationale behind every capital change. No black box signals or unverified claims.</p>
+      </article>
+    </div>
   </div>
 </main>
 
