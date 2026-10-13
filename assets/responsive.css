@@ -3,15 +3,78 @@ html { scroll-padding-top: 88px; }
 .badge { display: none; }
 .rl-dialog-close { display: none; }
 
-/* The desktop rail spans the assessment; its navigation follows the viewport. */
+/* Reserve the header and document links; only the positions list can scroll. */
 @media (min-width: 901px) {
+  .rl { --rl-header-height: 84px; }
+  .rl-top {
+    position: sticky; top: 0; z-index: 40;
+    height: var(--rl-header-height); background: #fff;
+  }
   .rl-side-inner {
-    position: sticky; top: 0; max-height: 100dvh;
-    overflow-y: auto;
+    position: sticky; top: var(--rl-header-height);
+    height: calc(100dvh - var(--rl-header-height));
+    display: flex; flex-direction: column; overflow: hidden;
+    background: linear-gradient(172deg, #a6d7ff 0%, #cfeaff 52%, #eef7ff 100%);
   }
   .rl-cov {
-    height: auto; min-height: min(632px, calc(100dvh - 160px));
-    padding-bottom: 32px;
+    display: flex; flex-direction: column; flex: 1; min-height: 0;
+    height: auto; padding: 28px 0 20px; background: transparent;
+  }
+  .rl-cov-head, .rl-solana { flex: none; }
+  .rl-cards {
+    flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden;
+    overscroll-behavior-y: contain; scrollbar-gutter: stable;
+  }
+  .rl-docs {
+    flex: none; height: auto; padding: 22px 35px;
+    background: transparent;
+  }
+  .rl-docs ul { display: grid; gap: 8px; margin-top: 16px; }
+  .rl-docs li, .rl-docs li + li { margin-top: 0; line-height: 1.4; }
+  .rl-docs a { display: flex; align-items: center; min-height: 28px; }
+}
+
+@media (min-width: 901px) and (max-height: 560px) {
+  .rl { --rl-header-height: 64px; }
+  .rl-cov { padding: 20px 0 16px; }
+  .rl-solana { margin-top: 12px; }
+  .rl-cards { margin-top: 14px; }
+  .rl-docs { padding: 16px 35px; }
+  .rl-docs ul { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 12px; }
+  .rl-docs li { font-size: 14px; }
+  .rl-docs a { min-height: 24px; }
+}
+
+/* Use normal flow in the scale as well as the surrounding snapshot. */
+.rl-snap .scale {
+  display: flex; justify-content: space-between; height: auto;
+  font-size: 11px; line-height: 1.4;
+}
+.rl-snap .scale span { position: static; }
+
+@media (min-width: 901px) and (max-width: 1440px) {
+  .rl-snap .scale { display: flex; }
+}
+
+@media (max-width: 900px) {
+  .rl-kpi dt { justify-content: flex-start; }
+  .cine .cine-rule { flex-direction: column; gap: 10px; }
+  .cine .cine-rule span + span::before { content: none; }
+}
+
+/* Documents stay available in the compact navigation on tablets and phones. */
+@media (max-width: 900px) {
+  .rl-side .rl-docs {
+    display: block; height: auto; padding: 14px 16px;
+    border-top: 1px solid #c9dbe8; background: #eef7ff;
+  }
+  .rl-side .rl-docs .rl-h { font-size: 12px; line-height: 1.4; }
+  .rl-side .rl-docs ul { display: flex; flex-wrap: wrap; gap: 4px 20px; margin-top: 6px; }
+  .rl-side .rl-docs li, .rl-side .rl-docs li + li { margin: 0; font-size: 14px; line-height: 1.4; }
+  .rl-side .rl-docs a { display: flex; align-items: center; min-height: 44px; }
+  .rl-side .rl-cards {
+    max-height: min(240px, 40dvh); overflow-y: auto;
+    overscroll-behavior-y: contain;
   }
 }
 

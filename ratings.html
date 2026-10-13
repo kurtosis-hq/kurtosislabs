@@ -78,13 +78,13 @@
   .rl-copy{width:16px; height:16px; margin-left:12px; color:#545961; display:block; padding:0}
 
   .rl-box{border:1px solid var(--line); border-radius:9px; background:#fff; position:relative}
-  .rl-kpi{margin-top:29.5px; height:82px; display:grid; grid-template-columns:222fr 227.5fr 223fr 227fr 222fr}
-  .rl-kpi > div{position:relative; padding:19.5px 0 0 26.5px}
-  .rl-kpi > div:nth-child(2){padding-left:22px}
+  .rl-kpi{margin-top:29.5px; height:82px; display:grid; grid-template-columns:repeat(5,minmax(0,1fr))}
+  .rl-kpi > div{position:relative; min-width:0; padding:16px 12px}
   .rl-kpi > div + div{border-left:0}
   .rl-kpi > div + div::before{content:""; position:absolute; left:0; top:7px; bottom:7px; border-left:1px solid var(--line)}
-  .rl-kpi dt{display:flex; align-items:center; gap:4px; font-weight:700; font-size:13.2px; line-height:1; letter-spacing:-.01em; text-transform:uppercase}
-  .rl-kpi dt svg{width:10px; height:10px}
+  .rl-kpi dt{display:flex; align-items:center; justify-content:center; gap:5px; min-height:2.4em; font-weight:700; font-size:13.2px; line-height:1.2; letter-spacing:-.01em; text-transform:uppercase}
+  .rl-kpi dt span{min-width:0}
+  .rl-kpi dt svg{width:10px; height:10px; flex:none}
   .rl-kpi dd{position:absolute; left:0; right:0; top:53.5px; text-align:center; font-weight:700; font-size:15.2px; line-height:1; letter-spacing:-.008em; padding-right:12px}
 
   .rl-ar{margin-top:19.5px; height:328.5px; display:grid; grid-template-columns:381.5px minmax(0,1fr); overflow:hidden}
@@ -884,7 +884,7 @@
   .rl-xr .c2 b,.rl-xr .c3 b,.rl-oql .c b,.rl-oql .c1 p b,.rl-evr .c2 b{font-size:inherit !important; display:block}
   .rl-oql .c br,.rl-evr .c br,.rl-xr .c2 br,.rl-xr .c3 br{display:none}
   .rl-ctrl{height:auto !important; padding-bottom:28px}
-  .rl-pos{height:auto !important; min-height:531px; padding-bottom:30px}
+  .rl-pos{height:auto !important; min-height:0; padding-bottom:30px}
   .rl-xhd .t{font-weight:700}
   @media (min-width:1241px){
     /* snapshot: the coverage sentence wraps, links and box follow */
@@ -973,15 +973,13 @@
   @media (min-width:561px){
     .rl-kpi{height:auto !important; min-height:82px}
     .rl-kpi > div{padding-bottom:16px}
-    .rl-kpi dd{position:static !important; margin:14px 0 0 -26.5px; padding:0 12px; text-align:center; line-height:1.25; text-wrap:balance}
-    .rl-kpi > div:nth-child(2) dd{margin-left:-22px}
+    .rl-kpi dd{position:static !important; margin:14px 0 0; padding:0; text-align:center; line-height:1.25; text-wrap:balance}
   }
-  @media (min-width:561px) and (max-width:1180px){ .rl-kpi dt{min-height:2.15em; align-items:flex-start} }   /* labels that wrap keep values level */
   @media (max-width:560px){
     .rl-kpi > div{height:auto !important; min-height:33px; padding-top:7px !important; padding-bottom:7px !important; gap:10px}
     .rl-kpi dd{flex:0 0 46%; text-align:center !important; line-height:1.25}
   }
-  .rl-pos.fitn{height:auto; min-height:531px}
+  .rl-pos.fitn{height:auto; min-height:0}
   /* open questions extras: three-key-issues toggle, investment implication, assessment details */
   .rl-oqp.k3{height:var(--oqh3)}
   .rl-oqp.k3 .rl-oql > li:nth-child(n+4){display:none}
@@ -1079,7 +1077,7 @@
       </div>
       <p class="rl-solana">Solana</p>
       <label class="rl-msbox"><span class="sr">Search token</span><input type="search" placeholder="Search token" autocomplete="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></label>
-      <ul class="rl-cards">
+      <ul class="rl-cards" tabindex="0" aria-label="Covered positions">
         <li><button class="rl-card" type="button" aria-pressed="false"><span class="hl" aria-hidden="true"></span><span class="dots" aria-hidden="true"><img class="dot d" src="assets/tok-onyc.png" alt="" width="20" height="20"></span><span class="nm">ONyc</span><span class="sb">NAV-based token</span><svg class="chev" viewBox="0 0 8 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m1.5 1 5 5-5 5"/></svg></button></li>
         <li><button class="rl-card" type="button" aria-pressed="false"><span class="hl" aria-hidden="true"></span><span class="dots" aria-hidden="true"><img class="dot g" src="assets/tok-exponent.png" alt="" width="20" height="20"><img class="dot d" src="assets/tok-onyc.png" alt="" width="20" height="20"></span><span class="nm">PT-ONyc</span><span class="sb">Principal token</span><svg class="chev" viewBox="0 0 8 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m1.5 1 5 5-5 5"/></svg></button></li>
         <li><button class="rl-card" type="button" aria-pressed="true"><span class="hl" aria-hidden="true"></span><span class="dots" aria-hidden="true"><img class="dot g" src="assets/tok-exponent.png" alt="" width="20" height="20"><img class="dot d" src="assets/tok-sronyc.png" alt="" width="20" height="20"></span><span class="nm">PT-srONyc</span><span class="sb">Senior principal token</span><svg class="chev" viewBox="0 0 8 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="m1.5 1 5 5-5 5"/></svg></button></li>
@@ -1104,11 +1102,11 @@
     <p class="rl-mint">Token Mint <code>BKP9Rt…uMJQy</code><button class="rl-copy" type="button" aria-label="Copy token mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></button></p>
 
     <dl class="rl-box rl-kpi">
-      <div><dt>Category <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed yield</dd></div>
-      <div><dt>TVL <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Matured, no live TVL.</dd></div>
-      <div><dt>Realised APY <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed at entry</dd></div>
-      <div><dt>Risk rating <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Not yet rated</dd></div>
-      <div><dt>Token type <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Principal token</dd></div>
+      <div><dt><span>Category</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed yield</dd></div>
+      <div><dt><span>TVL</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Matured, no live TVL.</dd></div>
+      <div><dt><span>Realised APY</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed at entry</dd></div>
+      <div><dt><span>Risk rating</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Not yet rated</dd></div>
+      <div><dt><span>Token type</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Principal token</dd></div>
     </dl>
 
     <nav class="rl-tabsbar" role="tablist" aria-label="Assessment views">
@@ -1413,11 +1411,11 @@
     <p class="rl-mint">Token Mint <code>2W5zZc…HvhiJ</code><button class="rl-copy" type="button" aria-label="Copy token mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></button></p>
 
     <dl class="rl-box rl-kpi">
-      <div><dt>Category <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed yield</dd></div>
-      <div><dt>TVL <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Matured, no live TVL.</dd></div>
-      <div><dt>Realised APY <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed at entry</dd></div>
-      <div><dt>Risk rating <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Not yet rated</dd></div>
-      <div><dt>Token type <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Principal token</dd></div>
+      <div><dt><span>Category</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed yield</dd></div>
+      <div><dt><span>TVL</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Matured, no live TVL.</dd></div>
+      <div><dt><span>Realised APY</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Fixed at entry</dd></div>
+      <div><dt><span>Risk rating</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Not yet rated</dd></div>
+      <div><dt><span>Token type</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Principal token</dd></div>
     </dl>
 
     <nav class="rl-tabsbar" role="tablist" aria-label="Assessment views">
@@ -1680,11 +1678,11 @@
     <p class="rl-mint">Token Mint <code>5Y8NV3…tcxp5</code><button class="rl-copy" type="button" aria-label="Copy token mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></button></p>
 
     <dl class="rl-box rl-kpi">
-      <div><dt>Category <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Private credit</dd></div>
-      <div><dt>TVL <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>$291.56M</dd></div>
-      <div><dt>Realised APY <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>11.02%</dd></div>
-      <div><dt>Risk rating <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Not yet rated</dd></div>
-      <div><dt>Token type <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Yield-bearing token</dd></div>
+      <div><dt><span>Category</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Private credit</dd></div>
+      <div><dt><span>TVL</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>$291.56M</dd></div>
+      <div><dt><span>Realised APY</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>11.02%</dd></div>
+      <div><dt><span>Risk rating</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Not yet rated</dd></div>
+      <div><dt><span>Token type</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01" stroke-linecap="round"/></svg></dt><dd>Yield-bearing token</dd></div>
     </dl>
 
     <nav class="rl-tabsbar" role="tablist" aria-label="Assessment views">

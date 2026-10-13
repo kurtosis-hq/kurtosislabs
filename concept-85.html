@@ -41,6 +41,7 @@
     content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
     background:linear-gradient(to bottom, rgba(15,27,46,.52), rgba(15,27,46,0));
   }
+  .nav.is-scrolled::before{background:rgba(24,40,65,.96); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px)}
   .nav-brand{display:flex; align-items:center; gap:10px; text-decoration:none; padding:7px}
   .nav-brand img{display:block; height:28px; width:auto}
   .nav-brand span{font-weight:700; font-size:16px; letter-spacing:.02em; color:#fff}
@@ -428,14 +429,16 @@
     max-width:640px; margin:0 auto;
     text-shadow:0 1px 14px rgba(15,27,46,.55);
   }
-  .cine-rule{
-    margin-top:clamp(38px,6vh,56px);
+  .cine .cine-rule{
+    margin:clamp(32px,5vh,48px) auto 0;
     border-top:1px solid rgba(255,255,255,.38);
-    padding-top:18px;
-    display:inline-flex;
-    font-size:11px; font-weight:700; letter-spacing:.24em; text-transform:uppercase;
+    padding-top:22px;
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px 20px;
+    max-width:none; font-size:12px; line-height:1.6; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
     color:rgba(255,255,255,.92);
   }
+  .cine-rule span{white-space:nowrap}
+  .cine-rule span + span::before{content:"·"; margin-right:20px}
 
   /* CTA mail line */
   .cta-mail{display:block; margin-top:22px; font-weight:700; font-size:14px; color:var(--sky); text-decoration:none}
@@ -1005,10 +1008,10 @@
       background:#f3f8fd; border:1px solid #c8dcf0; box-shadow:0 4px 12px -6px rgba(15,27,46,.18); overflow:visible}
     .hx-scope .v2 .hx-tab{flex:none; height:41px; padding:0 40px; font-size:21px; font-weight:600; color:#0b0b0b}
     .hx-scope .v2 .hx-tab[aria-selected="true"]{color:#fff}
-    .hx-scope .v2-row{display:grid; grid-template-columns:515.5px 655px; column-gap:24.5px; width:1195px; height:461px; margin:50px auto 0; align-items:stretch; text-align:left}
-    .hx-scope .v2-cards{display:grid; grid-template-rows:224px 221px; gap:16px; min-height:0}
+    .hx-scope .v2-row{display:grid; grid-template-columns:515.5px 655px; column-gap:24.5px; width:1195px; min-height:461px; margin:50px auto 0; align-items:stretch; text-align:left}
+    .hx-scope .v2-cards{display:grid; grid-template-rows:minmax(224px,auto) minmax(221px,auto); gap:16px; min-height:0}
     .hx-scope .v2-cards > div,.hx-scope .v2 .hx-box.chart{background:#fff; border:1px solid rgba(24,40,65,.14); border-radius:34px; box-shadow:0 10px 30px -8px rgba(15,27,46,.18)}
-    .hx-scope .v2-cards > div{display:block; padding:31px 40px 0}
+    .hx-scope .v2-cards > div{display:block; padding:31px 40px 32px}
     .hx-scope .v2-cards > .tint{background:#fff}
     .hx-scope .v2-cards > .hx-box{padding-top:42px}
     .hx-scope .v2-cards [data-full]{display:block}
@@ -1043,7 +1046,7 @@
 
     /* one type scale for the sections below (unzoomed: the same sizes reached at 1573px) */
     .wc-h,.k52-split{font-size:clamp(44px,4.35vw,68px) !important; font-weight:700; line-height:1.12; letter-spacing:-.015em}
-    .wc-side,.k52-sup,#philosophy p.k52-fd-late{font-size:clamp(17px,1.27vw,20px); line-height:1.5; font-weight:400}
+    .wc-side,.k52-sup,#philosophy p.k52-fd-late:not(.cine-rule){font-size:clamp(17px,1.27vw,20px); line-height:1.5; font-weight:400}
     .wc-col h3,.asc-step h3,#why .tile h3{font-size:clamp(20px,1.53vw,24px); line-height:1.25; font-weight:700}
     .wc-col p,.asc-step p,#why .tile p{font-size:clamp(15px,1.02vw,16px); line-height:1.6; font-weight:400}
     .wc-eye,.label,.tag{font-size:13px; font-weight:700; letter-spacing:.16em}
@@ -1262,7 +1265,7 @@
       <p class="label k52-fd">THE KURTOSIS PHILOSOPHY</p>
       <h2 class="k52-split" data-lines="Show the working.|Let the evidence build.">Show the working. <br>Let the evidence build.</h2>
       <p class="k52-fd-late">We pair position-level research with onchain transparency, so every allocation decision leaves a record you can check. Over time, that record becomes the track record.</p>
-      <p class="cine-rule k52-fd-late" style="transition-delay:.55s">Systematic · Inspectable · Accountable to evidence</p>
+      <p class="cine-rule k52-fd-late" style="transition-delay:.55s"><span>Systematic</span><span>Inspectable</span><span>Accountable to evidence</span></p>
     </div>
   </section>
 
@@ -2049,7 +2052,10 @@
 <script>
 /* phone menu */
 (function () {
-  var nav = document.querySelector('.nav'), b = document.querySelector('.nav-burger'); if (!nav || !b) return;
+  var nav = document.querySelector('.nav'), b = document.querySelector('.nav-burger'); if (!nav) return;
+  function updateBackground() { nav.classList.toggle('is-scrolled', window.scrollY > 24); }
+  updateBackground(); window.addEventListener('scroll', updateBackground, { passive: true });
+  if (!b) return;
   function set(o) { nav.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); }
   b.addEventListener('click', function () { set(!nav.classList.contains('open')); });
   [].forEach.call(nav.querySelectorAll('.nav-links a'), function (a) { a.addEventListener('click', function () { set(false); }); });
