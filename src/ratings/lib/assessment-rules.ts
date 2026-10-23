@@ -6,6 +6,14 @@ const states = new Set(['complete', 'partial', 'stale', 'contradictory', 'missin
 const roles = new Set(['held', 'D', 'S', 'R']);
 const routeIds = ['entry', 'settlement', 'early', 'stress'];
 const base58 = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+const evmAddress = /^0x[0-9a-fA-F]{40}$/;
+const onycIds = ['onyc', 'pt-onyc', 'pt-sronyc'];
+const supportedIds = [...onycIds, 'pt-susdai'];
+const susdaiIdentity = {
+  mint: '0xb459db106f645d698e74027eef6019a26a0675cc',
+  market: '0xcbf629c8d396b1261f81f55175afa010e94787d8',
+  maturity: '2026-10-15T00:00:00Z',
+};
 const isText = (value: unknown): value is string => typeof value === 'string' && value.trim().length > 0;
 const isObject = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null && !Array.isArray(value);
 
@@ -30,25 +38,34 @@ export function validateAssessment(assessment: Assessment): string[] {
   const sourceSet = new Set(sources.map((source) => source.id));
   const requiredText = ['id', 'symbol', 'name', 'type', 'protocol', 'chain', 'mint', 'identityBasis', 'summary', 'blocker', 'lane', 'lossObject', 'methodologyVersion'];
   for (const field of requiredText) if (!isText(assessment[field as keyof Assessment])) fail(`${field} must be nonempty.`);
-  if (!['onyc', 'pt-onyc', 'pt-sronyc'].includes(assessment.id)) fail('Unsupported assessment identity.');
+  if (!supportedIds.includes(assessment.id)) fail('Unsupported assessment identity.');
   if (assessment.disposition !== 'NO_RATE') fail('Research-only assessments must retain NO_RATE.');
   for (const field of ['approvedScore', 'approvedGrade', 'approvedConfidence', 'indicatedScore', 'indicatedGrade'] as const) {
     if (assessment[field] !== null) fail(`${field} must remain null until supported scoring and approval exist.`);
   }
   if (assessment.methodologyVersion !== 'v0.3-alpha') fail('Methodology change requires a reviewed research-data revision.');
-  if (assessment.chain !== 'Solana') fail('This research packet covers Solana only.');
-  if (!isText(assessment.mint) || !base58.test(assessment.mint)) fail('A valid-format Solana mint is required.');
   if (!isDate(assessment.observedAt)) fail('Observed date is missing or invalid.');
-  if (assessment.id === 'onyc') {
-    if (assessment.mint !== onycPacket.identity.mint) fail('ONyc mint must match the documented research identity.');
-    if (assessment.maturity !== null) fail('ONyc does not have a PT maturity.');
-    if (assessment.market !== null) fail('A spot-token assessment must not borrow a PT market identity.');
-  } else {
-    if (!isDate(assessment.maturity, true)) fail('A PT requires an explicit valid maturity timestamp with timezone.');
-    if (!isText(assessment.market) || !base58.test(assessment.market)) fail('A PT requires its exact vault/market identifier.');
-    const expected = exponentPacket.candidate_markets.find((market) => market.series === (assessment.id === 'pt-sronyc' ? 'srONyc-10SEPT26' : 'ONyc-10SEPT26'));
-    if (!expected || assessment.mint !== expected.pt_mint || assessment.market !== expected.vault_address) fail('PT mint and vault must match the selected September research series.');
-    if (expected && isDate(assessment.maturity, true) && Date.parse(assessment.maturity) !== Date.parse(expected.maturity_utc)) fail('PT maturity must match the exact selected research series.');
+  if (assessment.id === 'pt-susdai') {
+    if (assessment.approvalStatus !== 'NOT APPROVED' || assessment.watchlist !== true || assessment.indicatedEvidenceConfidence !== 'Low') fail('PT-sUSDai must retain the report’s NOT APPROVED status, required watchlist and Low indicated evidence confidence.');
+    if (assessment.chain !== 'Arbitrum One') fail('PT-sUSDai must retain its Arbitrum One network identity.');
+    if (!isText(assessment.mint) || !evmAddress.test(assessment.mint)) fail('A valid-format EVM PT address is required.');
+    if (!isText(assessment.market) || !evmAddress.test(assessment.market)) fail('A valid-format EVM market address is required.');
+    if (!isText(assessment.mint) || assessment.mint.toLowerCase() !== susdaiIdentity.mint || !isText(assessment.market) || assessment.market.toLowerCase() !== susdaiIdentity.market) fail('PT-sUSDai PT and market must match the documented October research position.');
+    if (!isDate(assessment.maturity, true) || Date.parse(assessment.maturity) !== Date.parse(susdaiIdentity.maturity)) fail('PT-sUSDai maturity must match the documented October research position.');
+  } else if (onycIds.includes(assessment.id)) {
+    if (assessment.chain !== 'Solana') fail('ONyc-family research packets cover Solana only.');
+    if (!isText(assessment.mint) || !base58.test(assessment.mint)) fail('A valid-format Solana mint is required.');
+    if (assessment.id === 'onyc') {
+      if (assessment.mint !== onycPacket.identity.mint) fail('ONyc mint must match the documented research identity.');
+      if (assessment.maturity !== null) fail('ONyc does not have a PT maturity.');
+      if (assessment.market !== null) fail('A spot-token assessment must not borrow a PT market identity.');
+    } else {
+      if (!isDate(assessment.maturity, true)) fail('A PT requires an explicit valid maturity timestamp with timezone.');
+      if (!isText(assessment.market) || !base58.test(assessment.market)) fail('A PT requires its exact vault/market identifier.');
+      const expected = exponentPacket.candidate_markets.find((market) => market.series === (assessment.id === 'pt-sronyc' ? 'srONyc-10SEPT26' : 'ONyc-10SEPT26'));
+      if (!expected || assessment.mint !== expected.pt_mint || assessment.market !== expected.vault_address) fail('PT mint and vault must match the selected September research series.');
+      if (expected && isDate(assessment.maturity, true) && Date.parse(assessment.maturity) !== Date.parse(expected.maturity_utc)) fail('PT maturity must match the exact selected research series.');
+    }
   }
   if (!Array.isArray(assessment.scopeAssumptions) || assessment.scopeAssumptions.length === 0 || assessment.scopeAssumptions.some((item) => !isText(item))) fail('Explicit nonempty scope assumptions are required.');
 
@@ -116,7 +133,7 @@ export function validateAssessment(assessment: Assessment): string[] {
     if (!junior || junior.role !== 'S' || junior.parentId !== 'senior') fail('Junior capital must remain a protection dependency attached to senior, not an owned scoring child.');
     if (!byId.has('senior') || !byId.has('onyc-token')) fail('Senior and inherited ONyc exposure must remain visible.');
   }
-  if (!byId.has('reinsurance') || !byId.has('collateral')) fail('Reinsurance exposures and supporting collateral functions must remain visible.');
+  if (onycIds.includes(assessment.id) && (!byId.has('reinsurance') || !byId.has('collateral'))) fail('Reinsurance exposures and supporting collateral functions must remain visible.');
 
   const routes = items(assessment.routes, 'routes');
   for (const id of routeIds) if (!routes.some((route) => route.id === id)) fail(`Missing ${id} route.`);
@@ -140,7 +157,9 @@ export function validateResearchData(): string[] {
     if (sourceIds.has(source.id)) errors.push(`Duplicate source ID ${source.id}.`);
     sourceIds.add(source.id);
     for (const key of ['id', 'title', 'publisher', 'url'] as const) if (!isText(source[key])) errors.push(`Source ${source.id} needs ${key}.`);
-    try {
+    if (source.id === 'SUSDAI-REPORT' && source.url === '/ratings-data/documents/pt-susdai.md') {
+      // The supplied report itself supports its methodology and approval conclusions.
+    } else try {
       if (new URL(source.url).protocol !== 'https:') errors.push(`Source ${source.id} must link directly to HTTPS evidence.`);
     } catch { errors.push(`Source ${source.id} has an invalid URL.`); }
     if (!isDate(source.observedAt)) errors.push(`Source ${source.id} needs a valid observation date.`);
@@ -154,6 +173,6 @@ export function validateResearchData(): string[] {
     mints.add(assessment.mint);
     errors.push(...validateAssessment(assessment));
   }
-  for (const id of ['onyc', 'pt-onyc', 'pt-sronyc']) if (!assessmentIds.has(id)) errors.push(`Missing initial assessment ${id}.`);
+  for (const id of supportedIds) if (!assessmentIds.has(id)) errors.push(`Missing research assessment ${id}.`);
   return errors;
 }

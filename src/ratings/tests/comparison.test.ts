@@ -21,7 +21,7 @@ void test('comparison includes every shared and position-specific evidence requi
 void test('PT exit gaps remain distinct from partial underlying ONyc exit evidence', () => {
   const ptExit = comparisonEvidenceRows.find(row => row.id === 'pt-liquidity')!;
   const underlyingExit = comparisonEvidenceRows.find(row => row.id === 'liquidity')!;
-  assert.match(underlyingExit.title, /Underlying ONyc/);
+  assert.match(underlyingExit.title, /Underlying redemption/);
   for (const id of ['pt-onyc', 'pt-sronyc']) {
     const position = getAssessment(id)!;
     const ptCell = comparisonEvidenceCell(position, ptExit);
@@ -30,6 +30,35 @@ void test('PT exit gaps remain distinct from partial underlying ONyc exit eviden
     assert.equal(underlyingCell.kind, 'recorded');
     if (ptCell.kind === 'recorded') assert.equal(ptCell.evidence.state, 'missing');
     if (underlyingCell.kind === 'recorded') assert.equal(underlyingCell.evidence.state, 'partial');
+  }
+});
+
+void test('Pendle and USDai requirements do not inherit Exponent or ONyc senior-tranche applicability', () => {
+  const susdai = getAssessment('pt-susdai')!;
+  for (const id of ['pendle-control', 'reserves', 'access', 'history', 'methodology']) {
+    const row = comparisonEvidenceRows.find(candidate => candidate.id === id)!;
+    assert.deepEqual(row.appliesTo, ['pt-susdai']);
+    assert.equal(comparisonEvidenceCell(susdai, row).kind, 'recorded', id);
+    for (const position of assessments.filter(candidate => candidate.id !== 'pt-susdai')) {
+      assert.equal(comparisonEvidenceCell(position, row).kind, 'not-applicable', `${position.id}: ${id}`);
+    }
+  }
+  for (const id of ['exponent-control', 'tranche']) {
+    const row = comparisonEvidenceRows.find(candidate => candidate.id === id)!;
+    assert.equal(comparisonEvidenceCell(susdai, row).kind, 'not-applicable', id);
+  }
+  for (const id of ['market', 'conversion', 'pt-liquidity', 'legal', 'portfolio', 'nav', 'liquidity', 'attestation', 'control']) {
+    const row = comparisonEvidenceRows.find(candidate => candidate.id === id)!;
+    assert.equal(comparisonEvidenceCell(susdai, row).kind, 'recorded', id);
+  }
+});
+
+void test('a missing required Pendle or USDai record remains an evidence gap', () => {
+  for (const id of ['pendle-control', 'reserves', 'history', 'access', 'methodology']) {
+    const susdai = structuredClone(getAssessment('pt-susdai')!);
+    susdai.evidence = susdai.evidence.filter(area => area.id !== id);
+    const row = comparisonEvidenceRows.find(candidate => candidate.id === id)!;
+    assert.equal(comparisonEvidenceCell(susdai, row).kind, 'unrecorded', id);
   }
 });
 

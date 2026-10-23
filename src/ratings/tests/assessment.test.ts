@@ -10,9 +10,9 @@ function assessmentFor(id: string) {
   return assessment;
 }
 
-void test("the three research assessments satisfy the data contract", () => {
-  assert.equal(assessments.length, 3);
-  assert.equal(new Set(assessments.map((assessment) => assessment.id)).size, 3);
+void test("all registered research assessments satisfy the data contract", () => {
+  assert.deepEqual(new Set(assessments.map((assessment) => assessment.id)), new Set(['onyc', 'pt-onyc', 'pt-sronyc', 'pt-susdai']));
+  assert.equal(new Set(assessments.map((assessment) => assessment.id)).size, assessments.length);
   assert.deepEqual(validateResearchData(), []);
   for (const assessment of assessments) {
     assert.deepEqual(validateAssessment(assessment), [], assessment.id);
@@ -49,7 +49,7 @@ void test("position identities preserve the researched publisher September serie
   assert.equal(senior.market, "FLWUHWccnouW4EkB4dgczX9ZkSTA4FTnADiKSCkJvLp5");
   assert.equal(Date.parse(senior.maturity!), Date.parse("2026-09-10T09:58:00Z"));
   assert.equal(Date.parse(pt.maturity!) - Date.parse(senior.maturity!), 19_000);
-  assert.equal(new Set(assessments.map((assessment) => assessment.mint)).size, 3);
+  assert.equal(new Set(assessments.map((assessment) => assessment.mint)).size, assessments.length);
 
   for (const assessment of [pt, senior]) {
     assert.ok(
@@ -58,6 +58,69 @@ void test("position identities preserve the researched publisher September serie
       ),
       `${assessment.id}: the selected PT series must be an explicit assumption`,
     );
+  }
+});
+
+void test("PT-sUSDai retains the documented matured Arbitrum October position", () => {
+  const assessment = assessmentFor("pt-susdai");
+  assert.equal(assessment.chain, "Arbitrum One");
+  assert.equal(assessment.mint, "0xb459db106f645d698e74027eef6019a26a0675cc");
+  assert.equal(assessment.market, "0xcbf629c8d396b1261f81f55175afa010e94787d8");
+  assert.equal(Date.parse(assessment.maturity!), Date.parse("2026-10-15T00:00:00Z"));
+  assert.ok(Date.parse(assessment.maturity!) < Date.parse(assessment.observedAt));
+  assert.deepEqual(validateAssessment(assessment), []);
+});
+
+void test("PT-sUSDai preserves the source report’s approval, watchlist and confidence status", () => {
+  const assessment = assessmentFor("pt-susdai");
+  assert.equal(assessment.approvalStatus, "NOT APPROVED");
+  assert.equal(assessment.watchlist, true);
+  assert.equal(assessment.indicatedEvidenceConfidence, "Low");
+  for (const corruption of [{ approvalStatus: undefined }, { watchlist: false }, { indicatedEvidenceConfidence: "High" }, { indicatedScore: 1.450 }, { indicatedGrade: "B" }]) {
+    const changed = structuredClone(assessment);
+    Object.assign(changed, corruption);
+    assert.ok(validateAssessment(changed).length > 0, JSON.stringify(corruption));
+  }
+});
+
+void test("PT-sUSDai cannot silently substitute the February candidate or another network", () => {
+  const corruptions = [
+    { chain: "Solana" },
+    { chain: "Ethereum" },
+    { mint: "2W5zZccVq8AMdrg7P4b3NvBKJyzbdnytRy2CKEDHvhiJ" },
+    { mint: "0x0000000000000000000000000000000000000001" },
+    { market: "0xf86119a39f8654f38acbbd5488bd83f3f51983c8" },
+    { maturity: "2027-02-24T00:00:00Z" },
+    { maturity: "2027-02-25T00:00:00Z" },
+    { maturity: "2026-10-15" },
+  ];
+  for (const corruption of corruptions) {
+    const assessment = structuredClone(assessmentFor("pt-susdai"));
+    Object.assign(assessment, corruption);
+    assert.ok(validateAssessment(assessment).length > 0, JSON.stringify(corruption));
+  }
+});
+
+void test("Arbitrum identity support does not relax the existing Solana identity requirements", () => {
+  for (const id of ["onyc", "pt-onyc", "pt-sronyc"]) {
+    for (const corruption of [{ chain: "Arbitrum One" }, { mint: "0xb459db106f645d698e74027eef6019a26a0675cc" }]) {
+      const assessment = structuredClone(assessmentFor(id));
+      Object.assign(assessment, corruption);
+      assert.ok(validateAssessment(assessment).length > 0, `${id}: ${JSON.stringify(corruption)}`);
+    }
+  }
+});
+
+void test("reinsurance and collateral dependency requirements are specific to the ONyc family", () => {
+  const susdai = structuredClone(assessmentFor("pt-susdai"));
+  assert.ok(!susdai.layers.some(layer => layer.id === "reinsurance"));
+  assert.deepEqual(validateAssessment(susdai), []);
+  for (const id of ["onyc", "pt-onyc", "pt-sronyc"]) {
+    for (const layerId of ["reinsurance", "collateral"]) {
+      const assessment = structuredClone(assessmentFor(id));
+      assessment.layers = assessment.layers.filter(layer => layer.id !== layerId);
+      assert.ok(validateAssessment(assessment).some(error => /Reinsurance exposures/.test(error)), `${id}: missing ${layerId}`);
+    }
   }
 });
 

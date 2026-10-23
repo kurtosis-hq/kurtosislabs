@@ -73,3 +73,39 @@ test('unsupported identifiers and personal notes are escaped; unavailable eviden
   ui.note = () => ({ value: '</textarea><script>alert(1)</script>', savedValue: '', error: '', saved: false });
   assert.doesNotMatch(renderWorkspace({ ...readLocation(new URL('https://example.test/ratings.html')), tab: 'evidence' }, ui), /<script>/);
 });
+
+test('PT-sUSDai keeps the October scope, watchlist and separate confidence states visible', () => {
+  const location = readLocation(new URL('https://example.test/ratings.html?position=pt-susdai&tab=questions'));
+  const html = renderWorkspace(location, state());
+  assert.match(html, /ARBITRUM ONE/);
+  assert.match(html, /Token contract/);
+  assert.match(html, /NOT APPROVED · WATCHLIST/);
+  assert.match(html, /22 Oct 2026/);
+  assert.match(html, /Investor edition: 23 Oct 2026/);
+  assert.match(html, /15 Oct 2026 · Matured/);
+  assert.match(html, /Evidence confidence: Low; approved confidence is unassigned/);
+  assert.match(html, /ratings-data\/documents\/pt-susdai\.md/);
+  assert.match(html, /February 2027 candidate needs a separate assessment/);
+  assert.doesNotMatch(html, /1\.450|grade B|Solana/);
+});
+
+test('comparison and research include the new position and dated full report', () => {
+  const base = readLocation(new URL('https://example.test/ratings.html?position=pt-susdai'));
+  const comparison = renderWorkspace({ ...base, view: 'compare' }, state());
+  assert.match(comparison, /PT-sUSDai/);
+  assert.match(comparison, /All 4 assessments/);
+  assert.match(comparison, /colspan="5"/);
+  assert.doesNotMatch(comparison, /All three|Shared ONyc requirements|Same source/);
+  const research = renderWorkspace({ ...base, view: 'research' }, state());
+  assert.match(research, /ratings-data\/documents\/pt-susdai\.md/);
+  assert.match(research, /Investment evidence cutoff: 22 Oct 2026/);
+  assert.match(research, /original sources have not been retrieved again/);
+});
+
+test('PT-sUSDai sources show inherited report provenance without implying a new capture', () => {
+  const html = renderSource('SUSDAI-S01');
+  assert.match(html, /Assessment evidence cutoff 22 Oct 2026/);
+  assert.match(html, /No exact source passage/);
+  assert.doesNotMatch(html, /undefined|Captured source passage/);
+  assert.match(html, /ratings-data\/sources\/SUSDAI-S01\.json/);
+});

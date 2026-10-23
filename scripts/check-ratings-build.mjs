@@ -4,12 +4,14 @@ import path from 'node:path';
 import { createResearchFiles } from '../src/ratings/lib/downloads.ts';
 
 const root = path.resolve('dist');
-for (const [url, file] of createResearchFiles()) {
+const researchFiles = createResearchFiles();
+for (const [url, file] of researchFiles) {
   const emitted = path.join(root, url.slice(1));
   assert.ok(fs.existsSync(emitted), `Missing research file: ${url}`);
   assert.equal(fs.readFileSync(emitted, 'utf8'), file.content, `Research file differs from canonical record: ${url}`);
 }
-for (const page of ['index.html', 'concept-85.html', 'ratings.html', 'ratings-methodology.html', 'methodology.html', 'horizon.html', 'horizon-01.html']) {
+const pages = ['index.html', 'concept-85.html', 'ratings.html', 'ratings-methodology.html', 'methodology.html', 'horizon.html', 'horizon-01.html'];
+for (const page of pages) {
   const html = fs.readFileSync(path.join(root, page), 'utf8');
   for (const match of html.matchAll(/(?:href|src)=["']([^"']+)["']/g)) {
     const link = match[1].replaceAll('&amp;', '&');
@@ -21,4 +23,4 @@ for (const page of ['index.html', 'concept-85.html', 'ratings.html', 'ratings-me
 }
 assert.ok(!fs.existsSync(path.join(root, 'docs')));
 for (const name of ['plan', 'visualization']) assert.ok(!fs.existsSync(path.join(root, `ratings-data/documents/${name}.md`)));
-console.log('Production assets verified: 7 pages, 46 canonical research downloads, no internal documents.');
+console.log(`Production assets verified: ${pages.length} pages, ${researchFiles.size} canonical research downloads, no internal documents.`);

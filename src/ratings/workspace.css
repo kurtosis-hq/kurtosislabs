@@ -64,6 +64,8 @@
 .state-missing,.state-unevaluable { background:#edf0f3; color:#586570; }
 .state-stale { background:#f4eada; color:#72522a; }
 .rw-notice { margin:24px 0; padding:16px 18px; border-left:3px solid #7ba6c5; background:#f2f7fb; font-size:13px; line-height:1.7; color:#475e70; }
+.rw-assessment-notice strong { color:#735717; }
+.rw-assessment-notice p { margin:8px 0; }
 .rw-protection-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:32px; }
 .rw-protection-grid p { font-size:13px; line-height:1.65; }
 .rw-protection-grid .rw-protection-value { font-size:44px; line-height:1; font-weight:700; color:#008acc; margin:16px 0; letter-spacing:-.05em; }
@@ -160,7 +162,7 @@
 .rw-table .rw-table-group th { padding:12px; font-size:11px; color:#627f93; text-transform:uppercase; letter-spacing:.045em; }
 .rw-table .rw-link { font-size:12px; }
 .rw-grade-table { min-width:440px; }
-.rw-research-documents { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:32px 0; }
+.rw-research-documents { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; margin:32px 0; }
 .rw-research-documents>a { text-decoration:none; margin-bottom:0; }
 .rw-research-documents h2 { margin:14px 0; font-size:19px; line-height:1.5; }
 .rw-research-documents p { font-size:13px; line-height:1.7; color:var(--rw-muted); }

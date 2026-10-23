@@ -6,6 +6,7 @@ import { sources } from '../lib/assessments.ts';
 import { getSourceCapture, getSourceRecord, type SourceCapture } from '../lib/source-observations.ts';
 import onyc from '../data/research/onyc-evidence.json' with { type: 'json' };
 import exponent from '../data/research/exponent-evidence.json' with { type: 'json' };
+import ptSusdai from '../data/research/pt-susdai-evidence.json' with { type: 'json' };
 
 void test('every registered source has an inspectable source record with original attribution', () => {
   for (const source of sources) {
@@ -15,12 +16,29 @@ void test('every registered source has an inspectable source record with origina
     assert.equal(record.source.url, source.url);
     assert.equal(record.live, false);
     for (const entry of record.packetRecords) {
-      const packet: unknown = record.packetFile.includes('onyc-evidence') ? onyc : exponent;
-      const original: unknown = entry.pointer.slice(1).split('/').reduce<unknown>((value, key) => (value as Record<string, unknown>)[key], packet);
+      const packet: unknown = record.packetFile.includes('pt-susdai-evidence') ? ptSusdai : record.packetFile.includes('onyc-evidence') ? onyc : exponent;
+      const original: unknown = entry.pointer.slice(1).split('/').reduce<unknown>((value, key) => (value as Record<string, unknown>)[key.replace(/~1/g, '/').replace(/~0/g, '~')], packet);
       assert.deepEqual(entry.record, original, `${source.id}: ${entry.pointer}`);
       assert.ok(entry.record.source_id === source.id || (Array.isArray(entry.record.source_ids) && entry.record.source_ids.includes(source.id)));
     }
     if (record.capture) assert.equal(record.capture.sourceResponseSha256, record.source.response_sha256 ?? record.source.sha256);
+  }
+});
+
+void test('PT-sUSDai sources retain the supplied report provenance without invented retrievals or captures', () => {
+  assert.equal(ptSusdai.sources.filter(source => /^SUSDAI-S\d{2}$/.test(source.id)).length, 33);
+  assert.equal(ptSusdai.sources.find(source => source.id === 'SUSDAI-REPORT')?.url, '/ratings-data/documents/pt-susdai.md');
+  for (const source of ptSusdai.sources) {
+    const record = getSourceRecord(source.id)!;
+    assert.equal(record.capture, null);
+    assert.equal(record.recordOrigin, 'supplied_investor_assessment');
+    assert.equal(record.investmentEvidenceCutoff, '2026-10-22');
+    assert.equal(record.documentEditionDate, '2026-10-23');
+    assert.equal(record.originalSourceRetrievedForThisPage, false);
+    assert.equal(record.suppliedReportUrl, '/ratings-data/documents/pt-susdai.md');
+    assert.match(record.captureLimitation, /inherited from the supplied investor assessment/);
+    assert.match(record.attribution, /not new inspections/);
+    assert.ok(record.packetRecords.length > 0, `${source.id}: expected attributed report records`);
   }
 });
 

@@ -1,4 +1,4 @@
-import { assessments, getAssessment } from './lib/assessments.ts';
+import { getAssessment } from './lib/assessments.ts';
 import { validateResearchData } from './lib/assessment-rules.ts';
 import { readLocation, locationUrl, tabIds, type WorkspaceLocation } from './lib/navigation.ts';
 import { createNotes } from './lib/notes.ts';
@@ -35,7 +35,7 @@ function render() {
   workspace.innerHTML = renderWorkspace(current, ui);
   const position = getAssessment(current.position);
   document.title = current.view === 'ratings' ? `${position?.symbol || 'Position not covered'} — Kurtosis Ratings` : `${current.view[0].toUpperCase() + current.view.slice(1)} — Kurtosis Ratings`;
-  cards.forEach((card, i) => card.setAttribute('aria-pressed', String(assessments[i].id === current.position && current.view === 'ratings')));
+  cards.forEach(card => card.setAttribute('aria-pressed', String(card.dataset.position === current.position && current.view === 'ratings')));
   document.querySelectorAll<HTMLElement>('.rw-nav [data-view]').forEach(link => {
     if (link.dataset.view === current.view) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current');
     const url = locationUrl(new URL(window.location.href), { view: link.dataset.view, source: null, target: '' });
@@ -109,17 +109,17 @@ window.addEventListener('popstate', event => {
 dialog.addEventListener('cancel', event => { event.preventDefault(); closeSource(); });
 dialog.addEventListener('click', event => { if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) closeSource(); } });
 
-cards.forEach((card, i) => { card.dataset.position = assessments[i].id; card.id = `position-${assessments[i].id}`; });
+cards.forEach(card => { card.id = `position-${card.dataset.position}`; });
 const emptySearch = document.createElement('p');
 emptySearch.className = 'rw-search-empty'; emptySearch.hidden = true; emptySearch.setAttribute('role', 'status');
-emptySearch.textContent = 'No matching position. Try ONyc or Exponent.';
+emptySearch.textContent = 'No matching position. Try ONyc, sUSDai, Pendle or a network.';
 document.querySelector('.rl-cards')!.after(emptySearch);
 search.addEventListener('input', () => {
   const query = search.value.trim().toLowerCase();
   let matches = 0;
-  cards.forEach((card, i) => {
-    const p = assessments[i];
-    const match = `${p.symbol} ${p.name} ${p.protocol} ${p.type} ${p.maturity || ''}`.toLowerCase().includes(query);
+  cards.forEach(card => {
+    const p = getAssessment(card.dataset.position!)!;
+    const match = `${p.symbol} ${p.name} ${p.protocol} ${p.chain} ${p.type} ${p.maturity || ''}`.toLowerCase().includes(query);
     card.closest('li')!.hidden = !match;
     if (match) matches++;
   });

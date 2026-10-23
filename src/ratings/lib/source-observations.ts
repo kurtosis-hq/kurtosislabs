@@ -1,5 +1,6 @@
 import onycPacket from '../data/research/onyc-evidence.json' with { type: 'json' };
 import exponentPacket from '../data/research/exponent-evidence.json' with { type: 'json' };
+import ptSusdaiPacket from '../data/research/pt-susdai-evidence.json' with { type: 'json' };
 import retainedCaptures from '../data/research/source-captures.json' with { type: 'json' };
 
 type JsonValue = null | boolean | number | string | JsonValue[] | JsonObject;
@@ -22,6 +23,7 @@ export type PacketRecord = { pointer: string; record: JsonObject };
 const packets: { name: string; data: JsonObject }[] = [
   { name: 'onyc-evidence.json', data: onycPacket },
   { name: 'exponent-evidence.json', data: exponentPacket },
+  { name: 'pt-susdai-evidence.json', data: ptSusdaiPacket },
 ];
 
 /** Capture keys are original response JSON pointers, not normalized packet keys. */
@@ -43,17 +45,29 @@ export function getSourceRecord(sourceId: string) {
   const packet = packets.find(({ data }) => (data.sources as JsonObject[]).some(source => source.id === sourceId));
   if (!packet) return undefined;
   const source = (packet.data.sources as PacketSource[]).find(item => item.id === sourceId)!;
+  const inheritedReport = packet.name === 'pt-susdai-evidence.json';
   return {
     schemaVersion: 'kurtosis.source-record.v1',
     dataKind: 'preserved_source_record',
     live: false,
     packetFile: `data/research/${packet.name}`,
+    ...(inheritedReport ? {
+      recordOrigin: 'supplied_investor_assessment',
+      investmentEvidenceCutoff: ptSusdaiPacket.evidence_cutoff,
+      documentEditionDate: ptSusdaiPacket.edition_date,
+      originalSourceRetrievedForThisPage: false,
+      suppliedReportUrl: '/ratings-data/documents/pt-susdai.md',
+    } : {}),
     source,
     capture: getSourceCapture(sourceId) ?? null,
     captureLimitation: getSourceCapture(sourceId)
       ? 'Selected fields or a short passage from the historical response. This is not the complete original response. Original response hashes identify the input checked before extraction.'
-      : 'No exact source passage or API extract is retained here. The source metadata and attributed research records below do not constitute a verbatim source capture.',
-    attribution: 'Packet records contain researcher-normalized observations, paraphrases, interpretation and open questions. Each record retains its original source IDs; a record citing multiple sources is not solely attributable to the selected source.',
+      : inheritedReport
+        ? 'Source metadata and attributed observations were inherited from the supplied investor assessment, whose investment-evidence cutoff is 22 October 2026. No original source was retrieved again for this page and no verbatim original-source capture is retained here.'
+        : 'No exact source passage or API extract is retained here. The source metadata and attributed research records below do not constitute a verbatim source capture.',
+    attribution: inheritedReport
+      ? 'Packet records project the supplied investor assessment’s observations, interpretations and open questions. They are not new inspections of the linked sources. SUSDAI-S01–S33 correspond to S01–S33 in that report. A record citing multiple sources is not solely attributable to the selected source.'
+      : 'Packet records contain researcher-normalized observations, paraphrases, interpretation and open questions. Each record retains its original source IDs; a record citing multiple sources is not solely attributable to the selected source.',
     packetRecords: recordsForSource(packet.data, sourceId),
     fullResearchPacketUrl: '/ratings-data/research.json',
   };

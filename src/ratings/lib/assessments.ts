@@ -1,5 +1,7 @@
 import onycPacket from '../data/research/onyc-evidence.json' with { type: 'json' };
 import exponentPacket from '../data/research/exponent-evidence.json' with { type: 'json' };
+import ptSusdaiPacket from '../data/research/pt-susdai-evidence.json' with { type: 'json' };
+import { ptSusdaiAssessment } from '../data/pt-susdai.ts';
 
 /** A research projection, not a complete canonical rating record or score engine. */
 export type EvidenceState = 'complete' | 'partial' | 'stale' | 'contradictory' | 'missing' | 'unevaluable';
@@ -23,12 +25,13 @@ export type Route = {
   steps: { title: string; input: string; output: string; condition: string; risk: string; sourceIds: string[] }[];
 };
 export type Assessment = {
-  id: 'onyc' | 'pt-onyc' | 'pt-sronyc'; symbol: string; name: string;
+  id: 'onyc' | 'pt-onyc' | 'pt-sronyc' | 'pt-susdai'; symbol: string; name: string;
   type: string; protocol: string; chain: string; maturity: string | null;
   mint: string; market: string | null; identityBasis: string; summary: string;
   blocker: string; lane: string; lossObject: string; disposition: 'NO_RATE';
   approvedScore: null; approvedGrade: null; approvedConfidence: null;
   indicatedScore: null; indicatedGrade: null; observedAt: string;
+  approvalStatus?: 'NOT APPROVED'; watchlist?: boolean; indicatedEvidenceConfidence?: 'Low';
   methodologyVersion: string; scopeAssumptions: string[]; factors: RiskFactor[];
   layers: Layer[]; evidence: EvidenceArea[]; routes: Route[]; sourceIds: string[];
 };
@@ -54,6 +57,7 @@ function projectSource(source: PacketSource): Source {
 export const sources: Source[] = [
   ...onycPacket.sources.map(projectSource),
   ...exponentPacket.sources.map(projectSource),
+  ...ptSusdaiPacket.sources.map(projectSource),
 ];
 
 export const gradeLadder = [
@@ -272,7 +276,7 @@ function createPT(senior: boolean): Assessment {
   };
 }
 
-export const assessments: Assessment[] = [onyc, createPT(false), createPT(true)];
+export const assessments: Assessment[] = [onyc, createPT(false), createPT(true), ptSusdaiAssessment];
 
 export function getAssessment(id: string): Assessment | undefined {
   return assessments.find((assessment) => assessment.id === id);
