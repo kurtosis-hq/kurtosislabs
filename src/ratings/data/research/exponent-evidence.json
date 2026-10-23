@@ -1,0 +1,714 @@
+{
+  "schema_version": "research-evidence.v1",
+  "assessment_date_local": "2026-09-08",
+  "timezone": "Asia/Singapore",
+  "observed_at": "2026-09-07T19:11:43Z",
+  "rating_status": "NO_RATE",
+  "rating_status_reason": "Evidence supports differentiated preliminary assessments; independent deployment, executable routes, mandate and approved scoring remain incomplete.",
+  "sources": [
+    {
+      "id": "EXP-YIELD",
+      "title": "Yield Stripping & Swap",
+      "url": "https://docs.exponent.finance/user-documentation/yield-stripping-swap",
+      "kind": "protocol_documentation",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-TRANCHES",
+      "title": "Tranching Markets",
+      "url": "https://docs.exponent.finance/user-documentation/tranching-markets",
+      "kind": "protocol_documentation",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-WATERFALL",
+      "title": "Risk-Tranching",
+      "url": "https://docs.exponent.finance/user-documentation/risk-tranching",
+      "kind": "protocol_documentation",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-SECURITY",
+      "title": "Programs & Security",
+      "url": "https://docs.exponent.finance/user-documentation/security",
+      "kind": "protocol_documentation",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-AUDITS",
+      "title": "Audits & Bug Bounty",
+      "url": "https://docs.exponent.finance/user-documentation/audits-bug-bounty",
+      "kind": "audit_register",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-FEES",
+      "title": "Protocol Risks & Fees",
+      "url": "https://docs.exponent.finance/user-documentation/protocol-risks-fees",
+      "kind": "protocol_documentation",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-CORE",
+      "title": "Exponent Core repository",
+      "url": "https://github.com/exponent-finance/exponent-core",
+      "kind": "protocol_repository",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "ONRE-AUG",
+      "title": "OnRe in Review: August 2026",
+      "url": "https://www.onre.finance/blog/onre-in-review-august-2026",
+      "kind": "issuer_report",
+      "published_at": "2026-09-01",
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-API-MARKETS",
+      "title": "Exponent app public markets endpoint",
+      "url": "https://app.exponent.finance/api/markets",
+      "kind": "protocol_api",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "response_sha256": "789002c48994de6b15eb7105eab5a54698fe847ceb4832f1656e180166836c32",
+      "retrieved_at": "2026-09-07T19:11:19.165311+00:00"
+    },
+    {
+      "id": "EXP-API-VAULTS",
+      "title": "Exponent app public vaults endpoint",
+      "url": "https://app.exponent.finance/api/vaults",
+      "kind": "protocol_api",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "response_sha256": "00fc41132e9a6f9727021e2b8c9a448da09e7d211c8adc71e2aad689575abc38",
+      "retrieved_at": "2026-09-07T19:11:37.155140+00:00"
+    },
+    {
+      "id": "EXP-API-TRANCHING",
+      "title": "Exponent app public tranching markets endpoint",
+      "url": "https://app.exponent.finance/api/tranching-markets",
+      "kind": "protocol_api",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "response_sha256": "6a1e7333dcf258060852f91f3dcc75f26e62e5eb620622f2443dff7400c42243",
+      "retrieved_at": "2026-09-07T19:04:00.261498+00:00"
+    },
+    {
+      "id": "EXP-API-POOLS",
+      "title": "Exponent app public active CLMM pools endpoint",
+      "url": "https://app.exponent.finance/api/clmm/pools?is_active=true&is_expired=false",
+      "kind": "protocol_api",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "response_sha256": "26e8969ab1f24a5adfc6bacf4056511d110b0c2d59e115aa232ff0825ffb58b2",
+      "retrieved_at": "2026-09-07T19:11:19.230739+00:00"
+    },
+    {
+      "id": "EXP-AUDIT-SEC3",
+      "title": "Sec3 Exponent Tranching audit, June 22 2026",
+      "url": "https://github.com/exponent-finance/exponent-audits/blob/main/exponent_tranching_report_june_sec3.pdf",
+      "kind": "audit_report",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "response_sha256": "e6e0ef4658827b604f3e27cf369eea57089087db50170eb93aeb81a83e180640",
+      "retrieved_at": "2026-09-07T19:03:50.294260+00:00"
+    },
+    {
+      "id": "EXP-AUDIT-ACCRETION",
+      "title": "Accretion Exponent Tranching assessment, May 27 2026",
+      "url": "https://github.com/exponent-finance/exponent-audits/blob/main/exponent_tranching_audit_may_accretion.pdf",
+      "kind": "audit_report",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "response_sha256": "bc41c0c6c61b56fbec27d4e8a8aa6b34b768ce032fc86d772f7a3acb7f1a0f09",
+      "retrieved_at": "2026-09-07T19:03:49.945060+00:00"
+    }
+  ],
+  "statements": [
+    {
+      "id": "EXP-F01",
+      "statement": "Yield stripping creates matching PT/YT positions for a defined maturity. Matching PT plus YT can merge before maturity; PT becomes redeemable after maturity while YT stops accrual.",
+      "status": "documented",
+      "source_ids": [
+        "EXP-YIELD"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F02",
+      "statement": "Senior and junior shares are NAV claims on separate tranches. Junior provides first-loss capital; senior can lose value after junior capacity is exhausted.",
+      "status": "documented",
+      "source_ids": [
+        "EXP-TRANCHES"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F03",
+      "statement": "Underlying gains and losses are applied when a market sync occurs. During recovery senior yield and withdrawals pause; sufficiently severe losses trigger settlement.",
+      "status": "documented",
+      "source_ids": [
+        "EXP-WATERFALL"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F04",
+      "statement": "Public metadata supplies exact September and January ONyc/srONyc PT, YT, SY and vault identities; all four were marked active by the publisher API.",
+      "status": "publisher_observed",
+      "source_ids": [
+        "EXP-API-MARKETS",
+        "EXP-API-VAULTS"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F05",
+      "statement": "All four markets use USD accounting metadata with 9 decimals; underlying assets differ between ONyc and srONyc. Cash output and impaired redemption amounts are unverified.",
+      "status": "publisher_observed",
+      "source_ids": [
+        "EXP-API-MARKETS"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F06",
+      "statement": "The observed coverage ratio equals junior effective NAV divided by total effective NAV, rather than junior divided by senior.",
+      "status": "derived_from_publisher_api",
+      "source_ids": [
+        "EXP-API-TRANCHING"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F07",
+      "statement": "Protocol documentation describes mutable programs, adjustable parameters and Squads multisig administration; signer identities, threshold, timelock and upgrade authorities are not verified.",
+      "status": "documented",
+      "source_ids": [
+        "EXP-SECURITY"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F08",
+      "statement": "Liquidity comes from counterparties. Early exit may fail or become costly when liquidity is thin; market-specific fees and maturity behavior vary.",
+      "status": "documented",
+      "source_ids": [
+        "EXP-FEES"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F09",
+      "statement": "Sec3 June report reviewed b45838d and lists three low plus five informational findings as resolved; deployment correspondence has not been established.",
+      "status": "audit_report_observed",
+      "source_ids": [
+        "EXP-AUDIT-SEC3"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F10",
+      "statement": "Accretion May report records 6 medium and 13 low findings, 12 fixed and 7 acknowledged. Its program ID differs from the current documentation and its audit-result status is unverified.",
+      "status": "audit_report_observed",
+      "source_ids": [
+        "EXP-AUDIT-ACCRETION"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    },
+    {
+      "id": "EXP-F11",
+      "statement": "OnRe September 1 report states August brought new ONyc/srONyc maturities and the tranching market cap increased to $10 million.",
+      "status": "issuer_reported",
+      "source_ids": [
+        "ONRE-AUG"
+      ],
+      "observed_at": "2026-09-07T19:11:43Z"
+    }
+  ],
+  "candidate_markets": [
+    {
+      "position_family": "PT-ONyc",
+      "series": "ONyc-10SEPT26",
+      "selection_status": "candidate_not_user_selected",
+      "identity_status": "publisher_api_cross_checked_not_independently_onchain_verified",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "source_ids": [
+        "EXP-API-MARKETS",
+        "EXP-API-VAULTS",
+        "EXP-API-POOLS"
+      ],
+      "vault_address": "66R3TcKjaUqxQwYV31BS4nD2s7YH4V7ENuvdwYbQMXCm",
+      "pt_mint": "2W5zZccVq8AMdrg7P4b3NvBKJyzbdnytRy2CKEDHvhiJ",
+      "yt_mint": "HYHEZZ7GsPZbBfh2JVBxxSmqcqSPtPXPRqp5HJvhwh9Y",
+      "sy_mint": "G1qbuP11CdquJCzuDjruWqatQAHroajmxhLfeQVgHosF",
+      "sy_name": "wONyc",
+      "underlying_mint": "5Y8NV33Vv7WbnLfq3zBcKSdYPrk7g2KoiQoe7M2tcxp5",
+      "underlying_symbol": "ONyc",
+      "decimals": 9,
+      "quote_asset": {
+        "mint": "USD1111111111111111111111111111111111111119",
+        "name": "US Dollar 9 Decimals",
+        "ticker": "USD",
+        "decimals": 9,
+        "price_source": null
+      },
+      "base_token_mint": "USD1111111111111111111111111111111111111119",
+      "interface_type": "scope",
+      "maturity_timestamp": 1789034299,
+      "maturity_utc": "2026-09-10T09:58:19+00:00",
+      "market_status_reported": "active",
+      "orderbook_addresses": [
+        "EkMwpJy1hm1FtCaTH7WFRkvbEXeFd5Sw4EnCpRKvv1fN"
+      ],
+      "clmm_addresses": [
+        "D7kT5Hnwtf9f3P6VJ7KgWWVP8LA2HeWm1U6XSzDKteGR"
+      ],
+      "legacy_market_addresses": [
+        "51TZXLJrx1kwTMiKB7CLq7a3Ye9Sa5g5csV1HRhXwYzH",
+        "AwUqeCix6Q4QpC34VwXfnwhsNsGXU1frb1G3zFrs6YV9"
+      ],
+      "settlement": {
+        "accounting_denomination": "USD, 9 decimals, according to API quote/base metadata",
+        "cash_payout_confirmed": false,
+        "executable_redemption_verified": false,
+        "redemption_output_candidate": "ONyc",
+        "note": "USD is an accounting marker here, not a confirmed USDC payout. Actual SY conversion, output units, rate impairment and recovery-state interaction require deployment-matched code and read-only transaction simulation."
+      },
+      "market_snapshot": {
+        "status": "publisher_reported_non_executable",
+        "sy_exchange_rate": 1.143166274,
+        "pt_redemption_rate": null,
+        "implied_apy_fraction": 0.16237087321111798,
+        "pt_price_in_accounting_asset": 0.9989218061594992,
+        "total_market_size_usd_reported": 33840510.72432232,
+        "clmm_liquidity_usd_reported": 2231157.376726802,
+        "clmm_updated_at": [
+          "2026-09-07T19:09:28.466+00:00"
+        ],
+        "executable_exit_quote": null,
+        "note": "TVL, pooled liquidity, headline rates and last price do not measure exit depth or a guaranteed return. No size-specific quote was obtained."
+      }
+    },
+    {
+      "position_family": "PT-ONyc",
+      "series": "ONyc-10JAN27",
+      "selection_status": "candidate_not_user_selected",
+      "identity_status": "publisher_api_cross_checked_not_independently_onchain_verified",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "source_ids": [
+        "EXP-API-MARKETS",
+        "EXP-API-VAULTS",
+        "EXP-API-POOLS"
+      ],
+      "vault_address": "7f1PgxY3kGsPqLAKpwcduZkcBEhpjMz7U1iJ4pcCCzDy",
+      "pt_mint": "HH7FiYbEfDwQoK2ZJpkMz1T6wG6TqPsWcxWCtEVgigrZ",
+      "yt_mint": "GFpXWuDCm7QMjkYbMveNZoLzybqJaginDDvuX3bJqgLF",
+      "sy_mint": "G1qbuP11CdquJCzuDjruWqatQAHroajmxhLfeQVgHosF",
+      "sy_name": "wONyc",
+      "underlying_mint": "5Y8NV33Vv7WbnLfq3zBcKSdYPrk7g2KoiQoe7M2tcxp5",
+      "underlying_symbol": "ONyc",
+      "decimals": 9,
+      "quote_asset": {
+        "mint": "USD1111111111111111111111111111111111111119",
+        "name": "US Dollar 9 Decimals",
+        "ticker": "USD",
+        "decimals": 9,
+        "price_source": null
+      },
+      "base_token_mint": "USD1111111111111111111111111111111111111119",
+      "interface_type": "scope",
+      "maturity_timestamp": 1799586000,
+      "maturity_utc": "2027-01-10T13:00:00+00:00",
+      "market_status_reported": "active",
+      "orderbook_addresses": [
+        "imv1h6xgX8GyiJjkBj5xvFxwWoB7sCyTGCi6yGK2bZt"
+      ],
+      "clmm_addresses": [
+        "9cD4nKmLuM8FMj8Ur1ozbv7C1onZbeavQaJC7uM72eiq"
+      ],
+      "legacy_market_addresses": [],
+      "settlement": {
+        "accounting_denomination": "USD, 9 decimals, according to API quote/base metadata",
+        "cash_payout_confirmed": false,
+        "executable_redemption_verified": false,
+        "redemption_output_candidate": "ONyc",
+        "note": "USD is an accounting marker here, not a confirmed USDC payout. Actual SY conversion, output units, rate impairment and recovery-state interaction require deployment-matched code and read-only transaction simulation."
+      },
+      "market_snapshot": {
+        "status": "publisher_reported_non_executable",
+        "sy_exchange_rate": 1.143166274,
+        "pt_redemption_rate": null,
+        "implied_apy_fraction": 0.15576244116700488,
+        "pt_price_in_accounting_asset": 0.9517303279972563,
+        "total_market_size_usd_reported": 3927027.420715996,
+        "clmm_liquidity_usd_reported": 1313762.274349061,
+        "clmm_updated_at": [
+          "2026-09-07T19:08:25.701+00:00"
+        ],
+        "executable_exit_quote": null,
+        "note": "TVL, pooled liquidity, headline rates and last price do not measure exit depth or a guaranteed return. No size-specific quote was obtained."
+      }
+    },
+    {
+      "position_family": "PT-srONyc",
+      "series": "srONyc-10SEPT26",
+      "selection_status": "candidate_not_user_selected",
+      "identity_status": "publisher_api_cross_checked_not_independently_onchain_verified",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "source_ids": [
+        "EXP-API-MARKETS",
+        "EXP-API-VAULTS",
+        "EXP-API-POOLS"
+      ],
+      "vault_address": "FLWUHWccnouW4EkB4dgczX9ZkSTA4FTnADiKSCkJvLp5",
+      "pt_mint": "BKP9Rt3pwh96cCoCp3bkh1zxXZpZez17xA6w64LuMJQy",
+      "yt_mint": "DXoFWjJramdQzf847fnSkA8BR7iqsW8v5EBG9s7rhajy",
+      "sy_mint": "AojEeHMjnRciTXQpvoURGGfqCxDUknpRCS4w5QknGkj9",
+      "sy_name": "wsrONyc",
+      "underlying_mint": "9J8VvigcjFTkN3jhZH2ieTi2hdGVBVpEXbcA1JDo7QpA",
+      "underlying_symbol": "srONyc",
+      "decimals": 9,
+      "quote_asset": {
+        "mint": "USD1111111111111111111111111111111111111119",
+        "name": "US Dollar 9 Decimals",
+        "ticker": "USD",
+        "decimals": 9,
+        "price_source": null
+      },
+      "base_token_mint": "USD1111111111111111111111111111111111111119",
+      "interface_type": "exponentTranching",
+      "maturity_timestamp": 1789034280,
+      "maturity_utc": "2026-09-10T09:58:00+00:00",
+      "market_status_reported": "active",
+      "orderbook_addresses": [
+        "A67nPbv2hiBi6NHJzZzGbhJaUyEa3J9oUK9hzPM9qkzr"
+      ],
+      "clmm_addresses": [
+        "FucShr6KuSmawEo9q694njNzGJ8qR6yuXf1YTMRbGkYX"
+      ],
+      "legacy_market_addresses": [],
+      "settlement": {
+        "accounting_denomination": "USD, 9 decimals, according to API quote/base metadata",
+        "cash_payout_confirmed": false,
+        "executable_redemption_verified": false,
+        "redemption_output_candidate": "srONyc",
+        "note": "USD is an accounting marker here, not a confirmed USDC payout. Actual SY conversion, output units, rate impairment and recovery-state interaction require deployment-matched code and read-only transaction simulation."
+      },
+      "market_snapshot": {
+        "status": "publisher_reported_non_executable",
+        "sy_exchange_rate": 1.017397523086,
+        "pt_redemption_rate": null,
+        "implied_apy_fraction": 0.12039400096981101,
+        "pt_price_in_accounting_asset": 0.9991853387333134,
+        "total_market_size_usd_reported": 763334.964522896,
+        "clmm_liquidity_usd_reported": 520339.752032731,
+        "clmm_updated_at": [
+          "2026-09-07T15:04:57.17+00:00"
+        ],
+        "executable_exit_quote": null,
+        "note": "TVL, pooled liquidity, headline rates and last price do not measure exit depth or a guaranteed return. No size-specific quote was obtained."
+      }
+    },
+    {
+      "position_family": "PT-srONyc",
+      "series": "srONyc-10JAN27",
+      "selection_status": "candidate_not_user_selected",
+      "identity_status": "publisher_api_cross_checked_not_independently_onchain_verified",
+      "observed_at": "2026-09-07T19:11:43Z",
+      "source_ids": [
+        "EXP-API-MARKETS",
+        "EXP-API-VAULTS",
+        "EXP-API-POOLS"
+      ],
+      "vault_address": "y5UFEeB3LfUErLBjDMdZynAoqCwBgsMnDZSzth68aaH",
+      "pt_mint": "HSbdobdvfGAfqKWSWZ7s2XfFx1P1FJutTa96MHJtkm5",
+      "yt_mint": "2yqH1TaR1zvpMTPAAvrKoAzYp6dJNwczSJ4X9Xqp5tMT",
+      "sy_mint": "AojEeHMjnRciTXQpvoURGGfqCxDUknpRCS4w5QknGkj9",
+      "sy_name": "wsrONyc",
+      "underlying_mint": "9J8VvigcjFTkN3jhZH2ieTi2hdGVBVpEXbcA1JDo7QpA",
+      "underlying_symbol": "srONyc",
+      "decimals": 9,
+      "quote_asset": {
+        "mint": "USD1111111111111111111111111111111111111119",
+        "name": "US Dollar 9 Decimals",
+        "ticker": "USD",
+        "decimals": 9,
+        "price_source": null
+      },
+      "base_token_mint": "USD1111111111111111111111111111111111111119",
+      "interface_type": "exponentTranching",
+      "maturity_timestamp": 1799578800,
+      "maturity_utc": "2027-01-10T11:00:00+00:00",
+      "market_status_reported": "active",
+      "orderbook_addresses": [
+        "ndAp6RJ1Q2wkoczCdXQteZk2UMnmDNWQDCCCKyLtymv"
+      ],
+      "clmm_addresses": [
+        "BxyZMXUxxWQripMLR3QRH9FXeRMyGsWqpwj9kr3SGh2S"
+      ],
+      "legacy_market_addresses": [],
+      "settlement": {
+        "accounting_denomination": "USD, 9 decimals, according to API quote/base metadata",
+        "cash_payout_confirmed": false,
+        "executable_redemption_verified": false,
+        "redemption_output_candidate": "srONyc",
+        "note": "USD is an accounting marker here, not a confirmed USDC payout. Actual SY conversion, output units, rate impairment and recovery-state interaction require deployment-matched code and read-only transaction simulation."
+      },
+      "market_snapshot": {
+        "status": "publisher_reported_non_executable",
+        "sy_exchange_rate": 1.017397523086,
+        "pt_redemption_rate": null,
+        "implied_apy_fraction": 0.12547923801447602,
+        "pt_price_in_accounting_asset": 0.9604317707379381,
+        "total_market_size_usd_reported": 456338.857177567,
+        "clmm_liquidity_usd_reported": 72095.420113588,
+        "clmm_updated_at": [
+          "2026-09-07T18:36:48.022+00:00"
+        ],
+        "executable_exit_quote": null,
+        "note": "TVL, pooled liquidity, headline rates and last price do not measure exit depth or a guaranteed return. No size-specific quote was obtained."
+      }
+    }
+  ],
+  "tranching_snapshot": {
+    "status": "publisher_api_observation_not_independently_onchain_verified",
+    "observed_at": "2026-09-07T19:11:43Z",
+    "source_ids": [
+      "EXP-API-TRANCHING"
+    ],
+    "market_address": "HM8iLNE2WEN6J1AuwSSCoM37wgeLQFwYZ4ymYLqAoapN",
+    "program_address": "XPTrnchoawiUc9iYJrpfchS8vgr8Y5X2QGBdHPXukty",
+    "senior_mint": "9J8VvigcjFTkN3jhZH2ieTi2hdGVBVpEXbcA1JDo7QpA",
+    "junior_mint": "71j6BZaUPaSG1f1Y3e12KvU66d23kHgzWXhMDHn23wyB",
+    "underlying_mint": "5Y8NV33Vv7WbnLfq3zBcKSdYPrk7g2KoiQoe7M2tcxp5",
+    "sy_mint": "G1qbuP11CdquJCzuDjruWqatQAHroajmxhLfeQVgHosF",
+    "sy_program": "XP1BRLn8eCYSygrd8er5P4GKdzqKbC3DLoSsS5UYVZy",
+    "sy_escrow": "HZ7iDTzNcRKNfMTioG9NbxExtUuScrocHbSMrj7WfVdt",
+    "sy_state": "BmLiVHRb9ppTrEA5jhTgNJ2WFtjUZEkfzJZGswEidxzu",
+    "quote_asset_symbol": "USD",
+    "senior_effective_nav_usd": "4968754.374800551871",
+    "junior_effective_nav_usd": "2025914.1432387740929",
+    "total_effective_nav_usd": "6994668.5180393259639",
+    "coverage_ratio": "0.2896369053106548",
+    "coverage_denominator": "total effective market NAV (senior + junior); arithmetic verified from this response",
+    "recomputed_coverage_ratio": 0.2896369053106548,
+    "minimum_coverage_ratio": "0.2",
+    "utilization_percent": 69.0519738103,
+    "target_utilization_fraction": 0.9,
+    "settlement_utilization_fraction": 1.1,
+    "settlement_coverage_threshold_fraction_derived": 0.18181818181818182,
+    "fixed_term_duration_seconds": 604800,
+    "fixed_term_duration_interpretation": "API configuration is 604800 seconds (7 days); deployment-matched recovery semantics still require verification",
+    "market_state_raw": 1,
+    "status_flags_raw": 0,
+    "state_enum_verified": false,
+    "fixed_term_end_timestamp_raw": "0",
+    "last_sync_timestamp": 1788807715,
+    "last_sync_utc": "2026-09-07T19:01:55+00:00",
+    "last_updated_slot": "445139832",
+    "admin_accounts": [
+      "7me39wqdi9Chh7WeZEmf16v7GASNa88EXj3KZeVK6JHq"
+    ],
+    "sentinel_accounts": [
+      "7me39wqdi9Chh7WeZEmf16v7GASNa88EXj3KZeVK6JHq"
+    ],
+    "multisig_threshold_verified": false,
+    "nav_dependency": {
+      "interface_type": "scope",
+      "price_chain": [
+        108,
+        65535,
+        65535,
+        65535
+      ],
+      "maximum_age_seconds": 3600,
+      "oracle_account": "3t4JZcueEzTbVP6kLxXrL3VpWx45jDer4eqysweBchNH",
+      "last_interface_change_timestamp": 1786549326,
+      "note": "Publisher API says current interface is Scope. Initial interface field says Pyth; do not treat the initial interface as the active NAV source."
+    },
+    "raw_relevant_config": {
+      "riskConfig": {
+        "minCoverage": [
+          [
+            "200000000000",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "beta": [
+          [
+            "1000000000000",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "liquidationUtilization": [
+          [
+            "1100000000000",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "fixedTermDurationSec": 604800,
+        "minDepositAmount": "1",
+        "srSelfLiquidationBonus": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "srNetAssetDustTolerance": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "jrNetAssetDustTolerance": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "protocolFeeConfig": {
+        "protocolFeeRecipient": "7fXDVWu2VaD51ipnm1N7C2U19bzWzuxb3Mz9fYEdQnmn",
+        "srProtocolFee": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "jrProtocolFee": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "juniorReturnProtocolFee": [
+          [
+            "150000000000",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "seniorDepositProtocolFee": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "juniorDepositProtocolFee": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "seniorWithdrawProtocolFee": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "juniorWithdrawProtocolFee": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "roles": {
+        "admin": [
+          "7me39wqdi9Chh7WeZEmf16v7GASNa88EXj3KZeVK6JHq"
+        ],
+        "sentinel": [
+          "7me39wqdi9Chh7WeZEmf16v7GASNa88EXj3KZeVK6JHq"
+        ]
+      }
+    }
+  },
+  "audit_findings": {
+    "sec3": {
+      "source_id": "EXP-AUDIT-SEC3",
+      "report_date": "2026-06-22",
+      "initial_commit": "b45838d",
+      "low": 3,
+      "informational": 5,
+      "status": "all listed resolved",
+      "deployed_binary_match": false
+    },
+    "accretion": {
+      "source_id": "EXP-AUDIT-ACCRETION",
+      "report_date": "2026-05-27",
+      "scope_commit": "ebae3437ce0056d89d2cb01725759da1c0f79994",
+      "audited_commit": "b45838d8ced6bf5ff2e6adf27eef26a008982e57",
+      "program_id_in_report": "5vD9m4eGgbeccFRUYR36GTJpR7cpreq17riqFAtg7nDL",
+      "medium": 6,
+      "low": 13,
+      "fixed": 12,
+      "acknowledged": 7,
+      "report_audit_result_status": "unverified",
+      "deployed_binary_match": false
+    }
+  },
+  "gaps": [
+    {
+      "id": "EXP-G01",
+      "severity": "rating_blocker",
+      "title": "Exact assessed series and mandate",
+      "detail": "API identities resolved; user-selected maturity, position size, horizon, eligibility and target cash exit remain unspecified."
+    },
+    {
+      "id": "EXP-G02",
+      "severity": "rating_blocker",
+      "title": "Executable redemption and impairment",
+      "detail": "Verify exact PT denomination and SY conversion against deployed code; simulate outputs, oracle-staleness failures, loss recognition and PT maturity during senior recovery."
+    },
+    {
+      "id": "EXP-G03",
+      "severity": "rating_blocker",
+      "title": "Deployment and audit match",
+      "detail": "Match active program binaries, upgrade authorities and program versions to reviewed commits; resolve Accretion program-address mismatch and acknowledged findings."
+    },
+    {
+      "id": "EXP-G04",
+      "severity": "rating_blocker",
+      "title": "Administration and state validation",
+      "detail": "Independently fetch finalized onchain market, oracle and config accounts; resolve market-state enum, role permissions, Squads signer threshold and timelock."
+    },
+    {
+      "id": "EXP-G05",
+      "severity": "rating_blocker",
+      "title": "Executable early-exit capacity",
+      "detail": "Obtain size-specific quotes and stress depth for PT to underlying and underlying to cash, including fees, route capacity, fallback and queue constraints."
+    },
+    {
+      "id": "EXP-G06",
+      "severity": "rating_blocker",
+      "title": "Senior score calibration",
+      "detail": "An approved tranche methodology annex is required before treating first-loss support as score relief; shared Exponent control conditions must not be double-counted."
+    },
+    {
+      "id": "EXP-G07",
+      "severity": "rating_blocker",
+      "title": "Underlying legal and economic evidence",
+      "detail": "Inherit ONyc claims, collateral, valuation, liquidity and counterparty gaps from the ONyc packet."
+    }
+  ]
+}

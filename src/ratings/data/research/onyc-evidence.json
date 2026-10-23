@@ -1,0 +1,1002 @@
+{
+  "schema_version": "research-packet-1.0",
+  "asset_id": "onyc",
+  "title": "ONyc evidence packet",
+  "observed_at": "2026-09-08",
+  "status": "research_only",
+  "approved_grade": null,
+  "score": null,
+  "scope": "Unlevered Solana ONyc; inherited substrate for PT-ONyc and PT-srONyc. No Kamino leverage is included.",
+  "identity": {
+    "symbol": "ONyc",
+    "chain": "Solana",
+    "mint": "5Y8NV33Vv7WbnLfq3zBcKSdYPrk7g2KoiQoe7M2tcxp5",
+    "identity_status": "issuer_reference_confirmed",
+    "source_ids": [
+      "ON-S02"
+    ],
+    "onchain_verified": false
+  },
+  "sources": [
+    {
+      "id": "ON-S01",
+      "title": "ONyc product description",
+      "url": "https://docs.onre.finance/introduction/onre-tokenized-reinsurance-onyc",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "fcc6ee54c97a388351c9f21ed761b311d74efd559336f433afc4b854e1d6b3a6"
+    },
+    {
+      "id": "ON-S02",
+      "title": "Token configuration and reference",
+      "url": "https://docs.onre.finance/technical-resources/token-configuration-and-reference",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "b24d3ae707b8564effd1015acf5f0d12d084492949bfc815f6b12860a149539a"
+    },
+    {
+      "id": "ON-S03",
+      "title": "Collateral composition",
+      "url": "https://docs.onre.finance/for-capital-providers/collateral-composition",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "5d7ccc89768ab18a40bf7874d74b1a8aa766464ace7f2e8e0155570c602a0745"
+    },
+    {
+      "id": "ON-S04",
+      "title": "Minting ONyc",
+      "url": "https://docs.onre.finance/for-capital-providers/minting-onyc",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "e3ef544d390db59ed872af2b9b9b4ef50b5009138a2905c713dad93e6eb4905c"
+    },
+    {
+      "id": "ON-S05",
+      "title": "Primary redemptions",
+      "url": "https://docs.onre.finance/for-capital-providers/redemptions",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected"
+    },
+    {
+      "id": "ON-S06",
+      "title": "Open and institutional access",
+      "url": "https://docs.onre.finance/for-capital-providers/open-access-vs-institutional-access",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "f56fc657384005a4ab7906556bb8f2741bf2c59e92907ff39ad2aed61554d89c"
+    },
+    {
+      "id": "ON-S07",
+      "title": "System integrity overview",
+      "url": "https://docs.onre.finance/security-and-verification/system-integrity-overview",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "2fc65c0c50ba41405723b15981bb162f7b584406bea4c5c4a26fbd838b986060"
+    },
+    {
+      "id": "ON-S08",
+      "title": "Insurer reporting and NAV methodology",
+      "url": "https://docs.onre.finance/for-insurers/reporting",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "941a4c714103c0d52a355a520bc6549ecb3f8f9a8fc04bf45d8592df58101277"
+    },
+    {
+      "id": "ON-S09",
+      "title": "Data streams and oracle providers",
+      "url": "https://docs.onre.finance/technical-resources/data-streams-and-oracle-providers",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "42e9ac6c1a4a8c60bfe7610efb524a4e08257e04172c599e6c49ec5999cce11b"
+    },
+    {
+      "id": "ON-S10",
+      "title": "Account segregation",
+      "url": "https://docs.onre.finance/reinsurance-framework/collateral-security-and-segregation",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "cb2131cfa54505d0626c679e493596af3ce3ba82ca53eb6e06c01f7d6e5929a7"
+    },
+    {
+      "id": "ON-S11",
+      "title": "Portfolio composition policy",
+      "url": "https://docs.onre.finance/reinsurance-framework/portfolio-makeup",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "b2231f26ed160b9e515e0bd1345ada7d83af851d9d6b9645fab9d0f328044f24"
+    },
+    {
+      "id": "ON-S12",
+      "title": "Reinsurance deals screenshot",
+      "url": "https://docs.onre.finance/reinsurance-framework/reinsurance-deals-overview",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "247219892d4a9fad44836e74087619710cedc0b22bde886ca6fd9f7a2236a80a"
+    },
+    {
+      "id": "ON-S13",
+      "title": "Independent audit index",
+      "url": "https://docs.onre.finance/security-and-verification/independent-audits",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "13bccfec141750700396a8ae54e430d281056b3898be1f87e4a80624241badec"
+    },
+    {
+      "id": "ON-S14",
+      "title": "OtterSec OnreApp Solana audit",
+      "url": "https://osec.io/reports/onre_app_solana_audit_final.pdf",
+      "publisher": "OtterSec",
+      "kind": "independent_audit",
+      "observed_at": "2026-09-08",
+      "effective_at": "2026-07-30",
+      "inspection_status": "pdf_text_inspected",
+      "sha256": "a68754e1f7bfb365d0481373be00b6447973233158630d7a700ce878b3ab508e"
+    },
+    {
+      "id": "ON-S15",
+      "title": "Apex attestation index",
+      "url": "https://docs.onre.finance/security-and-verification/independent-attestations",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "dc85a5c8211bd152f9037a739dfc62302adcd84620ed388cbd4746575aff27f2"
+    },
+    {
+      "id": "ON-S16",
+      "title": "June 2026 Apex report link",
+      "url": "https://drive.google.com/file/d/1uzbcVsZ8AsHj9y2FhYC-pLO9gv4el3Aj/view?usp=drive_link",
+      "publisher": "OnRe / Apex report link",
+      "kind": "linked_attestation",
+      "observed_at": "2026-09-08",
+      "effective_at": "2026-06",
+      "inspection_status": "linked_but_content_unavailable",
+      "limitation": "Public preview retrieval failed; direct download returned an owner permission restriction. No report contents were read."
+    },
+    {
+      "id": "ON-S17",
+      "title": "SOC 2 issuer disclosure",
+      "url": "https://docs.onre.finance/legal/compliance",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "e47177af5815fd24d0e8e9b025aee63fd2f1bd6ddc7fc41d69ed3e5f3a99a33d"
+    },
+    {
+      "id": "ON-S18",
+      "title": "NAV API scalar",
+      "url": "https://core.api.onre.finance/data/live-nav",
+      "publisher": "OnRe",
+      "kind": "issuer_api",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "1800f5444be58165f86c48327c89b597aaed252a6b5d833195a3eb4343fa98c6",
+      "limitation": "Scalar response contains no timestamp, block/slot, period, or independent attestation."
+    },
+    {
+      "id": "ON-S19",
+      "title": "APY API scalar",
+      "url": "https://core.api.onre.finance/data/live-apy",
+      "publisher": "OnRe",
+      "kind": "issuer_api",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "67e03b2ddb949bc9f0ef60aada682d7d5866da1bc77444ad9745eede3334f93f",
+      "limitation": "Scalar response contains no timestamp, block/slot, period, or independent attestation."
+    },
+    {
+      "id": "ON-S20",
+      "title": "TVL API scalar",
+      "url": "https://core.api.onre.finance/data/live-tvl",
+      "publisher": "OnRe",
+      "kind": "issuer_api",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "f7eb75024df178a2a213873014f1560239f0ab5f96aada2b41ceba124034ff6e",
+      "limitation": "Scalar response contains no timestamp, block/slot, period, or independent attestation."
+    },
+    {
+      "id": "ON-S21",
+      "title": "BMA regulated entity register",
+      "url": "https://www.bma.bm/regulated-entities",
+      "publisher": "Bermuda Monetary Authority",
+      "kind": "regulator",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "partial_retrieval",
+      "limitation": "Register search and partial download did not establish an exact On Re SAC Ltd entry. This is not evidence of absence or loss of license."
+    },
+    {
+      "id": "ON-S22",
+      "title": "Issuer regulatory description",
+      "url": "https://docs.onre.finance/for-insurers/regulatory-framework",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "search_excerpt_only",
+      "limitation": "Issuer description seen through search; independent entity mapping remains open."
+    },
+    {
+      "id": "ON-S23",
+      "title": "Claims and risk management",
+      "url": "https://docs.onre.finance/reinsurance-framework/claims-and-risk-management",
+      "publisher": "OnRe",
+      "kind": "issuer_documentation",
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "inspection_status": "inspected",
+      "sha256": "a7b45679d06cf6cfb11497ce56780826c3e5f0cef4b9162c20650659592d1387"
+    }
+  ],
+  "facts": [
+    {
+      "id": "ON-F01",
+      "topic": "Economic claim",
+      "statement": "Issuer describes ONyc as a NAV-based proportional interest in a Bermuda segregated reinsurance account; it is not a fixed-dollar stablecoin.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S01",
+        "ON-S10"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F02",
+      "topic": "Identity",
+      "statement": "Official reference names the Solana ONyc mint and OnRe program. Addresses have not been independently checked against current chain state.",
+      "classification": "document_observation",
+      "source_ids": [
+        "ON-S02"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "mint": "5Y8NV33Vv7WbnLfq3zBcKSdYPrk7g2KoiQoe7M2tcxp5",
+      "program": "onreuGhHHgVzMWSkj2oQDLDtvvGvoepBPkqyaubFcwe"
+    },
+    {
+      "id": "ON-F03",
+      "topic": "Return sources",
+      "statement": "Premium income, claims, expenses/reserves and collateral returns determine the underlying economics. Premium-bearing exposures and the collateral securing them are not independent reserves to add together.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S01",
+        "ON-S08",
+        "ON-S11"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F04",
+      "topic": "Backing",
+      "statement": "The current collateral page names eight reserve instruments without weights, balances or valuation dates. The list is insufficient to establish current allocation or materiality.",
+      "classification": "document_observation",
+      "source_ids": [
+        "ON-S03"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F05",
+      "topic": "Primary entry",
+      "statement": "Issuer supports USDC and USDG for minting with no mint fee; network fees apply. Access mode determines onboarding.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S04",
+        "ON-S06"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F06",
+      "topic": "Primary exit",
+      "statement": "Primary redemption requires KYC/accredited eligibility and a verified payout wallet. Settlement uses available USDC/USDG at execution-time offer pricing. A pending request remains exposed to ONyc; it may be cancelled before execution.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S05"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F07",
+      "topic": "Liquidity terms",
+      "statement": "Issuer targets reserve capital of up to 15% and monthly capacity of up to 2.5% of NAV; these are targets, not guaranteed cash availability. The stated application redemption fee is 25 basis points and may change.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S05"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null,
+      "redemption_fee_bps": 25,
+      "reserve_target_pct_max": 15,
+      "monthly_capacity_target_nav_pct_max": 2.5
+    },
+    {
+      "id": "ON-F08",
+      "topic": "Access fallback",
+      "statement": "Permissionless acquisition and eligible issuer redemption are different access paths. An ineligible holder relies on secondary liquidity for exit.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S05",
+        "ON-S06"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F09",
+      "topic": "Valuation control",
+      "statement": "Technical reference says mint/redemption price is calculated from contract-stored base price, annual rate and elapsed time; REST mirrors state. It does not establish how economic losses reach those parameters.",
+      "classification": "conflicting_documentation",
+      "source_ids": [
+        "ON-S02",
+        "ON-S08",
+        "ON-S09"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F10",
+      "topic": "Administrative control",
+      "statement": "Issuer describes separate 3-of-6 multisigs for reserves and administration, upgrade/freeze/fee/pause powers, and a timelock still being implemented. Configuration and signer independence are unverified.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S07"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F11",
+      "topic": "Collateral custody",
+      "statement": "Issuer claims legal segregation from its general account and between underwriting accounts. This does not verify account-level custodians, signed participation rights, claim priority or recoverability.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S10",
+        "ON-S07"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F12",
+      "topic": "Underwriting mix",
+      "statement": "Portfolio policy targets approximately equal specialty and catastrophe ILW exposure; this is not an observed allocation. ILW descriptions indicate typically 6\u201312 month duration.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S11"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F13",
+      "topic": "Audit evidence",
+      "statement": "OtterSec report dated July 30, 2026 covers commit 8aceb86. It reports 16 findings: one medium, seven low, eight informational; nine resolved and seven acknowledged. No deployed-code match was established.",
+      "classification": "independent_report_observation",
+      "source_ids": [
+        "ON-S14"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F14",
+      "topic": "Audit limitations",
+      "statement": "Acknowledged issues include cached market statistics, pricing migration, and fee rounding during partial redemption. The report records backend handling as the response to fee rounding; this is not proof of a current exploit.",
+      "classification": "independent_report_observation",
+      "source_ids": [
+        "ON-S14"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F15",
+      "topic": "Attestations",
+      "statement": "The inspected issuer index lists monthly Apex reports through June 2026. June report contents were unavailable, so balances, scope, qualifications and subsequent reports remain unverified.",
+      "classification": "document_observation",
+      "source_ids": [
+        "ON-S15",
+        "ON-S16"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F16",
+      "topic": "Operational assurance",
+      "statement": "Issuer states SOC 2 Type II examination by BARR Advisory across Security, Availability and Confidentiality. The report itself was not obtained.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S17"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F17",
+      "topic": "Regulation",
+      "statement": "Issuer identifies On Re SAC Ltd, Bermuda Class F digital-asset and Class IIGB insurance permissions, registration 55347. The exact regulator entry was not independently established.",
+      "classification": "issuer_claim",
+      "source_ids": [
+        "ON-S22",
+        "ON-S21"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    },
+    {
+      "id": "ON-F18",
+      "topic": "Risk calibration",
+      "statement": "Issuer publishes an approximate 0.5% loss-probability claim without sufficient model scope, horizon and validation in the inspected page; it is excluded from rating calibration.",
+      "classification": "unvalidated_issuer_model_claim",
+      "source_ids": [
+        "ON-S23"
+      ],
+      "observed_at": "2026-09-08",
+      "effective_at": null
+    }
+  ],
+  "issuer_api_observations": [
+    {
+      "id": "ON-M01",
+      "metric": "nav",
+      "raw_value": "1.143166274",
+      "display_value": "1.143166274",
+      "unit": "USD per ONyc, issuer-defined",
+      "source_ids": [
+        "ON-S18",
+        "ON-S02"
+      ],
+      "observed_at": "2026-09-08",
+      "data_as_of": null,
+      "slot": null,
+      "verified_live": false,
+      "display_policy": "Evidence detail only; label issuer API observation and unknown state timestamp."
+    },
+    {
+      "id": "ON-M02",
+      "metric": "tvl",
+      "raw_value": "287723838.800025469986198890",
+      "display_value": "287,723,838.80",
+      "unit": "USD, issuer-defined TVL",
+      "source_ids": [
+        "ON-S20",
+        "ON-S02"
+      ],
+      "observed_at": "2026-09-08",
+      "data_as_of": null,
+      "slot": null,
+      "verified_live": false,
+      "display_policy": "Publisher-reported TVL."
+    },
+    {
+      "id": "ON-M03",
+      "metric": "apy",
+      "raw_value": "0.115411",
+      "display_value": null,
+      "unit": null,
+      "basis": null,
+      "period": null,
+      "source_ids": [
+        "ON-S19"
+      ],
+      "observed_at": "2026-09-08",
+      "data_as_of": null,
+      "slot": null,
+      "verified_live": false,
+      "display_policy": "Retain raw research input only. Do not render as current portfolio yield or compare with PT fixed yield without basis/window verification."
+    }
+  ],
+  "collateral_inventory": {
+    "source_ids": [
+      "ON-S03"
+    ],
+    "observed_at": "2026-09-08",
+    "data_as_of": null,
+    "weights_known": false,
+    "total_value": null,
+    "display_policy": "Named issuer-listed candidates; no pie, proportional bar or allocation ranking. No equal-weight assumption.",
+    "assets": [
+      {
+        "symbol": "T-Bills",
+        "name": "U.S. Treasury bills",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/t-bills-or-u.s.-treasury-bills"
+      },
+      {
+        "symbol": "sUSDe",
+        "name": "Staked USDe",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/susde-or-staked-usde"
+      },
+      {
+        "symbol": "syrupUSDC",
+        "name": "SyrupUSDC",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/syrupusdc-or-syrupusdc"
+      },
+      {
+        "symbol": "USCC",
+        "name": "Bitwise Crypto Carry Fund",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/uscc-or-bitwise-crypto-carry-fund"
+      },
+      {
+        "symbol": "USDC",
+        "name": "USD Coin",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/usdc-or-usd-coin"
+      },
+      {
+        "symbol": "USDG",
+        "name": "US Global Dollar",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/usdg-or-us-global-dollar"
+      },
+      {
+        "symbol": "sUSDS",
+        "name": "Savings USDS",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/susds-or-savings-usds"
+      },
+      {
+        "symbol": "USYC",
+        "name": "US Yield Coin",
+        "weight": null,
+        "value_usd": null,
+        "classification": "issuer_listed",
+        "source_ids": [
+          "ON-S03"
+        ],
+        "detail_url": "https://docs.onre.finance/for-capital-providers/collateral-composition/usyc-or-us-yield-coin"
+      }
+    ]
+  },
+  "historical_deal_schedule": {
+    "source_ids": [
+      "ON-S12"
+    ],
+    "image_url": "https://1254974914-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FLVgW13uc0mwJowVfFldk%2Fuploads%2FkYiiReURCVQ4QXNitVyf%2FScreenshot%202026-06-15%20at%201.45.21%E2%80%AFPM.png?alt=media&token=792522af-6bbb-45a7-916c-9b8f8877af3a",
+    "image_sha256": "106d515ea05ff7b8c5e53c1171caf1bb06be8ce5c9e829ff9d6f5cddef6bbec5",
+    "observed_at": "2026-09-08",
+    "data_as_of": null,
+    "filename_date_hint": "2026-06-15",
+    "date_hint_type": "filename_only_not_verified_effective_date",
+    "classification": "undated_issuer_screenshot",
+    "display_policy": "Historical research appendix only; do not describe these rows as current or use their yields as ONyc yield.",
+    "displayed_total_deal_value_usd": 112712000,
+    "displayed_average_yield_pct": 18.21,
+    "displayed_average_duration_months": 11.5,
+    "denominator_definition": null,
+    "rows": [
+      {
+        "peril": "D&O",
+        "structure": "Specialty",
+        "geography": "Belgium",
+        "deal_value_usd": 1500000,
+        "projected_yield_pct": 3.92,
+        "gross_written_premium_usd": 58860,
+        "duration_months": 12,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "Contingency",
+        "structure": "Specialty",
+        "geography": "Europe",
+        "deal_value_usd": 6612000,
+        "projected_yield_pct": 11.37,
+        "gross_written_premium_usd": 824058,
+        "duration_months": 13,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "All Natural Perils",
+        "structure": "Industry Loss Warranty",
+        "geography": "Europe",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 37.16,
+        "gross_written_premium_usd": 850000,
+        "duration_months": 5.5,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "All Natural Perils",
+        "structure": "Industry Loss Warranty",
+        "geography": "Multi",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 33.8,
+        "gross_written_premium_usd": 750000,
+        "duration_months": 5.5,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "Earthquake and Wind",
+        "structure": "Industry Loss Warranty",
+        "geography": "Japan",
+        "deal_value_usd": 2500000,
+        "projected_yield_pct": 11.88,
+        "gross_written_premium_usd": 296875,
+        "duration_months": 12,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "Earthquake and Wind",
+        "structure": "Industry Loss Warranty",
+        "geography": "United States",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 7.4,
+        "gross_written_premium_usd": 369750,
+        "duration_months": 12,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "All Natural Perils",
+        "structure": "Excess of Loss",
+        "geography": "Worldwide",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 16.56,
+        "gross_written_premium_usd": 874000,
+        "duration_months": 12,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "All Natural Perils / Named Natural Perils",
+        "structure": "Excess of Loss",
+        "geography": "Worldwide",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 13.78,
+        "gross_written_premium_usd": 688800,
+        "duration_months": 12,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "All Natural Perils",
+        "structure": "Industry Loss Warranty",
+        "geography": "Australia",
+        "deal_value_usd": 3350000,
+        "projected_yield_pct": 13.0,
+        "gross_written_premium_usd": 430650,
+        "duration_months": 12,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "All Natural Perils",
+        "structure": "Excess of Loss",
+        "geography": "United States, New Zealand",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 11.25,
+        "gross_written_premium_usd": 625000,
+        "duration_months": 12,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "Wind",
+        "structure": "Industry Loss Warranty",
+        "geography": "United States",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 21.75,
+        "gross_written_premium_usd": 1250000,
+        "duration_months": 10.5,
+        "displayed_status": "Active"
+      },
+      {
+        "peril": "All Natural Perils",
+        "structure": "Excess of Loss",
+        "geography": "Worldwide",
+        "deal_value_usd": 5000000,
+        "projected_yield_pct": 27.06,
+        "gross_written_premium_usd": 1650000,
+        "duration_months": 12,
+        "displayed_status": "Allocated"
+      },
+      {
+        "peril": "All Natural Perils / Earthquake and Wind",
+        "structure": "Excess of Loss",
+        "geography": "United States, Worldwide",
+        "deal_value_usd": 20000000,
+        "projected_yield_pct": 23.77,
+        "gross_written_premium_usd": 4400000,
+        "duration_months": 10,
+        "displayed_status": "Allocated"
+      },
+      {
+        "peril": "All Natural Perils / Named Natural Perils",
+        "structure": "Excess of Loss",
+        "geography": "Worldwide",
+        "deal_value_usd": 8750000,
+        "projected_yield_pct": 24.81,
+        "gross_written_premium_usd": 2412500,
+        "duration_months": 12,
+        "displayed_status": "Allocated"
+      },
+      {
+        "peril": "ILS Fund Manager",
+        "structure": "Excess of Loss",
+        "geography": "Worldwide",
+        "deal_value_usd": 30000000,
+        "projected_yield_pct": 15.7,
+        "gross_written_premium_usd": null,
+        "duration_months": 20,
+        "displayed_status": "Allocated"
+      }
+    ]
+  },
+  "audit": {
+    "source_ids": [
+      "ON-S13",
+      "ON-S14"
+    ],
+    "report_date": "2026-07-30",
+    "index_date_label": "August 2026",
+    "engagement_start": "2026-06-17",
+    "engagement_end": "2026-07-25",
+    "audited_commit": "8aceb86",
+    "findings": {
+      "critical": 0,
+      "high": 0,
+      "medium": 1,
+      "low": 7,
+      "informational": 8,
+      "resolved": 9,
+      "acknowledged": 7
+    },
+    "deployed_commit_match": null,
+    "approval_implication": "Evidence for reviewed code and reported remediation, not proof of safety or current deployment coverage."
+  },
+  "conflicts": [
+    {
+      "id": "ON-C01",
+      "title": "Economic NAV versus issuance price",
+      "source_ids": [
+        "ON-S02",
+        "ON-S08",
+        "ON-S09"
+      ],
+      "summary": "Insurer reporting describes committee-calculated daily NAV via oracles; technical reference describes contract-stored pricing inputs. Their exact reconciliation and loss-update mechanism remain open."
+    },
+    {
+      "id": "ON-C02",
+      "title": "Redemption documentation changed",
+      "source_ids": [
+        "ON-S05"
+      ],
+      "summary": "Sept 7 local brief described Coming Soon and an older quarterly rONyc path. Current inspected primary page lacks Coming Soon and describes a queue. Neither old path nor present execution is assumed verified."
+    },
+    {
+      "id": "ON-C03",
+      "title": "Collateral disclosure changed",
+      "source_ids": [
+        "ON-S03"
+      ],
+      "summary": "Sept 7 brief expected a collateral image. Current page is a textual list without weights; an image exists on a separate reinsurance-deals page and cannot substitute for current reserve composition."
+    },
+    {
+      "id": "ON-C04",
+      "title": "Liquidity capacity cadence",
+      "source_ids": [
+        "ON-S05"
+      ],
+      "summary": "The redemption page gives a monthly capacity target but later refers to weekly Available Amount constraints. No fixed service level or capacity is inferred."
+    },
+    {
+      "id": "ON-C05",
+      "title": "Backend control assurance requires qualification",
+      "source_ids": [
+        "ON-S05",
+        "ON-S14"
+      ],
+      "summary": "Issuer redemption documentation describes backend-compromise risk as limited to queue order; acknowledged audit fee-rounding behavior depends on backend fulfillment sizes. Deployed relevance must be reconciled."
+    }
+  ],
+  "gaps": [
+    {
+      "id": "ON-G01",
+      "title": "Legal claim",
+      "required_input": "Signed participation agreement, investor class rights, account identity, insolvency priority and enforcement route.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S01",
+        "ON-S10"
+      ]
+    },
+    {
+      "id": "ON-G02",
+      "title": "Portfolio and reserving",
+      "required_input": "Dated holdings/weights, reinsurance commitments, cedent/broker concentration, paid and incurred claims, IBNR, reserve adequacy and modeled stress losses.",
+      "materiality": "Dominant",
+      "status": "open",
+      "source_ids": [
+        "ON-S03",
+        "ON-S08",
+        "ON-S12"
+      ]
+    },
+    {
+      "id": "ON-G03",
+      "title": "Valuation reconciliation",
+      "required_input": "Reconcile actual underwriting NAV, contract offer price, parameter-update authority/frequency and impairment propagation.",
+      "materiality": "Dominant",
+      "status": "open",
+      "source_ids": [
+        "ON-S02",
+        "ON-S08",
+        "ON-S09"
+      ]
+    },
+    {
+      "id": "ON-G04",
+      "title": "Independent assurance",
+      "required_input": "Inspect latest Apex report and underlying financial statements; establish scope, reporting date and exceptions.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S13",
+        "ON-S15",
+        "ON-S16"
+      ]
+    },
+    {
+      "id": "ON-G05",
+      "title": "Live custody and controls",
+      "required_input": "Verify reserve accounts, custodians, mandates, signer thresholds/independence, current mint/freeze/upgrade authorities, timelock and deployed audit match.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S02",
+        "ON-S07",
+        "ON-S14"
+      ]
+    },
+    {
+      "id": "ON-G06",
+      "title": "Executable exit",
+      "required_input": "Exact redemption offer/queue accounts, available amounts, measured delays, fee behavior and stablecoin choice; executable secondary quote for intended size.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S05"
+      ]
+    },
+    {
+      "id": "ON-G07",
+      "title": "Position definition",
+      "required_input": "Confirm position size, wallet/custody, eligible investor status, horizon and intended cash exit asset.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S05",
+        "ON-S06"
+      ]
+    },
+    {
+      "id": "ON-G08",
+      "title": "Current API state",
+      "required_input": "Missing state timestamp/slot, metric definitions and independent reconciliation; APY basis/window unconfirmed.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S18",
+        "ON-S19",
+        "ON-S20"
+      ]
+    },
+    {
+      "id": "ON-G09",
+      "title": "Collateral dependency materiality",
+      "required_input": "Amounts and custody for each listed reserve asset; assess any material underlying protocol/fund without assuming equal weights.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S03"
+      ]
+    },
+    {
+      "id": "ON-G10",
+      "title": "License mapping",
+      "required_input": "Match the issuer entity, account and participation documents to a current BMA entry.",
+      "materiality": "Required",
+      "status": "open",
+      "source_ids": [
+        "ON-S21",
+        "ON-S22"
+      ]
+    }
+  ],
+  "rating_implication": "Assessment can map claims, drivers, controls and routes. Approved numeric scoring remains unavailable while material inputs and methodology approval are unresolved.",
+  "excluded_inputs": [
+    "July Kamino leveraged-route pilot scores",
+    "Unverified probability of loss from issuer marketing",
+    "Fabricated live holdings weights",
+    "Historical deal yields as current ONyc APY",
+    "TVL as immediately redeemable capital"
+  ]
+}
