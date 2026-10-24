@@ -28,7 +28,7 @@ export type Assessment = {
   id: 'onyc' | 'pt-onyc' | 'pt-sronyc' | 'pt-susdai'; symbol: string; name: string;
   type: string; protocol: string; chain: string; maturity: string | null;
   mint: string; market: string | null; identityBasis: string; summary: string;
-  blocker: string; lane: string; lossObject: string; disposition: 'NO_RATE';
+  blocker: string; lane: string; lossObject: string; disposition: 'NOT APPROVED';
   approvedScore: null; approvedGrade: null; approvedConfidence: null;
   indicatedScore: null; indicatedGrade: null; observedAt: string;
   approvalStatus?: 'NOT APPROVED'; watchlist?: boolean; indicatedEvidenceConfidence?: 'Low';
@@ -72,7 +72,7 @@ export const gradeLadder = [
 ] as const;
 
 const noRating = {
-  disposition: 'NO_RATE' as const,
+  disposition: 'NOT APPROVED' as const,
   approvedScore: null, approvedGrade: null, approvedConfidence: null,
   indicatedScore: null, indicatedGrade: null, methodologyVersion: 'v0.3-alpha',
 };

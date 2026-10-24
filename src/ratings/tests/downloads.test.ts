@@ -41,7 +41,7 @@ test('each assessment export retains its exact position, source inventory and wi
     const payload = await response.json();
     assert.equal(payload.assessment.id, p.id);
     assert.equal(payload.assessment.mint, p.mint);
-    assert.equal(payload.assessment.disposition, 'NO_RATE');
+    assert.equal(payload.assessment.disposition, 'NOT APPROVED');
     for (const field of ['approvedGrade', 'approvedScore', 'approvedConfidence', 'indicatedGrade', 'indicatedScore']) assert.equal(payload.assessment[field], null);
     assert.deepEqual(new Set(payload.sources.map((s: { id: string }) => s.id)), new Set(p.sourceIds));
     assert.equal(payload.metadata.live, false);
@@ -56,7 +56,7 @@ test('research and all preserved source records form a complete downloadable dat
   assert.equal(files.size, 2 + assessments.length + sources.length + customerDocuments.length);
   const payload = await serveResearchFile('/ratings-data/research.json', true).json();
   assert.equal(payload.metadata.live, false);
-  assert.equal(payload.metadata.approvalDisposition, 'NO_RATE');
+  assert.equal(payload.metadata.approvalDisposition, 'NOT APPROVED');
   assert.deepEqual(Object.keys(payload.packets), ['onyc', 'exponent', 'pt-susdai']);
   const dates = assessments.map(assessment => assessment.observedAt.slice(0, 10)).sort();
   assert.equal(payload.metadata.researchDate, null);

@@ -149,7 +149,7 @@ export const ptSusdaiAssessment: Assessment = {
   blocker: 'Current redemption output, free cash, loan performance and enforceable recovery rights remain unverified. Approved calculation rules, joint-path validation and independent approval are also outstanding.',
   lane: 'PT / yield-stripped claim',
   lossObject: 'Shortfall in realizable native-USDC proceeds relative to acquisition cost, after conversion losses, exit costs and delays',
-  disposition: 'NO_RATE', approvalStatus: 'NOT APPROVED', watchlist: true, indicatedEvidenceConfidence: 'Low',
+  disposition: 'NOT APPROVED', approvalStatus: 'NOT APPROVED', watchlist: true, indicatedEvidenceConfidence: 'Low',
   approvedScore: null, approvedGrade: null, approvedConfidence: null,
   indicatedScore: null, indicatedGrade: null, observedAt: packet.evidence_cutoff,
   methodologyVersion: 'v0.3-alpha',

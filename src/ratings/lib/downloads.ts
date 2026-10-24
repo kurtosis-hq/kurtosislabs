@@ -9,7 +9,7 @@ import { getSourceRecord } from './source-observations.ts';
 
 const metadata = {
   methodologyVersion: 'v0.3-alpha', methodologyApproval: 'pending',
-  approvalDisposition: 'NO_RATE', live: false,
+  approvalDisposition: 'NOT APPROVED', live: false,
   observationNote: 'Observation dates are historical research observations, not verified current market-state timestamps. PT-sUSDai source dates inherit the supplied report’s investment-evidence cutoff; its sources were not retrieved again for this page. Sources do not refresh automatically.',
   disclaimer: 'These preliminary assessments have not received rating approval. No scores or grades have been assigned. Evidence reflects the stated research dates.',
 };

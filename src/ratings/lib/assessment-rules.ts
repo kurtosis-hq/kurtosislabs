@@ -39,7 +39,7 @@ export function validateAssessment(assessment: Assessment): string[] {
   const requiredText = ['id', 'symbol', 'name', 'type', 'protocol', 'chain', 'mint', 'identityBasis', 'summary', 'blocker', 'lane', 'lossObject', 'methodologyVersion'];
   for (const field of requiredText) if (!isText(assessment[field as keyof Assessment])) fail(`${field} must be nonempty.`);
   if (!supportedIds.includes(assessment.id)) fail('Unsupported assessment identity.');
-  if (assessment.disposition !== 'NO_RATE') fail('Research-only assessments must retain NO_RATE.');
+  if (assessment.disposition !== 'NOT APPROVED') fail('Research-only assessments must retain NOT APPROVED.');
   for (const field of ['approvedScore', 'approvedGrade', 'approvedConfidence', 'indicatedScore', 'indicatedGrade'] as const) {
     if (assessment[field] !== null) fail(`${field} must remain null until supported scoring and approval exist.`);
   }

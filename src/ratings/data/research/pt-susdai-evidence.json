@@ -8,7 +8,7 @@
   "edition_timezone": "Asia/Singapore",
   "evidence_cutoff": "2026-10-22",
   "status": "research_only",
-  "rating_status": "NO_RATE",
+  "rating_status": "NOT APPROVED",
   "approval_status": "NOT APPROVED",
   "watchlist": true,
   "indicated_evidence_confidence": "Low",
@@ -18,7 +18,7 @@
   "indicated_grade": null,
   "indicated_score": null,
   "reject_triggered": false,
-  "rating_status_reason": "Required product evidence, approved score-formation rules, joint-path validation and independent approval remain outstanding. NOT APPROVED with a source-backed WATCHLIST is the supplied assessment's disposition; NO_RATE is the site's technical representation of a withheld rating.",
+  "rating_status_reason": "Required product evidence, approved score-formation rules, joint-path validation and independent approval remain outstanding. NOT APPROVED with a source-backed WATCHLIST is the supplied assessment's disposition; NOT APPROVED is the site's technical representation of a withheld rating.",
   "scope": "Matured Arbitrum PT-sUSDai-15OCT2026; assumed unlevered, ordinary, self-custodied holder of a US$1 million equivalent position seeking native USDC on Arbitrum. The reference size is an analyst assumption, not a disclosed holding or recommended size.",
   "provided_report": {
     "filename": "PT_sUSDai_Assessment_Investor_Edition.md",

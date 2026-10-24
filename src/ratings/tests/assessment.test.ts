@@ -21,9 +21,9 @@ void test("all registered research assessments satisfy the data contract", () =>
   assert.equal(getAssessment("not-an-assessed-position"), undefined);
 });
 
-void test("NO_RATE records never expose unsupported approved or indicated results", () => {
+void test("NOT APPROVED records never expose unsupported approved or indicated results", () => {
   for (const assessment of assessments) {
-    assert.equal(assessment.disposition, "NO_RATE", assessment.id);
+    assert.equal(assessment.disposition, "NOT APPROVED", assessment.id);
     assert.equal(assessment.approvedScore, null, assessment.id);
     assert.equal(assessment.approvedGrade, null, assessment.id);
     assert.equal(assessment.approvedConfidence, null, assessment.id);
@@ -148,7 +148,7 @@ void test("material source references resolve to an identifiable source", () => 
   assert.equal(sourceById("missing-evidence-source"), undefined);
 });
 
-void test("validation rejects an approved score attached to NO_RATE", () => {
+void test("validation rejects an approved score attached to NOT APPROVED", () => {
   const assessment = structuredClone(assessments[0]);
   Object.assign(assessment, { approvedScore: 0.5 });
   assert.ok(validateAssessment(assessment).length > 0);
