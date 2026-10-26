@@ -32,7 +32,7 @@
 
   /* ============ NAV ============ */
   .nav{
-    position:fixed; top:0; left:0; right:0; z-index:60;
+    position:absolute; top:0; left:0; right:0; z-index:60;
     display:flex; align-items:center; justify-content:space-between; gap:16px;
     padding:18px clamp(20px,4vw,48px);
     transition:opacity .8s ease, transform .8s ease;
@@ -68,7 +68,7 @@
     -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
   }
   .btn-nav:hover, .nav-links a.btn-nav:hover{background:#fff; color:#111; box-shadow:0 8px 24px rgba(15,27,46,.22)}
-  body.entrance:not(.nav-in) .nav{opacity:0; transform:translateY(-10px); pointer-events:none}
+  body.entrance:not(.nav-in) .nav{opacity:0; visibility:hidden; transform:translateY(-10px); pointer-events:none}
 
   /* ============ APERTURE SCENE ============ */
   /* Composed hero by default (no-JS / reduced motion): scene = one viewport.
@@ -1055,6 +1055,10 @@
 </head>
 <body id="top">
 
+<!-- The transparent navigation shares the hero's sticky frame and scrolls away with it. -->
+<div class="scene" id="scene">
+  <div class="scene-sticky" id="sticky">
+
 <header class="nav">
   <a class="nav-brand" href="#top" aria-label="Kurtosis Labs — home">
     <img src="assets/logo-dark.png" alt="" width="28" height="28">
@@ -1067,10 +1071,6 @@
     <li><a class="btn btn-nav" href="mailto:kai@kurtosis-labs.com">Request a walkthrough</a></li>
   </ul>
 </header>
-
-<!-- ============ ENTRANCE: THE APERTURE ============ -->
-<div class="scene" id="scene">
-  <div class="scene-sticky" id="sticky">
 
     <section class="hero" id="hero" aria-label="Kurtosis Labs">
       <!-- signature: sky / headline / ridge. The headline sits between the sky layer and the peaks -->
@@ -1325,7 +1325,7 @@
         <li><a href="horizon.html">Kurtosis Horizon</a></li>
         <li><a href="horizon.html">Explainable Vaults</a></li>
         <li><a href="ratings-methodology.html">Methodology</a></li>
-        <li><a href="#">Research</a></li>
+        <li><a href="ratings.html?view=research">Research</a></li>
       </ul>
     </nav>
     <nav class="foot-col" aria-label="Company">
@@ -1396,21 +1396,22 @@
      - P is a single, GLOBALLY MONOTONIC progress value in [0,1]. Every
        input can only raise it: P = max(P, scrollP, wheelP, tweenP).
        Nothing ever writes a smaller value, so no path can fight another.
-     - Scroll runway: while the entrance runs, the scene gets an explicit
-       inline pixel height of (viewport + runway). That guarantees real
-       document scroll height without depending on vh/svh/sticky quirks.
+     - Reserve both the entrance and parallax distances before scrolling.
+       The sticky hero stays pinned through the handoff, including wheel
+       events that overshoot the end of the entrance.
      - Click / Enter / Space / Escape start a 1.05s time-based tween AND
        arm a 1200ms setTimeout that force-completes even if rAF is
        throttled — an interaction can never fail to open the aperture.
      - Wheel and touch deltas also feed progress directly (passive, never
        preventDefault — no hijack), so the aperture opens even in an
        environment where document scrolling is unavailable.
-     - On completion the runway collapses back to one viewport and scroll
-       position is re-based, so the composed page starts exactly at the
-       full-bleed hero with the sections directly below.
+     - Completion preserves the document scroll position. The parallax
+       starts where the entrance ended; click/keyboard entry can finish
+       early without making the user scroll through unused entrance space.
      ===================================================================== */
   var P = 0;
   var done = !runEntrance;
+  heroCopy.inert = !done;   /* Faded-in links become keyboard targets only after entry. */
   var runway = 1, coverR = 400;
   var wheelP = 0;
   var tweenOn = false, tweenFrom = 0, tweenT0 = 0;
@@ -1423,6 +1424,7 @@
       hero.classList.remove('rig-live');
       [lBg, lMg, lFg].forEach(function (layer) { layer.removeAttribute('style'); });
       scene.style.height = '';
+      holdStart = 0;
       hero.style.clipPath = 'none';
       body.classList.add('nav-in');
       return;
@@ -1433,9 +1435,9 @@
     if (!phone) layoutRig();   /* reduced motion gets the same composed framing, just static */
     if (!done){
       runway = Math.max(1, Math.round(window.innerHeight * 1.2));
-      scene.style.height = (window.innerHeight + runway) + 'px';
+      setHold(runway);
     } else if (!reduced && !phone){
-      setHold();                 /* composed page: viewport + deep-parallax hold */
+      setHold(holdStart);
     } else if (scene.style.height){
       scene.style.height = '';   /* reduced motion: CSS 100vh/100svh scene, no hold */
     }
@@ -1490,7 +1492,7 @@
     return { tx: px + mx * a.dx, ty: py + my * a.dy + a.ty0 + a.ty * L.H * p, s: a.s0 + a.s * p };
   }
 
-  var RL = null, hold = 1, holdCur = 0, lastNow = 0;
+  var RL = null, hold = 1, holdStart = 0, holdCur = 0, lastNow = 0;
   var rigEls = [['bg', lBg], ['mg', lMg], ['fg', lFg]];
   function layoutRig(){
     var W = hero.clientWidth || window.innerWidth, H = hero.clientHeight || window.innerHeight;
@@ -1505,17 +1507,10 @@
       st.transformOrigin = o;
     });
   }
-  function setHold(){
+  function setHold(start){
     var sh = sticky.clientHeight || window.innerHeight;
     hold = Math.max(1, Math.round(sh * 1.35));
-    scene.style.height = (sh + hold) + 'px';
-  }
-
-  function instantScroll(y){
-    var prev = html.style.scrollBehavior;
-    html.style.scrollBehavior = 'auto';
-    window.scrollTo(0, y);
-    html.style.scrollBehavior = prev;
+    scene.style.height = (sh + start + hold) + 'px';
   }
 
   function render(p){
@@ -1540,18 +1535,18 @@
   function complete(){
     if (done) return;
     done = true;
+    heroCopy.inert = false;
     clearTimeout(forceTimer);
     hero.style.clipPath = 'none';
     copyEls.forEach(function(el){ el.style.opacity = '1'; el.style.transform = 'none'; });
     scrim.style.opacity = '1';
-    /* Collapse the runway and re-base scroll. The sticky viewport pinned the
-       hero for the whole runway, so this is visually seamless. */
-    var sy = window.scrollY;
+    /* Keep the consumed entrance distance in the document. Never rewind
+       scrolling; any wheel overshoot carries directly into the parallax. */
+    holdStart = Math.min(window.scrollY, runway);
     body.classList.remove('entrance');   /* hides aperture UI, restores copy/nav CSS */
     body.classList.add('nav-in');
     if (phone) scene.style.height = '';  /* phone: back to the composed hero; parallax runs as it scrolls away */
-    else setHold();                      /* runway -> deep-parallax hold (same top, so seamless) */
-    instantScroll(Math.max(0, sy - runway));
+    else setHold(holdStart);
   }
 
   function open(){
@@ -1642,7 +1637,7 @@
     my = my < -1 ? -1 : (my > 1 ? 1 : my);
     var panX = Math.sin(now / 4200) * panA;
     var panY = Math.cos(now / 5600) * panA * 0.6;
-    var target = done ? clamp01(window.scrollY / (phone ? PH : hold)) : 0;
+    var target = done ? clamp01((window.scrollY - holdStart) / (phone ? PH : hold)) : 0;
     holdCur += (target - holdCur) * (1 - Math.pow(0.88, dt / 16.667));
     if (Math.abs(target - holdCur) < 0.0002) holdCur = target;
     holdCur = clamp01(holdCur);
@@ -2088,7 +2083,7 @@
   function set(o) { nav.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false'); b.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); }
   b.addEventListener('click', function () { set(!nav.classList.contains('open')); });
   [].forEach.call(nav.querySelectorAll('.nav-links a'), function (a) { a.addEventListener('click', function () { set(false); }); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) { set(false); b.focus(); } });
   document.addEventListener('click', function (e) { if (!nav.contains(e.target)) set(false); });
 })();
 </script>
