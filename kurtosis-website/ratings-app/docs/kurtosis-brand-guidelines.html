@@ -1,0 +1,392 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Kurtosis Brand Guidelines</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: the 1.0 guide's single sheet (header, then numbered sections in a ruled grid), rebuilt
+   with the values the website now uses. One deliberate light look, so every colour is set here. */
+:root {
+  color-scheme: light;
+  /* Brand navy */
+  --navy: #0F2D4B; --navy-ink: #152D49; --navy-logo: #172A42; --navy-deep: #0B1A35; --black: #000000;
+  /* Product blues */
+  --ratings: #0F2D4B; --horizon: #456E99; --gradient: #718BA7;
+  --steel-1: #375987; --steel-2: #637B9D; --steel-3: #899BB1;
+  /* Neutrals and tints */
+  --white: #FFFFFF; --panel: #E3E9F0; --track: #D8DEE5; --divider: #CED5DB; --muted: #7D8FA7;
+  --sky-tint: #E9F3FC; --sky-mist: #F4F9FD;
+  /* Page chrome for this document */
+  --page-bg: #E4E9EF; --fg: #172A42; --fg-2: #3B4F66; --fg-3: #7D8FA7; --rule: #DCE3EA; --accent: #456E99;
+  /* Type */
+  --font-display: 'Plus Jakarta Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page-bg); color: var(--fg); font-family: var(--font-body); -webkit-font-smoothing: antialiased;
+  padding-block: 40px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+p { text-wrap: pretty; }
+.pg { max-width: 1200px; margin: 0 auto; background: var(--white); }
+.sec { padding: 48px 56px; min-width: 0; }
+.bt { border-top: 1px solid var(--rule); }
+.br { border-right: 1px solid var(--rule); }
+.h { display: flex; align-items: baseline; gap: 14px; margin: 0 0 32px; }
+.h b { color: var(--accent); font-size: 24px; font-family: var(--font-display); }
+.h span { font-size: 24px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+.h.sm b, .h.sm span { font-size: 16px; }
+.cap { font-size: 12px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--fg-2); margin: 0 0 14px; }
+.lbl { font-size: 15px; color: var(--fg-2); margin: 0 0 10px; }
+.p { font-size: 16px; line-height: 1.65; color: var(--fg-2); margin: 0; }
+.tile { border-radius: 14px; box-shadow: 0 4px 14px rgba(15, 45, 75, .10), 0 1px 3px rgba(15, 45, 75, .06); display: flex; align-items: center; justify-content: center; }
+.lock { display: flex; align-items: center; gap: 16px; }
+.wm { font-family: var(--font-body); font-weight: 500; letter-spacing: -.02em; line-height: 1; white-space: nowrap; }
+.k { display: block; }
+.ktile { display: flex; align-items: center; justify-content: center; flex: none; background: var(--white); border-radius: 11%; }
+.sw { display: grid; gap: 12px; margin-bottom: 30px; }
+.sw i { display: block; height: 60px; border-radius: 6px; border: 1px solid rgba(15, 45, 75, .08); }
+.sw b { display: block; font-size: 13px; margin-top: 10px; font-variant-numeric: tabular-nums; }
+.sw small { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); margin-top: 3px; }
+.grad { height: 40px; border-radius: 6px; margin-bottom: 8px; box-shadow: 0 3px 8px rgba(15, 45, 75, .10); }
+.grad + small { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 18px; }
+.feat { display: flex; gap: 14px; margin-bottom: 22px; }
+.feat svg { width: 20px; height: 20px; color: var(--navy); flex: none; margin-top: 2px; }
+.feat h4 { font-size: 16px; margin: 0 0 4px; }
+.feat p { font-size: 14px; line-height: 1.6; color: var(--fg-2); margin: 0; }
+.ic { width: 24px; height: 24px; color: var(--accent); display: inline-block; }
+.face { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 22px; padding: 22px 0; border-top: 1px solid var(--rule); }
+.face:first-of-type { border-top: 0; padding-top: 0; }
+.face .aa { font-size: 96px; line-height: 1; letter-spacing: -.03em; }
+.face .nm { font-size: 22px; margin: 4px 0 6px; }
+.face .use { font-size: 13px; line-height: 1.6; color: var(--fg-2); }
+.face .set { font-size: 12px; line-height: 1.7; color: var(--fg-2); margin-top: 10px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border-radius: 10px; font-size: 14px; line-height: 20px; font-weight: 700; white-space: nowrap; }
+.grid-coins { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.coin-row { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; align-items: center; }
+.coin-row img { display: block; width: 100%; height: auto; }
+.icon-coins { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 48px; margin-top: 44px; align-items: start; }
+.grid-photo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+.ph { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 25px; }
+.ph-wash { position: relative; border-radius: 25px; overflow: hidden; }
+.ph-wash::after { content: ""; position: absolute; inset: 0; background: rgba(1, 8, 19, 0.69); }
+.ph-wash span { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; color: #fff; font-family: var(--font-display); font-weight: 500; font-size: clamp(22px, 3vw, 34px); letter-spacing: -.04em; text-align: center; padding: 0 16px; }
+.ui { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.ui > div { min-width: 0; }
+.spec { font-size: 12px; line-height: 1.6; color: var(--fg-3); margin-top: 10px; }
+.motion { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.motion h4 { font-size: 16px; margin: 0 0 6px; }
+.motion p { font-size: 14px; line-height: 1.6; color: var(--fg-2); margin: 0; }
+.grid-head { display: grid; grid-template-columns: minmax(0, 1fr) 440px; gap: 40px; }
+.grid-a { display: grid; grid-template-columns: minmax(0, 1fr) 520px; }
+.grid-logo { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 28px; }
+.grid-var { display: grid; grid-template-columns: 320px 250px minmax(0, 1fr); gap: 40px; align-items: start; }
+.grid-b { display: grid; grid-template-columns: 560px minmax(0, 1fr); }
+.values { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 8px; }
+.values > div { padding: 4px 20px; border-right: 1px solid var(--rule); }
+.values > div:first-child { padding-left: 0; }
+.values > div:last-child { border-right: 0; }
+.icons { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px 12px; text-align: center; }
+.icons div div { font-size: 12px; color: var(--fg-2); margin-top: 10px; }
+.ptiles { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 26px; }
+.ptile { width: 62px; height: 62px; border-radius: 16px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
+.ptiles figure { margin: 0; text-align: center; font-size: 12px; color: var(--fg-2); }
+.ptiles figcaption { margin-top: 8px; }
+@media (max-width: 1000px) {
+  .grid-head, .grid-a, .grid-logo, .grid-var, .grid-b, .grid-coins, .icon-coins, .grid-photo, .ui, .motion { grid-template-columns: minmax(0, 1fr); }
+  .br { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .grid-logo > div + div { border-left: 0 !important; padding-left: 0 !important; }
+  .grid-var > div:first-child { padding-top: 0 !important; }
+}
+@media (max-width: 600px) {
+  .sec { padding: 32px 22px; }
+  .hero-title { font-size: 64px !important; }
+  .icons { grid-template-columns: repeat(3, 1fr); }
+  .sw-5 { grid-template-columns: repeat(3, 1fr) !important; }
+  .values { grid-template-columns: 1fr; }
+  .values > div { border-right: 0; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+  .face { grid-template-columns: minmax(0, 1fr); }
+  .h span { font-size: 18px; } .h b { font-size: 18px; }
+}
+</style>
+
+<!-- The Kurtosis K (from the website's logo files) and the icon set, drawn once and reused -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="k" viewBox="7 7 15 14">
+      <path d="M7 7.7C7 7.3134 7.3134 7 7.7 7H13.3C13.6866 7 14 7.3134 14 7.7V13.3589C14 13.5229 13.9425 13.6816 13.8374 13.8075L8.23742 20.5173C7.81808 21.0198 7 20.7233 7 20.0688V7.7Z"/>
+      <path d="M15 12.4574C15 13.0588 15.7083 13.3802 16.161 12.9842L21.5979 8.2268C22.0844 7.80117 21.7833 7 21.137 7H15.7C15.3134 7 15 7.3134 15 7.7V12.4574Z"/>
+      <path d="M15 14.6899C15 14.0663 15.754 13.754 16.195 14.195L21.805 19.805C22.246 20.246 21.9337 21 21.3101 21H15.7C15.3134 21 15 20.6866 15 20.3V14.6899Z"/>
+    </symbol>
+    <g id="i-layers" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></g>
+    <g id="i-shield" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g>
+    <g id="i-gauge" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+    <g id="i-vault" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m7.9 7.9 2.7 2.7"/><path d="m13.4 10.6 2.7-2.7"/><path d="m7.9 16.1 2.7-2.7"/><path d="m13.4 13.4 2.7 2.7"/><circle cx="12" cy="12" r="2"/></g>
+    <g id="i-chart" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></g>
+    <g id="i-scale" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></g>
+    <g id="i-percent" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></g>
+    <g id="i-network" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+    <g id="i-lock" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+    <g id="i-sliders" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></g>
+    <g id="i-filecheck" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m3 15 2 2 4-4"/></g>
+    <g id="i-panels" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="18" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/></g>
+    <g id="i-square" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/></g>
+  </defs>
+</svg>
+
+<div class="pg">
+
+<header class="sec grid-head" style="padding-bottom:40px">
+  <div style="min-width:0">
+    <div class="lock" style="gap:14px">
+      <span class="ktile" style="width:34px;height:34px;background:var(--black)"><svg class="k" width="20" height="18" style="fill:var(--white)"><use href="#k"/></svg></span>
+      <span class="wm" style="font-size:21px;color:var(--fg)">Kurtosis Labs</span>
+    </div>
+    <h1 class="hero-title" style="font-family:var(--font-display);font-weight:500;font-size:104px;line-height:.98;letter-spacing:-.045em;margin:64px 0 0">Brand<br><span style="color:var(--accent)">Guidelines</span></h1>
+    <div style="font-size:15px;letter-spacing:.36em;text-transform:uppercase;color:var(--fg-2);margin:30px 0 32px">Visual Identity System</div>
+    <p style="font-size:21px;line-height:1.6;color:var(--fg-2);margin:0;max-width:580px">This guide sets the visual identity of Kurtosis Labs and keeps it the same wherever the brand appears: the website, Kurtosis Ratings, Horizon and Gradient, research, decks and investor materials.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;min-width:0">
+    <div style="text-align:right;line-height:1.7"><div style="font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--accent)">VERSION 2.0</div><div style="font-size:14px;letter-spacing:.2em;color:var(--fg-2)">OCTOBER 2026</div></div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin-top:10px;min-height:340px">
+      <div style="position:absolute;width:400px;max-width:100%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(207,226,243,.9) 0%,rgba(228,239,249,.5) 45%,rgba(255,255,255,0) 70%)"></div>
+      <svg class="k" width="300" height="280" style="fill:var(--navy-logo);position:relative;max-width:100%" role="img" aria-label="Kurtosis mark"><use href="#k"/></svg>
+    </div>
+  </div>
+  <div class="values">
+    <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-gauge"/></svg><div style="font-size:15px;font-weight:700;margin-top:12px">Systematic</div></div>
+    <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-layers"/></svg><div style="font-size:15px;font-weight:700;margin-top:12px">Inspectable</div></div>
+    <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-shield"/></svg><div style="font-size:15px;font-weight:700;margin-top:12px">Accountable</div></div>
+  </div>
+</header>
+
+<div class="bt grid-a">
+  <section class="sec br grid-logo">
+    <div style="min-width:0">
+      <div class="h"><b>01.</b><span>Logo</span></div>
+      <div class="lock" style="gap:20px;margin:8px 0 40px">
+        <svg class="k" width="50" height="47" style="fill:var(--navy-logo)"><use href="#k"/></svg>
+        <span class="wm" style="font-size:33px;color:var(--fg)">Kurtosis Labs</span>
+      </div>
+      <p class="p" style="font-size:15px">The mark is a letter K cut into three clean planes: a tall column with a sloped foot and two triangles, held apart by a narrow gap. It stands for the work itself, a complex position taken apart into its layers so each one can be seen, measured and underwritten. The wordmark is set in Helvetica Neue Medium.</p>
+    </div>
+    <div style="border-left:1px solid var(--rule);padding-left:24px;min-width:0">
+      <div class="feat"><svg viewBox="0 0 24 24"><use href="#i-panels"/></svg><div><h4>Three planes</h4><p>A column and two triangles form one K.</p></div></div>
+      <div class="feat"><svg viewBox="0 0 24 24"><use href="#i-layers"/></svg><div><h4>Layered gaps</h4><p>The gaps read as separate layers, the Russian Doll idea.</p></div></div>
+      <div class="feat"><svg viewBox="0 0 24 24"><use href="#i-square"/></svg><div><h4>Soft corners</h4><p>Rounded corners keep the exact geometry approachable at any size.</p></div></div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="h"><b>02.</b><span>Clear Space</span></div>
+    <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+      <div style="position:relative;width:250px;height:250px;max-width:100%;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;inset:34px;border:1px dashed var(--divider)"></div>
+        <svg class="k" width="150" height="140" style="fill:var(--navy-logo);position:relative"><use href="#k"/></svg>
+      </div>
+      <div style="background:var(--sky-tint);border:1px solid var(--panel);border-radius:10px;padding:14px 18px;font-size:15px;line-height:1.5;color:var(--fg-2)"><b style="color:var(--accent)">X</b> = ¼ height<br>of the mark</div>
+    </div>
+    <p class="p" style="font-size:15px;margin-top:32px">Keep clear space of X on all four sides of the mark. No type, image edge or other graphic may enter this area. Smallest size: 16 px tall on screen, 6 mm in print.</p>
+  </section>
+</div>
+
+<section class="sec bt">
+  <div class="h"><b>03.</b><span>Logo Variations</span></div>
+  <div class="grid-var">
+    <div style="padding-top:60px;min-width:0"><div class="lbl">Primary Mark · Navy</div><div class="tile" style="height:260px;background:var(--panel)"><svg class="k" width="160" height="150" style="fill:var(--navy-logo)"><use href="#k"/></svg></div></div>
+    <div style="min-width:0">
+      <div class="lbl">Stacked</div>
+      <div class="tile" style="height:170px;background:var(--white);flex-direction:column;gap:14px;margin-bottom:28px"><svg class="k" width="60" height="56" style="fill:var(--navy-logo)"><use href="#k"/></svg><span class="wm" style="font-size:23px;color:var(--fg)">Kurtosis Labs</span></div>
+      <div class="lbl">Stacked (Sky tint)</div>
+      <div class="tile" style="height:170px;background:var(--sky-tint);flex-direction:column;gap:14px"><svg class="k" width="60" height="56" style="fill:var(--navy-logo)"><use href="#k"/></svg><span class="wm" style="font-size:23px;color:var(--fg)">Kurtosis Labs</span></div>
+    </div>
+    <div style="min-width:0">
+      <div class="lbl">Horizontal (White)</div>
+      <div class="tile" style="height:106px;background:var(--white);margin-bottom:22px"><div class="lock" style="gap:16px"><svg class="k" width="40" height="37" style="fill:var(--navy-logo)"><use href="#k"/></svg><span class="wm" style="font-size:27px;color:var(--fg)">Kurtosis Labs</span></div></div>
+      <div class="lbl">Horizontal (Navy)</div>
+      <div class="tile" style="height:106px;background:var(--navy);margin-bottom:22px"><div class="lock" style="gap:18px"><span class="ktile" style="width:44px;height:44px"><svg class="k" width="26" height="24" style="fill:var(--navy-deep)"><use href="#k"/></svg></span><span class="wm" style="font-size:27px;color:var(--white)">Kurtosis Labs</span></div></div>
+      <div class="lbl">Horizontal (Black · navigation bar)</div>
+      <div class="tile" style="height:106px;background:var(--black)"><div class="lock" style="gap:18px"><span class="ktile" style="width:44px;height:44px"><svg class="k" width="26" height="24" style="fill:var(--navy-deep)"><use href="#k"/></svg></span><span class="wm" style="font-size:27px;color:var(--white)">Kurtosis Labs</span></div></div>
+    </div>
+  </div>
+  <p class="p" style="font-size:15px;margin-top:32px">On white and light tints, use the navy mark on its own. On navy, black or a photo, put the mark on a white square with rounded corners (corner radius 11% of the square). The navigation bar shows the square alone; the wordmark returns once there is room.</p>
+</section>
+
+<div class="bt grid-b">
+  <section class="sec br">
+    <div class="h"><b>04.</b><span>Colour Palette</span></div>
+    <div class="cap">Brand · Navy</div>
+    <div class="sw sw-5" style="grid-template-columns:repeat(5,1fr)">
+      <div><i style="background:#0F2D4B"></i><b>#0F2D4B</b><small>Primary</small></div>
+      <div><i style="background:#152D49"></i><b>#152D49</b><small>Ink</small></div>
+      <div><i style="background:#172A42"></i><b>#172A42</b><small>Logo</small></div>
+      <div><i style="background:#0B1A35"></i><b>#0B1A35</b><small>Deep</small></div>
+      <div><i style="background:#000000"></i><b>#000000</b><small>Black</small></div>
+    </div>
+    <div class="cap">Products</div>
+    <div class="sw" style="grid-template-columns:repeat(3,1fr)">
+      <div><i style="background:#0F2D4B"></i><b>#0F2D4B</b><small>Ratings</small></div>
+      <div><i style="background:#456E99"></i><b>#456E99</b><small>Horizon</small></div>
+      <div><i style="background:#718BA7"></i><b>#718BA7</b><small>Gradient</small></div>
+    </div>
+    <div class="cap">Supporting · Steel</div>
+    <div class="sw" style="grid-template-columns:repeat(4,1fr)">
+      <div><i style="background:#375987"></i><b>#375987</b><small>Steel</small></div>
+      <div><i style="background:#637B9D"></i><b>#637B9D</b><small>Mid</small></div>
+      <div><i style="background:#899BB1"></i><b>#899BB1</b><small>Light</small></div>
+      <div><i style="background:#7D8FA7"></i><b>#7D8FA7</b><small>Muted text</small></div>
+    </div>
+    <div class="cap">Base</div>
+    <div class="sw sw-5" style="grid-template-columns:repeat(5,1fr)">
+      <div><i style="background:#FFFFFF"></i><b>#FFFFFF</b><small>White</small></div>
+      <div><i style="background:#F4F9FD"></i><b>#F4F9FD</b><small>Mist</small></div>
+      <div><i style="background:#E9F3FC"></i><b>#E9F3FC</b><small>Sky tint</small></div>
+      <div><i style="background:#E3E9F0"></i><b>#E3E9F0</b><small>Panel</small></div>
+      <div><i style="background:#CED5DB"></i><b>#CED5DB</b><small>Divider</small></div>
+    </div>
+    <div class="cap">Gradients and washes</div>
+    <div class="grad" style="background:linear-gradient(180deg,#FFFFFF 24%,#F4F9FD 51%,#E9F3FC 76%)"></div><small>Section wash · white to sky tint</small>
+    <div class="grad" style="background:linear-gradient(90deg,#E6EEFB 0%,#7B8DA3 50%,#0F2D4B 100%)"></div><small>Dusk · light to navy</small>
+    <div class="grad" style="background:linear-gradient(rgba(1,8,19,.69),rgba(1,8,19,.69)),linear-gradient(120deg,#5d7896,#c9a46a 60%,#2b3a4f)"></div><small>Photo wash · #010813 at 69% over every photo</small>
+  </section>
+  <div style="min-width:0">
+    <section class="sec">
+      <div class="h sm"><b>05.</b><span>Typography</span></div>
+      <div class="face">
+        <div class="aa" style="font-family:var(--font-display);font-weight:500">Aa</div>
+        <div style="min-width:0">
+          <div class="cap" style="font-size:11px;margin:0">Headings, labels, numbers and buttons</div>
+          <div class="nm" style="font-family:var(--font-display);font-weight:500">Plus Jakarta Sans</div>
+          <div class="use">Medium 500 for every heading, the small labels above headings and the 01 to 03 numbers; headings are set tight. Bold 700 for buttons, chips and bar labels.</div>
+          <div class="set" style="font-family:var(--font-display);font-weight:500">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</div>
+        </div>
+      </div>
+      <div class="face">
+        <div class="aa" style="font-family:var(--font-body);font-weight:400">Aa</div>
+        <div style="min-width:0">
+          <div class="cap" style="font-size:11px;margin:0">Body text</div>
+          <div class="nm" style="font-family:var(--font-body);font-weight:400">Helvetica Neue</div>
+          <div class="use">Regular 400 for body copy, navigation links and the footer; Medium 500 for the wordmark and short emphasis. It is a system font, so it is not loaded from the web.</div>
+          <div class="set">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz 0123456789</div>
+        </div>
+      </div>
+    </section>
+    <section class="sec bt">
+      <div class="h sm"><b>06.</b><span>Iconography</span></div>
+      <div class="icons">
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-layers"/></svg><div>Layers</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-shield"/></svg><div>Rating</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-vault"/></svg><div>Vault</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-chart"/></svg><div>Yield</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-scale"/></svg><div>Balance</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-percent"/></svg><div>Rate</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-network"/></svg><div>Exposure</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-lock"/></svg><div>Custody</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-sliders"/></svg><div>Allocate</div></div>
+        <div><svg class="ic" viewBox="0 0 24 24"><use href="#i-filecheck"/></svg><div>Report</div></div>
+      </div>
+      <p class="p" style="font-size:15px;margin-top:30px">24 × 24 box, 2 px stroke, rounded caps and joins, from the Lucide set, in Horizon blue or navy.</p>
+      <div class="cap" style="margin-top:28px">Product icons</div>
+      <div class="ptiles">
+        <figure><div class="ptile"><svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2.4" stroke-linejoin="round"><path d="M20 6 5 13l15 7 15-7Z"/><path d="M5 20l15 7 15-7" stroke-opacity=".6"/><path d="M5 27l15 7 15-7" stroke-opacity=".3"/></svg></div><figcaption>Ratings</figcaption></figure>
+        <figure><div class="ptile"><svg width="62" height="62" viewBox="0 0 62 62" fill="none"><path d="M19 18V40.5Q19 44 22.5 44H40" stroke="white" stroke-opacity="0.6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M27.5 40C29 36 30.5 31 32.2 31.2C34 31.4 34.2 38 36 37.6C38.2 37.1 40.5 27 42.5 22.5" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><figcaption>Horizon</figcaption></figure>
+        <figure><div class="ptile"><svg width="25" height="29" viewBox="0 0 24.84 28.78" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.58 27.53H3.88A2.63 2.63 0 0 1 1.25 24.9V3.88A2.63 2.63 0 0 1 3.88 1.25h10.51a3.1 3.1 0 0 1 2.24.93l4.72 4.71a3.1 3.1 0 0 1 .93 2.24v4.27"/><path d="M14.39 1.25v6.57a1.31 1.31 0 0 0 1.31 1.31h6.57" stroke-opacity=".6"/><path d="M23.59 27.53l-3.79-3.78"/><circle cx="17.02" cy="20.96" r="3.94"/></svg></div><figcaption>Gradient</figcaption></figure>
+      </div>
+      <p class="p" style="font-size:15px;margin-top:20px">White line art on a 62 px navy square with 16 px corners. Secondary strokes drop to 60% white.</p>
+    </section>
+  </div>
+</div>
+
+<section class="sec bt">
+  <div class="h"><b>07.</b><span>Coins</span></div>
+  <div class="grid-coins">
+    <div style="min-width:0">
+      <div class="lbl">Token coin ring</div>
+      <div class="tile" style="background:radial-gradient(ellipse 80% 70% at 45% 100%,#D6E7F6 0%,#EEF5FB 55%,#FFFFFF 100%);padding:28px;box-shadow:none;border:1px solid var(--rule)"><img src="assets/coin-ring.png" alt="Ten Kurtosis token coins in a tilted ring" style="display:block;width:100%;max-width:420px;height:auto"></div>
+    </div>
+    <div style="min-width:0">
+      <div class="lbl">Coin faces</div>
+      <div class="coin-row">
+        <img src="assets/coin-shield.png" alt="Coin with shield logo"><img src="assets/coin-scurl.png" alt="Coin with S logo"><img src="assets/coin-gee.png" alt="Coin with G logo"><img src="assets/coin-usdx.png" alt="Coin with dollar logo"><img src="assets/coin-tee.png" alt="Coin with T logo">
+      </div>
+      <div class="cap" style="margin-top:30px">Material</div>
+      <div class="sw" style="grid-template-columns:repeat(4,1fr);margin-bottom:22px">
+        <div><i style="background:linear-gradient(135deg,#283C55,#10234D)"></i><b>#10234D</b><small>Chrome navy</small></div>
+        <div><i style="background:#275AAB"></i><b>#275AAB</b><small>Edge blue</small></div>
+        <div><i style="background:#D5E7FB"></i><b>#D5E7FB</b><small>Highlight</small></div>
+        <div><i style="background:#EEF4FA"></i><b>#EEF4FA</b><small>Logo silver</small></div>
+      </div>
+      <div class="feat"><svg viewBox="0 0 24 24"><use href="#i-layers"/></svg><div><h4>Solid navy chrome</h4><p>Each coin is polished navy metal with a raised rim, a finely engraved face and a raised white-silver logo. A blue reflection grows toward the edges.</p></div></div>
+      <div class="feat"><svg viewBox="0 0 24 24"><use href="#i-gauge"/></svg><div><h4>Ring of ten</h4><p>Ten coins sit in a tilted ring, leaning like turbine blades, each turning slowly while the ring circles anticlockwise. Logos always stay upright.</p></div></div>
+      <div class="feat" style="margin-bottom:0"><svg viewBox="0 0 24 24"><use href="#i-square"/></svg><div><h4>On light grounds</h4><p>Place coins on white or the sky tint with a soft shadow below. Never make them see-through, recolour them or crop a coin's face.</p></div></div>
+    </div>
+  </div>
+  <div class="icon-coins">
+    <div style="min-width:0">
+      <div class="lbl">Icon coins · finance set</div>
+      <img src="assets/icon-coins.jpg" alt="Forty-seven navy chrome coins, each with a white line icon for a finance topic" style="display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--rule)">
+    </div>
+    <div style="min-width:0">
+      <div class="feat"><svg viewBox="0 0 24 24"><use href="#i-panels"/></svg><div><h4>Same coin, icon inlay</h4><p>The navy chrome coin with a white line icon set into the face in place of a token logo. Lines are even and rounded, like the Lucide icons in 06.</p></div></div>
+      <div class="feat"><svg viewBox="0 0 24 24"><use href="#i-filecheck"/></svg><div><h4>Where to use them</h4><p>Feature lists, product pages, decks and social posts: one coin per idea, at one size in a row.</p></div></div>
+      <div class="feat" style="margin-bottom:0"><svg viewBox="0 0 24 24"><use href="#i-square"/></svg><div><h4>Keep it to one icon</h4><p>One simple symbol per coin, always white, always upright. Don't add text to the face.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bt">
+  <div class="h"><b>08.</b><span>Photography</span></div>
+  <div class="grid-photo">
+    <figure style="margin:0;min-width:0"><div class="lbl">Original</div><img src="assets/photo-skyline.jpg" alt="Ho Chi Minh City skyline over the river at blue hour" class="ph"></figure>
+    <figure style="margin:0;min-width:0"><div class="lbl">With the navy wash, as used behind text</div><div class="ph-wash"><img src="assets/photo-skyline.jpg" alt="" class="ph"><span>Bring one portfolio.</span></div></figure>
+  </div>
+  <div class="ui" style="margin-top:32px">
+    <div class="feat" style="margin:0"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg><div><h4>City skylines at blue hour</h4><p>Financial-district waterfronts at dusk or night: deep blue sky, lit towers, long reflections in calm water.</p></div></div>
+    <div class="feat" style="margin:0"><svg viewBox="0 0 24 24"><use href="#i-layers"/></svg><div><h4>Navy wash under text</h4><p>Whenever text sits on a photo, lay #010813 at 69% over it so white type stays readable.</p></div></div>
+    <div class="feat" style="margin:0"><svg viewBox="0 0 24 24"><use href="#i-square"/></svg><div><h4>Rounded frames</h4><p>Framed photos take 25 px corners. Avoid people, logos of other firms and daylight scenes.</p></div></div>
+  </div>
+</section>
+
+<section class="sec bt">
+  <div class="h"><b>09.</b><span>UI Elements</span></div>
+  <div class="ui">
+    <div>
+      <div class="lbl">Buttons</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:22px;background:var(--panel);border-radius:14px">
+        <span class="btn" style="background:var(--navy);color:var(--white);font-family:var(--font-display)">Request a demo</span>
+        <span class="btn" style="background:var(--navy-ink);color:var(--white);font-family:var(--font-display)">Discover Ratings</span>
+        <span class="btn" style="background:var(--white);color:var(--black);font-family:var(--font-display)">Request a demo</span>
+      </div>
+      <div class="spec">36 px tall, 14 px side padding, 10 px corners. Navy on light, white on dark or photo.</div>
+    </div>
+    <div>
+      <div class="lbl">Navigation bar</div>
+      <div style="display:flex;align-items:center;gap:14px;background:var(--black);border-radius:16px;height:44px;padding:0 6px 0 14px;max-width:100%;overflow:hidden">
+        <span class="ktile" style="width:24px;height:24px"><svg class="k" width="14" height="13" style="fill:var(--navy-deep)"><use href="#k"/></svg></span>
+        <span style="flex:1;display:flex;gap:18px;color:var(--white);font-size:12px;white-space:nowrap;overflow:hidden">Products<span>About Us</span></span>
+        <span class="btn" style="background:var(--white);color:var(--black);font-family:var(--font-display);height:32px;padding:6px 12px;font-size:12px">Request a demo</span>
+      </div>
+      <div class="spec">Floating black bar, 748 × 44 px, 16 px corners, 24 px from the top of the screen. Links 14 px with 40 px gaps.</div>
+    </div>
+    <div>
+      <div class="lbl">Cards and panels</div>
+      <div style="background:var(--panel);border-radius:22px;padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--white);border-radius:16px;height:70px"></div>
+        <div style="background:var(--white);border-radius:16px;height:70px"></div>
+      </div>
+      <div class="spec">White cards with 28 px corners on a pale navy panel (navy at 14%) with 42 px corners. On photos, cards are white at 90%; folded cards white at 20% with 16 px corners.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec bt">
+  <div class="h"><b>10.</b><span>Motion</span></div>
+  <div class="motion">
+    <div><h4>Calm, in order</h4><p>Blocks rise 90 px and sharpen from a light blur; their words then drift up one after another. Things that arrive together appear top to bottom, a beat apart.</p></div>
+    <div><h4>Hold, then step</h4><p>Sections with several points hold the page still and change one point per scroll, so each point is read before the page moves on.</p></div>
+    <div><h4>Metal, not cartoon</h4><p>Coins are solid navy chrome with a blue edge. They move along smooth curves and settle into a slow turn; nothing bounces or flashes.</p></div>
+  </div>
+</section>
+
+</div>
+
+</body></html>

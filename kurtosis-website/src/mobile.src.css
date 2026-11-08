@@ -1,0 +1,104 @@
+/* Kurtosis Labs mobile page (Figma page "Mobile view", frames 375 px wide).
+   Loaded after styles.css. Every "px" here is a Figma pixel on the 375-px-wide design: build.py turns
+   each into calc(N * var(--u)), and --u is 1/375 of the screen width on this page, so the whole page
+   scales as one piece. Only what differs from the desktop is set here. */
+
+.m .canvas { --u: calc(100cqw / 375); height: 8719px; }
+/* tablets and open folding phones: the phone layout grows with the screen up to 520 px wide, then sits centred */
+.m { background: #eef2f7; }
+.m .page { max-width: 520px!; margin: 0 auto; background: #ffffff; box-shadow: 0 0 40px! rgba(15, 45, 75, 0.08); }
+
+/* ---------- Navigation ---------- */
+.m-nav, .m-menu { --u: calc(min(100vw, 520px!) / 375); }
+.m-nav {
+  position: fixed; z-index: 50; top: 0; left: 0; right: 0; margin: 0 auto; max-width: 520px!; height: 54px;
+  display: flex; align-items: center; justify-content: space-between; padding: 0 15px;
+  background: rgba(0, 0, 0, 0); transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* once the page has scrolled the bar turns black, as the desktop nav does */
+.m-nav.is-solid { background: #000000; box-shadow: 0 6px 18px rgba(8, 20, 40, 0.18); }
+.m-brand { display: flex; align-items: center; gap: 12px; }
+.m-brand img { width: 28px; height: 28px; display: block; }
+.m-brand span { font-family: var(--font-body); font-weight: 500; font-size: 20px; line-height: 28px; color: var(--white); white-space: nowrap; }
+.m-brand.dark span { color: var(--black); }
+.m-burger { width: 28px; height: 28px; margin-right: -7px; background: none; padding: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2.5px; }
+.m-burger i { display: block; width: 13px; height: 1.5px; background: var(--white); border-radius: 1px; }
+.m-burger i:nth-child(2) { width: 13px; }
+
+/* Full-screen menu (Figma 39:3768) */
+.m-menu { position: fixed; inset: 0; margin: 0 auto; max-width: 520px!; z-index: 60; background: #f1f1f1; display: flex; flex-direction: column;
+  opacity: 1; transition: opacity 0.25s ease; }
+.m-menu[hidden] { display: none; }
+.m-menu-top { position: relative; height: 51px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 15px 0 15px; border-bottom: 1px solid #011232; }
+.m-close { width: 28px; height: 28px; margin-right: -9px; background: none; padding: 0; display: flex; align-items: center; justify-content: center; }
+.m-close svg { width: 12px; height: 12px; display: block; }
+.m-links { display: flex; flex-direction: column; padding: 9px 15px 0; }
+.m-link { display: flex; align-items: center; justify-content: space-between; height: 44px; width: 100%; padding: 0; background: none; text-align: left;
+  font-family: var(--font-display); font-weight: 500; font-size: 20px; line-height: 44px; letter-spacing: -0.8px; color: var(--black); }
+.m-link .chev { width: 12px; height: 12px; flex: none; transition: transform 0.25s ease; }
+.m-link[aria-expanded="true"] .chev { transform: rotate(90deg); }
+.m-sub { display: flex; flex-direction: column; padding: 10px 0 10px 30px; gap: 23px; }
+.m-sub[hidden] { display: none; }
+.m-sub a { font-family: var(--font-body); font-weight: 500; font-size: 16px; line-height: 24px; color: var(--black); }
+.m-sub a + a { font-weight: 400; color: #7a7a7a; }
+.m-menu-cta { position: absolute; left: 15px; right: 15px; bottom: 33px; height: 36px; }
+
+/* ---------- Hero ---------- */
+.m .t-h1 .big { font-size: 50px; letter-spacing: -2px; display: block; }
+.m .t-h1 .sub { font-size: 30px; line-height: 67px; letter-spacing: -1.2px; margin-top: -14px; }   /* Figma: second line at y 218 */
+.m-hero-p { font-weight: 400; }
+
+/* ---------- Rate ---------- */
+.m .sec-rate .t-h2 { font-size: 40px; line-height: 51px; letter-spacing: -1.6px; }
+.m .sec-rate .ap-title { font-size: 20px; letter-spacing: -0.8px; }
+.rate-hold { pointer-events: none; }
+
+/* ---------- Headings in the other sections ---------- */
+.m #products-h { font-size: 40px; line-height: 51px; letter-spacing: -1.6px; }
+.m #alloc-h, .m #serve-h { line-height: 51px; }
+
+/* ---------- Products ---------- */
+.m-bento { background: #e3e9f0; border-radius: 22px; }
+.m .p-card { border-radius: 14px; }
+.m-icon { transform: scale(0.645); transform-origin: 0 0; }
+.m .btn-ink { padding: 0; }
+.m-well { border-radius: 0; }
+.m-dash { overflow: hidden; border-radius: 10px; }
+/* the dashboard and its live chart are drawn at the desktop's size, then scaled down to fit the card */
+.m-dash-in { position: absolute; left: 0; top: 0; width: 658px; height: 302px; transform: scale(0.49544); transform-origin: 0 0; border-radius: 0; }
+.m-stage { background: rgba(66, 184, 222, 0.3); border-radius: 4px; font-family: var(--font-body); font-size: 10px; line-height: 20px; color: var(--text-88); text-align: center; white-space: nowrap;
+  transition: opacity 0.25s ease; }
+.cy-card.is-swap .m-stage { opacity: 0; }
+
+/* ---------- Allocation ---------- */
+.m .ap-panel.is-open { border-radius: 14px; }
+.m .ap-panel.is-shut { border-radius: 14px; }
+.m .ap-body { width: 326px; height: 263px; }
+.m .ap-num-shut { color: rgba(255, 255, 255, 0.8); }
+
+/* ---------- Who We Serve ---------- */
+.m .serve-card { border-radius: 14px; }
+.m .serve-img { border-radius: 14px 14px 0 0; }
+.m .serve-panel { border-radius: 14px; }
+.m .serve-t { line-height: 46px; white-space: nowrap; }
+.m .serve-p { font-weight: 400; }
+
+/* ---------- Request a walkthrough ---------- */
+.m-phil { border-radius: 14px; background-size: cover; background-position: 62% 50%; }
+.m-phil-h { font-size: 30px; line-height: 40px; letter-spacing: -1.2px; }
+.m-phil-h .m-sub2 { font-size: 20px; line-height: 30px; letter-spacing: -0.8px; }
+.m-signup input { width: 259px; }
+.m-signup button { left: 234px; width: 80px; font-family: var(--font-display); font-weight: 700; }
+.m-signup input { font-family: var(--font-display); font-weight: 700; }
+.m .btn-navy[style*="width"] { padding: 0; }
+
+/* ---------- Footer ---------- */
+.m-foot .f-brand { font-size: 18px; line-height: 22px; gap: 10px; }
+.m-foot .f-brand img { width: 15px; height: 15px; }
+.m-foot .f-copy { font-size: 13px; line-height: 18px; }
+.m-foot .f-col h4 { font-size: 11px; line-height: 14px; letter-spacing: 2px; margin-bottom: 26px; }
+.m-foot .f-col ul { gap: 28px; }
+.m-foot .f-col li { font-size: 14px; line-height: 18px; }
+.m-foot .wordmark { font-size: 57px; line-height: 28px; padding-top: 21px; }
+/* long stage titles wrap beside the stage tag instead of running under it */
+.m-check-t { line-height: 24px; }
