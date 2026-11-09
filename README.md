@@ -1,8 +1,19 @@
 # Kurtosis Labs website
 
-Vite multi-page website. Use Node 24 and npm. `npm run dev` starts local development; `npm run check` runs the Ratings checks, builds the site and verifies production links and research downloads. Vercel serves `dist/`; the homepage rewrite continues to use `concept-85.html`.
+V2 in `kurtosis-website/` is the active website. Use Node 24 and npm.
 
-## Ratings
+- `npm run dev` serves V2 for local development.
+- `npm run build` packages V2 into `dist/` and verifies its pages, asset links and research downloads.
+- `npm run preview` serves that production output locally.
+- `npm run check` also runs the research-data tests.
+
+Vercel uses the repository root, runs `npm run build`, and serves `dist/`, as declared in `vercel.json`. The homepage is V2's `index.html`; phones use `mobile.html`. Ratings is at `/ratings/`, including its comparison, methodology, sources and position pages. Old homepage, Ratings, methodology and Horizon URLs redirect to their V2 destinations.
+
+The build copies only V2's public pages, styles, scripts, images and prebuilt Ratings export, then generates the existing canonical research downloads. It does not publish the Next.js source, internal handoffs, quick-view copies or the earlier root-level website. Those earlier files remain in the repository for reference and rollback.
+
+See `kurtosis-website/README.md` for editing the landing pages and rebuilding the Ratings export. Commit regenerated HTML/CSS and Ratings assets together with source changes before deploying. Vercel uses the committed export and does not need Python or a second Next.js build. The V2 contact form remains a preview and does not send requests yet.
+
+## Research data and earlier Ratings implementation
 
 `ratings.html` provides the branded shell; `src/ratings/main.ts` controls interactions and browser history, `views.ts` renders the shared records, and `workspace.css` adapts the existing visual design. The models, validation and research records under `src/ratings/lib/` and `data/` were imported from the local `Official Website/website/features/ratings` project. The source directory was left untouched.
 

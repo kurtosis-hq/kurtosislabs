@@ -6,10 +6,10 @@
   "engines": { "node": "24.x" },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build-site.mjs && node scripts/check-ratings-build.mjs",
     "preview": "vite preview",
     "test": "node --test src/ratings/tests/*.test.ts",
-    "check": "npm test && npm run build && node scripts/check-ratings-build.mjs"
+    "check": "npm test && npm run build"
   },
   "devDependencies": {
     "vite": "^5.4.8"
