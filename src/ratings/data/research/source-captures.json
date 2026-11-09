@@ -1,0 +1,492 @@
+{
+  "schemaVersion": "kurtosis.source-captures.v1",
+  "note": "Selected historical extracts only; no sources were refreshed. API values remain publisher observations and document excerpts remain publisher claims.",
+  "captures": [
+    {
+      "sourceId": "EXP-API-MARKETS",
+      "kind": "api_fields",
+      "sourceResponseSha256": "789002c48994de6b15eb7105eab5a54698fe847ceb4832f1656e180166836c32",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "PT-ONyc · ONyc-10SEPT26",
+          "location": "Response array item 3",
+          "fields": [
+            {
+              "path": "/3/ptMint",
+              "valueText": "\"2W5zZccVq8AMdrg7P4b3NvBKJyzbdnytRy2CKEDHvhiJ\""
+            },
+            {
+              "path": "/3/maturityDateUnixTs",
+              "valueText": "1789034299"
+            },
+            {
+              "path": "/3/syTokenName",
+              "valueText": "\"wONyc\""
+            },
+            {
+              "path": "/3/quoteAsset/ticker",
+              "valueText": "\"USD\""
+            },
+            {
+              "path": "/3/ptRedemptionRate",
+              "valueText": "null"
+            }
+          ]
+        },
+        {
+          "label": "PT-ONyc · ONyc-10JAN27",
+          "location": "Response array item 4",
+          "fields": [
+            {
+              "path": "/4/ptMint",
+              "valueText": "\"HH7FiYbEfDwQoK2ZJpkMz1T6wG6TqPsWcxWCtEVgigrZ\""
+            },
+            {
+              "path": "/4/maturityDateUnixTs",
+              "valueText": "1799586000"
+            },
+            {
+              "path": "/4/syTokenName",
+              "valueText": "\"wONyc\""
+            },
+            {
+              "path": "/4/quoteAsset/ticker",
+              "valueText": "\"USD\""
+            },
+            {
+              "path": "/4/ptRedemptionRate",
+              "valueText": "null"
+            }
+          ]
+        },
+        {
+          "label": "PT-srONyc · srONyc-10SEPT26",
+          "location": "Response array item 13",
+          "fields": [
+            {
+              "path": "/13/ptMint",
+              "valueText": "\"BKP9Rt3pwh96cCoCp3bkh1zxXZpZez17xA6w64LuMJQy\""
+            },
+            {
+              "path": "/13/maturityDateUnixTs",
+              "valueText": "1789034280"
+            },
+            {
+              "path": "/13/syTokenName",
+              "valueText": "\"wsrONyc\""
+            },
+            {
+              "path": "/13/quoteAsset/ticker",
+              "valueText": "\"USD\""
+            },
+            {
+              "path": "/13/ptRedemptionRate",
+              "valueText": "null"
+            }
+          ]
+        },
+        {
+          "label": "PT-srONyc · srONyc-10JAN27",
+          "location": "Response array item 15",
+          "fields": [
+            {
+              "path": "/15/ptMint",
+              "valueText": "\"HSbdobdvfGAfqKWSWZ7s2XfFx1P1FJutTa96MHJtkm5\""
+            },
+            {
+              "path": "/15/maturityDateUnixTs",
+              "valueText": "1799578800"
+            },
+            {
+              "path": "/15/syTokenName",
+              "valueText": "\"wsrONyc\""
+            },
+            {
+              "path": "/15/quoteAsset/ticker",
+              "valueText": "\"USD\""
+            },
+            {
+              "path": "/15/ptRedemptionRate",
+              "valueText": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "EXP-API-VAULTS",
+      "kind": "api_fields",
+      "sourceResponseSha256": "00fc41132e9a6f9727021e2b8c9a448da09e7d211c8adc71e2aad689575abc38",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "PT-ONyc · ONyc-10SEPT26",
+          "location": "Response array item 18",
+          "fields": [
+            {
+              "path": "/18/pt_mint",
+              "valueText": "\"2W5zZccVq8AMdrg7P4b3NvBKJyzbdnytRy2CKEDHvhiJ\""
+            },
+            {
+              "path": "/18/end_timestamp",
+              "valueText": "\"2026-09-10T09:58:19+00:00\""
+            },
+            {
+              "path": "/18/sy_token",
+              "valueText": "\"G1qbuP11CdquJCzuDjruWqatQAHroajmxhLfeQVgHosF\""
+            },
+            {
+              "path": "/18/pt_redemption_rate",
+              "valueText": "null"
+            }
+          ]
+        },
+        {
+          "label": "PT-ONyc · ONyc-10JAN27",
+          "location": "Response array item 27",
+          "fields": [
+            {
+              "path": "/27/pt_mint",
+              "valueText": "\"HH7FiYbEfDwQoK2ZJpkMz1T6wG6TqPsWcxWCtEVgigrZ\""
+            },
+            {
+              "path": "/27/end_timestamp",
+              "valueText": "\"2027-01-10T13:00:00+00:00\""
+            },
+            {
+              "path": "/27/sy_token",
+              "valueText": "\"G1qbuP11CdquJCzuDjruWqatQAHroajmxhLfeQVgHosF\""
+            },
+            {
+              "path": "/27/pt_redemption_rate",
+              "valueText": "null"
+            }
+          ]
+        },
+        {
+          "label": "PT-srONyc · srONyc-10SEPT26",
+          "location": "Response array item 68",
+          "fields": [
+            {
+              "path": "/68/pt_mint",
+              "valueText": "\"BKP9Rt3pwh96cCoCp3bkh1zxXZpZez17xA6w64LuMJQy\""
+            },
+            {
+              "path": "/68/end_timestamp",
+              "valueText": "\"2026-09-10T09:58:00+00:00\""
+            },
+            {
+              "path": "/68/sy_token",
+              "valueText": "\"AojEeHMjnRciTXQpvoURGGfqCxDUknpRCS4w5QknGkj9\""
+            },
+            {
+              "path": "/68/pt_redemption_rate",
+              "valueText": "null"
+            }
+          ]
+        },
+        {
+          "label": "PT-srONyc · srONyc-10JAN27",
+          "location": "Response array item 81",
+          "fields": [
+            {
+              "path": "/81/pt_mint",
+              "valueText": "\"HSbdobdvfGAfqKWSWZ7s2XfFx1P1FJutTa96MHJtkm5\""
+            },
+            {
+              "path": "/81/end_timestamp",
+              "valueText": "\"2027-01-10T11:00:00+00:00\""
+            },
+            {
+              "path": "/81/sy_token",
+              "valueText": "\"AojEeHMjnRciTXQpvoURGGfqCxDUknpRCS4w5QknGkj9\""
+            },
+            {
+              "path": "/81/pt_redemption_rate",
+              "valueText": "null"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "EXP-API-POOLS",
+      "kind": "api_fields",
+      "sourceResponseSha256": "26e8969ab1f24a5adfc6bacf4056511d110b0c2d59e115aa232ff0825ffb58b2",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "PT-ONyc · ONyc-10SEPT26",
+          "location": "Response array item 14",
+          "fields": [
+            {
+              "path": "/14/pt_mint",
+              "valueText": "\"2W5zZccVq8AMdrg7P4b3NvBKJyzbdnytRy2CKEDHvhiJ\""
+            },
+            {
+              "path": "/14/end_timestamp",
+              "valueText": "\"2026-09-10T09:58:19+00:00\""
+            },
+            {
+              "path": "/14/clmm_markets/0/liquidityInUsd",
+              "valueText": "2231157.376726802"
+            },
+            {
+              "path": "/14/clmm_markets/0/updated_at",
+              "valueText": "\"2026-09-07T19:09:28.466+00:00\""
+            }
+          ]
+        },
+        {
+          "label": "PT-ONyc · ONyc-10JAN27",
+          "location": "Response array item 6",
+          "fields": [
+            {
+              "path": "/6/pt_mint",
+              "valueText": "\"HH7FiYbEfDwQoK2ZJpkMz1T6wG6TqPsWcxWCtEVgigrZ\""
+            },
+            {
+              "path": "/6/end_timestamp",
+              "valueText": "\"2027-01-10T13:00:00+00:00\""
+            },
+            {
+              "path": "/6/clmm_markets/0/liquidityInUsd",
+              "valueText": "1313762.274349061"
+            },
+            {
+              "path": "/6/clmm_markets/0/updated_at",
+              "valueText": "\"2026-09-07T19:08:25.701+00:00\""
+            }
+          ]
+        },
+        {
+          "label": "PT-srONyc · srONyc-10SEPT26",
+          "location": "Response array item 9",
+          "fields": [
+            {
+              "path": "/9/pt_mint",
+              "valueText": "\"BKP9Rt3pwh96cCoCp3bkh1zxXZpZez17xA6w64LuMJQy\""
+            },
+            {
+              "path": "/9/end_timestamp",
+              "valueText": "\"2026-09-10T09:58:00+00:00\""
+            },
+            {
+              "path": "/9/clmm_markets/0/liquidityInUsd",
+              "valueText": "520339.752032731"
+            },
+            {
+              "path": "/9/clmm_markets/0/updated_at",
+              "valueText": "\"2026-09-07T15:04:57.17+00:00\""
+            }
+          ]
+        },
+        {
+          "label": "PT-srONyc · srONyc-10JAN27",
+          "location": "Response array item 7",
+          "fields": [
+            {
+              "path": "/7/pt_mint",
+              "valueText": "\"HSbdobdvfGAfqKWSWZ7s2XfFx1P1FJutTa96MHJtkm5\""
+            },
+            {
+              "path": "/7/end_timestamp",
+              "valueText": "\"2027-01-10T11:00:00+00:00\""
+            },
+            {
+              "path": "/7/clmm_markets/0/liquidityInUsd",
+              "valueText": "72095.420113588"
+            },
+            {
+              "path": "/7/clmm_markets/0/updated_at",
+              "valueText": "\"2026-09-07T18:36:48.022+00:00\""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "EXP-API-TRANCHING",
+      "kind": "api_fields",
+      "sourceResponseSha256": "6a1e7333dcf258060852f91f3dcc75f26e62e5eb620622f2443dff7400c42243",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "ONyc senior / junior market",
+          "location": "Response array item 1",
+          "fields": [
+            {
+              "path": "/1/coverageRatio",
+              "valueText": "\"0.2896369053106548\""
+            },
+            {
+              "path": "/1/minCoverageRatio",
+              "valueText": "\"0.2\""
+            },
+            {
+              "path": "/1/srEffectiveNetAssetValue",
+              "valueText": "\"4968754.374800551871\""
+            },
+            {
+              "path": "/1/jrEffectiveNetAssetValue",
+              "valueText": "\"2025914.1432387740929\""
+            },
+            {
+              "path": "/1/data/financials/lastSyncTs",
+              "valueText": "\"1788807715\""
+            },
+            {
+              "path": "/1/data/lastUpdatedSlot",
+              "valueText": "\"445139832\""
+            },
+            {
+              "path": "/1/marketState",
+              "valueText": "1"
+            },
+            {
+              "path": "/1/statusFlags",
+              "valueText": "0"
+            },
+            {
+              "path": "/1/data/riskConfig/fixedTermDurationSec",
+              "valueText": "604800"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S18",
+      "kind": "api_scalar",
+      "sourceResponseSha256": "1800f5444be58165f86c48327c89b597aaed252a6b5d833195a3eb4343fa98c6",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "NAV endpoint response",
+          "location": "Complete scalar response",
+          "fields": [
+            {
+              "path": "(response body)",
+              "valueText": "1.143166274"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S19",
+      "kind": "api_scalar",
+      "sourceResponseSha256": "67e03b2ddb949bc9f0ef60aada682d7d5866da1bc77444ad9745eede3334f93f",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "APY endpoint response",
+          "location": "Complete scalar response",
+          "fields": [
+            {
+              "path": "(response body)",
+              "valueText": "0.115411"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S20",
+      "kind": "api_scalar",
+      "sourceResponseSha256": "f7eb75024df178a2a213873014f1560239f0ab5f96aada2b41ceba124034ff6e",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "TVL endpoint response",
+          "location": "Complete scalar response",
+          "fields": [
+            {
+              "path": "(response body)",
+              "valueText": "287723838.800025469986198890"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S01",
+      "kind": "document_excerpt",
+      "sourceResponseSha256": "fcc6ee54c97a388351c9f21ed761b311d74efd559336f433afc4b854e1d6b3a6",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "OnRe Tokenized Reinsurance (ONyc)",
+          "location": "Captured Markdown · line 9",
+          "quote": "Each token corresponds to a fractional claim on the segregated account"
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S02",
+      "kind": "document_excerpt",
+      "sourceResponseSha256": "b24d3ae707b8564effd1015acf5f0d12d084492949bfc815f6b12860a149539a",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "Primary Source of Truth",
+          "location": "Captured Markdown · line 17",
+          "quote": "NAV used for minting and redemption is computed from parameters stored inside the smart contract"
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S08",
+      "kind": "document_excerpt",
+      "sourceResponseSha256": "941a4c714103c0d52a355a520bc6549ecb3f8f9a8fc04bf45d8592df58101277",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "NAV and APY Methodology",
+          "location": "Captured Markdown · line 11",
+          "quote": "Net Asset Value (NAV) is calculated internally by our insurance committee and published onchain each day through independent oracle providers."
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S09",
+      "kind": "document_excerpt",
+      "sourceResponseSha256": "42e9ac6c1a4a8c60bfe7610efb524a4e08257e04172c599e6c49ec5999cce11b",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "Chainlink",
+          "location": "Captured Markdown · line 68",
+          "quote": "Chainlink is used to publish official NAV values and structured reference metrics onchain"
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S10",
+      "kind": "document_excerpt",
+      "sourceResponseSha256": "cb2131cfa54505d0626c679e493596af3ce3ba82ca53eb6e06c01f7d6e5929a7",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "Collateral Security and Segregation",
+          "location": "Captured Markdown · line 17",
+          "quote": "assets in one account cannot be used to meet the liabilities of another;"
+        }
+      ]
+    },
+    {
+      "sourceId": "ON-S07",
+      "kind": "document_excerpt",
+      "sourceResponseSha256": "2fc65c0c50ba41405723b15981bb162f7b584406bea4c5c4a26fbd838b986060",
+      "provenance": "Selected extracts from the original local response, verified against the research packet SHA-256 before inclusion. The hash identifies the original response, not this excerpt file.",
+      "groups": [
+        {
+          "label": "Controls",
+          "location": "Captured Markdown · line 124",
+          "quote": "Timelocks and execution delays are being implemented to introduce a review window before changes take effect."
+        }
+      ]
+    }
+  ]
+}

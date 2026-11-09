@@ -1,0 +1,124 @@
+/* Contact page (Figma page "contact page", 142:1032). Every "px" here is a Figma pixel: build.py turns it into
+   calc(N * var(--u)), and --u scales with the window exactly as on the landing pages (1/1440 of the width on
+   desktop, 1/375 on phones), so text and boxes keep the same size relative to the rest of the site.
+   Values written "px!" are real pixels (media queries, hairlines). */
+
+.contact { background: #ffffff; --u: calc(100vw / 1440); }
+@media (max-width: 519px!) { .contact { --u: calc(100vw / 375); } }
+.contact, .contact * { box-sizing: border-box; }
+
+/* which navigation shows: the desktop bar from 520 px wide, the phone bar below */
+@media (max-width: 519px!) { .c-desk { display: none !important; } }
+@media (min-width: 520px!) { .c-mob { display: none !important; } }
+
+/* ---------- Photo band with the form ---------- */
+.c-hero {
+  position: relative; min-height: 1095px; padding: 181px 20px 96px;
+  display: flex; justify-content: center; align-items: flex-start;
+  background: linear-gradient(rgba(1, 8, 19, 0.4), rgba(1, 8, 19, 0.4)), url('assets/contact-bg.jpg') center 72% / cover no-repeat, #0b1f4a;
+}
+.c-card {
+  width: 100%; max-width: 600px; padding: 32px;
+  background: #fefefe; border: 1px! solid #dce3e6; border-radius: 10px;
+  box-shadow: 0 8px 24px -6px rgba(4, 26, 37, 0.05);
+  font-family: 'Geist', var(--font-body); color: #041a25;
+}
+.c-title { margin: 0; font-family: 'Cal Sans', var(--font-display); font-weight: 400; font-size: 26px; line-height: 36px; letter-spacing: -0.5px; color: #041a25; }
+.c-lede { margin: 6px 0 0; font-size: 14px; line-height: 22px; color: #4a5a62; }
+.c-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+.c-field { margin: 24px 0 0; padding: 0; border: 0; min-width: 0; }
+.c-field label, .c-field legend { display: block; margin-bottom: 8px; padding: 0; font-size: 14px; line-height: 20px; font-weight: 500; color: #041a25; }
+.c-field input, .c-field select, .c-field textarea {
+  display: block; width: 100%; height: 48px; padding: 0 14px; margin: 0;
+  background: #fefefe; border: 1px! solid #788c95; border-radius: 10px;
+  font: 400 16px/26px 'Geist', var(--font-body); color: #041a25;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.c-field textarea { height: 120px; padding: 12px 14px; resize: vertical; }
+.c-field input::placeholder, .c-field textarea::placeholder { color: #4a5a62; opacity: 1; }
+.c-field input:focus, .c-field select:focus, .c-field textarea:focus { outline: none; border-color: #041a25; box-shadow: 0 0 0 3px rgba(4, 26, 37, 0.12); }
+.c-field .is-bad { border-color: #b4232a; }
+.c-select { position: relative; }
+.c-select select { appearance: none; -webkit-appearance: none; padding-right: 40px; cursor: pointer; }
+.c-select::after {
+  content: ""; position: absolute; right: 18px; top: 50%; width: 7px; height: 7px; margin-top: -6px; pointer-events: none;
+  border-right: 1.6px solid #041a25; border-bottom: 1.6px solid #041a25; transform: rotate(45deg);
+}
+.c-help { margin: 8px 0 0; font-size: 14px; line-height: 22px; color: #4a5a62; }
+
+/* "You are": three joined options, the chosen one shaded */
+.c-seg { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px! solid #dce3e6; border-radius: 6px; overflow: hidden; }
+.c-seg label { position: relative; margin: 0; font-weight: 400; cursor: pointer; }
+.c-seg label + label { border-left: 1px! solid #dce3e6; }
+.c-seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.c-seg span { display: flex; align-items: center; justify-content: center; height: 38px; padding: 0 6px; text-align: center;
+  font-size: 14px; line-height: 20px; color: #4a5a62; transition: background-color 0.15s ease, color 0.15s ease; }
+.c-seg input:checked + span { background: #eef2f3; color: #041a25; font-weight: 500; }
+.c-seg input:focus-visible + span { box-shadow: inset 0 0 0 2px #2b7bd6; }
+
+.c-check { display: flex; gap: 10px; align-items: flex-start; margin-top: 24px; font-size: 14px; line-height: 22px; color: #4a5a62; cursor: pointer; }
+.c-check input { flex: none; width: 18px; height: 18px; margin: 2px 0 0; accent-color: #041a25; cursor: pointer; }
+.c-error { margin: 16px 0 0; font-size: 14px; line-height: 20px; color: #b4232a; }
+.c-submit {
+  display: flex; align-items: center; justify-content: center; width: 100%; height: 44px; margin-top: 24px;
+  border: 0; border-radius: 6px; background: #041a25; color: #fefefe;
+  font: 500 14px/20px 'Geist', var(--font-body); cursor: pointer; transition: filter 0.15s ease;
+}
+.c-submit:hover { filter: brightness(1.35); }
+.c-done { text-align: left; }
+.c-note { margin-top: 18px; padding: 12px 14px; border-radius: 8px; background: #f3f6f8; }
+.c-back { text-decoration: none; }
+
+/* ---------- Footer ---------- */
+.c-foot { background: #ffffff; overflow: hidden; }
+.c-foot-in {
+  max-width: 1200px; margin: 0 auto; padding: 76px 24px 0;
+  display: grid; grid-template-columns: 1.25fr repeat(4, 1fr); gap: 32px;
+  font-family: var(--font-body);
+}
+.cf-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; line-height: 18px; color: var(--footer-head); white-space: nowrap; }
+.cf-brand img { width: 13px; height: 13px; }
+.cf-copy { margin: 18px 0 0; font-size: 12px; line-height: 16px; color: var(--footer-link); }
+.cf-col h4 { margin: 0 0 24px; font-weight: 700; font-size: 12px; line-height: 14px; letter-spacing: 1.9px; color: var(--footer-head); }
+.cf-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 22px; }
+.cf-col li { font-size: 13px; line-height: 16px; color: var(--footer-link); white-space: nowrap; }
+.cf-col a:hover { color: var(--navy); }
+.cf-wordmark {
+  margin: 96px 0 0; font-family: var(--font-body); font-weight: 500; text-align: center; white-space: nowrap;
+  font-size: 200px; line-height: 0.82; letter-spacing: -0.01em;
+  background: linear-gradient(0deg, #e6eefb 0%, #7b8da3 60%, #0f2d4b 140%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ---------- Phones (below 520 px, where the site switches to its mobile layout) ---------- */
+@media (max-width: 519px!) {
+  .c-hero { min-height: 0; padding: 96px 16px 56px; background-position: 58% 100%; }
+  .c-card { padding: 24px 20px; }
+  .c-grid { grid-template-columns: 1fr; }
+  .c-seg { grid-template-columns: 1fr; }
+  .c-seg label + label { border-left: 0; border-top: 1px! solid #dce3e6; }
+  .c-foot-in { grid-template-columns: 1fr 1fr; row-gap: 44px; padding: 48px 17px 0; }
+  .c-foot-brand { grid-column: 1 / -1; }
+  .cf-wordmark { margin-top: 64px; font-size: 57px; }
+}
+@media (prefers-reduced-motion: reduce) { .c-field input, .c-field select, .c-field textarea, .c-seg span, .c-submit { transition: none; } }
+
+/* the phone bar spans the full width here (the mobile landing page caps it at 520 px for its centred column) */
+.contact .m-nav, .contact .m-menu { max-width: none; --u: calc(100vw / 375); }
+
+/* ---------- Coming Soon page (Figma 156:41) ---------- */
+.cs-hero {
+  position: relative; height: 704px; display: flex; flex-direction: column; align-items: center; padding-top: 185px;
+  background: linear-gradient(rgba(1, 8, 19, 0.4), rgba(1, 8, 19, 0.4)), url('assets/contact-bg.jpg') center 78% / cover no-repeat, #0b1f4a;
+}
+.cs-title { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: 80px; line-height: 72px; letter-spacing: -3.2px; color: var(--white); text-align: center; white-space: nowrap; }
+.cs-text { margin: 54px 0 0; max-width: 601px; font-family: var(--font-body); font-weight: 500; font-size: 16px; line-height: 24px; color: var(--white); text-align: center; }
+.cs-text a { color: inherit; text-decoration: none; }
+.cs-text a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cs-home { margin-top: 54px; height: 36px; }   /* Figma 156:41: title y 185, message y 311, button y 413 */
+@media (max-width: 519px!) {
+  .cs-hero { height: 640px; padding-top: 200px; }
+  .cs-text { margin-top: 32px; padding: 0 20px; }
+  .cs-title { font-size: 50px; letter-spacing: -2px; }
+  .cs-home { margin-top: 36px; }
+}

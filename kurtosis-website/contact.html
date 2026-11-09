@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request a walkthrough | Kurtosis Labs</title>
+<meta name="description" content="Bring one portfolio. Kurtosis Labs will walk you through what drives it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cal+Sans&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="mobile.css">
+<link rel="stylesheet" href="contact.css">
+</head>
+<body class="contact">
+<!-- Contact page (Figma page "contact page", 142:1032). Every "Request a demo" button on the site opens it.
+     One page for every screen size: the desktop nav from 1024 px wide, the phone nav below that. -->
+
+<!-- Desktop navigation: the same bar as the landing page -->
+<header class="site-nav c-desk" id="site-nav">
+  <a href="index.html" class="brand nowrap js-home"><img src="assets/logo-mark-light.svg" alt=""><span>Kurtosis Labs</span></a>
+  <nav class="nav" aria-label="Main">
+    <span class="nav-item"><a href="index.html#products" id="nav-products" aria-haspopup="true" aria-expanded="false" aria-controls="nav-menu-products">Products</a><div class="nav-menu" id="nav-menu-products" hidden>
+      <p class="nm-label">Products</p>
+      <a class="nm-item nm-1" href="ratings/"><span class="nm-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"><path d="M6 1.5 11 4 6 6.5 1 4Z"/><path d="M1 6l5 2.5L11 6"/><path d="M1 8l5 2.5L11 8"/></svg></span><span class="nm-title">Kurtosis Ratings</span><span class="nm-desc">Know what you own, and why it moved.</span></a>
+      <a class="nm-item nm-2" href="contact.html"><span class="nm-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"><path d="M1.5 1.5v9h9"/><path d="M3.5 8 5.5 5l2 1.8 2.5-4"/></svg></span><span class="nm-title">Kurtosis Horizon</span><span class="nm-desc">Get your money back when you need it.</span></a>
+    </div></span><a href="coming-soon.html">About Us</a><a href="index.html#customers" class="js-home">Customers</a><a href="coming-soon.html">Blog</a>
+  </nav>
+  <a href="#request" class="btn btn-light nav-cta">Request a demo</a>
+</header>
+
+<!-- Phone and tablet navigation: the same bar and menu as the mobile landing page -->
+<header class="m-nav c-mob" id="m-nav">
+  <a href="index.html" class="m-brand js-home"><img src="assets/logo-mark-dark.svg" alt=""><span>Kurtosis Labs</span></a>
+  <button class="m-burger" id="m-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="m-menu"><i></i><i></i><i></i></button>
+</header>
+<div class="m-menu c-mob" id="m-menu" hidden>
+  <div class="m-menu-top">
+    <a href="index.html" class="m-brand dark js-home"><img src="assets/logo-mark-dark.svg" alt=""><span>Kurtosis Labs</span></a>
+    <button class="m-close" id="m-close" type="button" aria-label="Close menu"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 1.5l9 9M10.5 1.5l-9 9" stroke="#000" stroke-width="1.4" stroke-linecap="round"/></svg></button>
+  </div>
+  <nav class="m-links" aria-label="Main">
+    <button class="m-link" id="m-products" type="button" aria-expanded="false" aria-controls="m-sub">Products<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="#011232" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <div class="m-sub" id="m-sub" hidden>
+      <a href="ratings/">Kurtosis Ratings</a>
+      <a href="contact.html">Kurtosis Horizon</a>
+    </div>
+    <a class="m-link" href="coming-soon.html">About Us<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="#011232" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="m-link js-home" href="index.html#customers">Customers<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="#011232" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="m-link" href="coming-soon.html">Blog<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 2.5 8 6l-3.5 3.5" fill="none" stroke="#011232" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </nav>
+  <a href="#request" class="btn btn-navy m-menu-cta">Request a demo</a>
+</div>
+
+<main>
+  <section class="c-hero" id="request" aria-labelledby="c-title">
+    <form class="c-card" id="c-form" novalidate>
+      <h1 id="c-title" class="c-title">Request a walkthrough</h1>
+      <p class="c-lede">Takes about two minutes. Fields marked optional can be skipped.</p>
+
+      <div class="c-grid">
+        <div class="c-field">
+          <label for="c-name">Full name</label>
+          <input id="c-name" name="name" type="text" placeholder="Jane Tan" autocomplete="name" required>
+        </div>
+        <div class="c-field">
+          <label for="c-email">Work email</label>
+          <input id="c-email" name="email" type="email" placeholder="you@fund.com" autocomplete="email" required>
+        </div>
+        <div class="c-field">
+          <label for="c-org">Organisation</label>
+          <input id="c-org" name="organisation" type="text" placeholder="Fund, DAO or company" autocomplete="organization" required>
+        </div>
+        <div class="c-field">
+          <label for="c-role">Role</label>
+          <input id="c-role" name="role" type="text" placeholder="Optional" autocomplete="organization-title">
+        </div>
+      </div>
+
+      <fieldset class="c-field c-seg-wrap">
+        <legend>You are</legend>
+        <div class="c-seg" role="radiogroup">
+          <label><input type="radio" name="type" value="individual" checked><span>An individual</span></label>
+          <label><input type="radio" name="type" value="team"><span>A team or DAO</span></label>
+          <label><input type="radio" name="type" value="institution"><span>An institution</span></label>
+        </div>
+      </fieldset>
+
+      <div class="c-grid">
+        <div class="c-field">
+          <label for="c-product">Interested in</label>
+          <div class="c-select"><select id="c-product" name="product">
+            <option>Kurtosis Ratings</option>
+            <option>Kurtosis Horizon</option>
+            <option>Both, or not sure yet</option>
+          </select></div>
+        </div>
+        <div class="c-field">
+          <label for="c-size">Position size</label>
+          <div class="c-select"><select id="c-size" name="size">
+            <option>Under US$1M</option>
+            <option selected>US$1M – 10M</option>
+            <option>US$10M – 100M</option>
+            <option>Over US$100M</option>
+          </select></div>
+        </div>
+      </div>
+
+      <div class="c-field">
+        <label for="c-notes">What should we look at?</label>
+        <textarea id="c-notes" name="notes" rows="4" placeholder="Positions you hold or are considering, your cash needs and timeline…"></textarea>
+        <p class="c-help">Optional. Don’t include account numbers or private keys.</p>
+      </div>
+
+      <label class="c-check"><input type="checkbox" id="c-consent" name="consent" checked required><span>Kurtosis Labs can contact me about this request. We don’t share your details.</span></label>
+
+      <p class="c-error" id="c-error" role="alert" hidden></p>
+      <button class="c-submit" type="submit">Request a walkthrough</button>
+    </form>
+
+    <div class="c-card c-done" id="c-done" hidden tabindex="-1">
+      <h2 class="c-title">Thanks<span id="c-done-name"></span>.</h2>
+      <p class="c-lede">We’ll reply to <b id="c-done-email"></b> to arrange a time.</p>
+      <p class="c-help c-note">This page isn’t connected to an inbox yet, so this request was not sent.</p>
+      <a href="index.html" class="c-submit c-back js-home">Back to the home page</a>
+    </div>
+  </section>
+</main>
+
+<!-- Footer: the landing page's footer -->
+<footer class="c-foot">
+  <div class="c-foot-in">
+    <div class="c-foot-brand">
+      <div class="cf-brand"><img src="assets/logo-mark-navy.svg" alt="">Kurtosis Labs</div>
+      <p class="cf-copy">© 2026 Kurtosis Labs. All rights reserved.</p>
+    </div>
+    <div class="cf-col"><h4>PRODUCT</h4><ul><li><a href="#">Kurtosis Ratings</a></li><li><a href="#">Kurtosis Horizon</a></li><li><a href="#">Explainable Vaults</a></li><li><a href="#">Methodology</a></li><li><a href="#">Research</a></li></ul></div>
+    <div class="cf-col"><h4>COMPANY</h4><ul><li><a href="#">Who we serve</a></li><li><a href="#">Philosophy</a></li><li><a href="#">Contact Kurtosis Labs</a></li></ul></div>
+    <div class="cf-col"><h4>LEGAL</h4><ul><li><a href="#">Terms of Use</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">Disclosures</a></li></ul></div>
+    <div class="cf-col"><h4>SOCIALS</h4><ul><li><a href="#">X</a></li><li><a href="#">LinkedIn</a></li><li><a href="#top" id="cf-top">Back to top</a></li></ul></div>
+  </div>
+  <p class="cf-wordmark" aria-hidden="true">Kurtosis Labs</p>
+</footer>
+
+<script src="js/page.js"></script>
+<script src="js/m-nav.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>

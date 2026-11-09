@@ -1,0 +1,399 @@
+/* Kurtosis Labs landing page.
+   Every "px" value here is a Figma pixel on the 1440-px-wide design. build.py turns each one
+   into calc(N * var(--u)), where --u is 1/1440 of the page width, so the layout scales as one
+   piece and keeps every ratio from Figma. Values written "1px!" stay real pixels. */
+
+:root {
+  --navy: #0f2d4b;
+  --navy-ink: #142942;
+  --tab: #bfcfda;
+  --white: #ffffff;
+  --black: #000000;
+  --text-88: rgba(0, 0, 0, 0.88);
+  --white-88: rgba(255, 255, 255, 0.88);
+  --white-95: rgba(255, 255, 255, 0.95);
+  --divider: #ced5db;
+  --footer-head: #172a42;
+  --footer-link: #7d8fa7;
+  --font-display: 'Plus Jakarta Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--white); }
+body { overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: 0; cursor: pointer; }
+:focus-visible { outline: 2px solid #2b7bd6; outline-offset: 2px; }
+
+.page {
+  container-type: inline-size;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.canvas {
+  --u: calc(100cqw / 1440);
+  position: relative;
+  width: 100%;
+  height: 5909px;
+}
+.abs { position: absolute; margin: 0; }
+.fill-white { background: var(--white); }
+.abs.ink-white { color: var(--white); }
+.nowrap { white-space: nowrap; }
+.center { text-align: center; }
+
+/* Type styles, exactly as in Figma */
+.t-eyebrow { font-family: var(--font-display); font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: 0.24px; color: var(--black); }
+/* Figma Landing page: section eyebrows are Plus Jakarta Sans 20 px (the phone page keeps its own) */
+body:not(.m) .t-eyebrow { font-size: 20px; letter-spacing: 0.4px; }
+.t-h1 { font-family: var(--font-display); font-weight: 500; color: var(--white); letter-spacing: -2.56px; line-height: 72px; margin: 0; }
+.t-h1 .big { font-size: 80px; letter-spacing: -3.2px; }
+.t-h1 .gap { font-size: 64px; }
+.t-h1 .sub { font-size: 50px; letter-spacing: -2px; display: block; }
+.t-h2 { font-family: var(--font-display); font-weight: 500; font-size: 50px; line-height: 72px; letter-spacing: -2px; color: var(--black); margin: 0; }
+.t-h2g { font-family: var(--font-display); font-weight: 500; font-size: 50px; line-height: 72px; letter-spacing: -2px; color: var(--black); margin: 0; }
+.t-h3 { font-family: var(--font-display); font-weight: 500; font-size: 40px; line-height: 72px; letter-spacing: -1.6px; color: var(--black); margin: 0; }
+.t-card { font-family: var(--font-display); font-weight: 500; font-size: 40px; line-height: 72px; letter-spacing: -1.6px; color: var(--white); margin: 0; }
+.t-body { font-family: var(--font-body); font-size: 16px; line-height: 24px; color: var(--text-88); margin: 0; }
+body:not(.m) .t-body { font-weight: 500; }
+body:not(.m) .t-hero { font-family: '42dot Sans', var(--font-body); font-weight: 500; }   /* hero paragraph: 42dot Sans Medium */
+.t-body.on-dark { color: var(--white-88); }
+.t-label { font-family: var(--font-body); font-weight: 500; font-size: 16px; line-height: 24px; color: var(--white); margin: 0; }
+.t-strong { font-family: var(--font-body); font-weight: 500; font-size: 16px; line-height: 24px; color: rgba(0, 0, 0, 0.95); margin: 0; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 8px 14px; border-radius: 4px;   /* Figma OFFICIAL-WEBSITE: every button 4 px */
+  font-size: 14px; line-height: 20px; font-weight: 700; white-space: nowrap;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+.btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn-light { background: var(--white); color: var(--black); font-family: var(--font-display); }
+.btn-navy { background: var(--navy); color: var(--white); font-family: var(--font-display); }
+
+/* Hero */
+.hero-photo { background: #021a2e url('assets/skyline-dusk.jpg') center bottom / cover no-repeat; }
+.hero-photo canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* One fade over the photo. Its colour runs from night to dusk across the page (set by hero-flip.js,
+   in step with the photo) and its strength fades top to bottom, so it never doubles up or lets
+   the photo show through unevenly. */
+.shade-fade {
+  background: rgb(33, 79, 129);
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand img { width: 28px; height: 28px; display: block; }
+.brand span { font-family: var(--font-body); font-weight: 500; font-size: 20px; line-height: 28px; color: var(--white); }
+.nav { display: flex; white-space: nowrap; gap: 40px; font-family: var(--font-body); font-size: 14px; line-height: 20px; color: var(--white-95); }
+.nav a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 4px; }
+.t-hero { font-family: var(--font-body); font-weight: 400; font-size: 16px; line-height: 24px; color: var(--white); margin: 0; }
+
+/* Partner logos: laid over the bottom of the photo at 70%; one 950-px set of logos repeated and scrolled left forever */
+.logo-strip { background: #e8e8ea; overflow: hidden; opacity: 0.7; }
+.logo-track {
+  height: 100%; width: 3800px;
+  background: url('assets/logo-tile-color.png') 0 0 / 606.75px 60px repeat-x;   /* three logos: Exponent, Presto, Arbitrum */
+  animation: logo-scroll 18s linear infinite;
+}
+@keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-606.75px); } }
+
+/* Rate section (Figma frame 23:20) */
+/* Rate points (01 to 03): the progress bar fills a third per point; the points cross-fade in place */
+.rate-bar { background: #d8dee5; border-radius: 2px; overflow: hidden; }
+.rate-bar-fill { position: absolute; left: 0; top: 0; width: 100%; height: 33.333%; background: #0f2d4b; border-radius: 2px;
+  transition: height 0.7s cubic-bezier(0.65, 0, 0.25, 1); }
+.rate-step { position: absolute; inset: 0; pointer-events: none; opacity: 0; transform: translateY(14px);
+  transition: opacity 0.3s ease, transform 0.3s ease; }
+.rate-step.is-on { opacity: 1; transform: none; transition: opacity 0.5s ease 0.25s, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s; }
+@media (prefers-reduced-motion: reduce) { .rate-bar-fill, .rate-step, .rate-step.is-on { transition: none; } }
+.sec-rate {
+  /* soft curved glow rising from below the section, like Figma's blurred Ellipse 909 */
+  background:
+    radial-gradient(ellipse 85% 72% at 40% 110%, rgb(207, 226, 243) 0%, rgb(214, 231, 246) 30%, rgba(228, 239, 249, 0.85) 55%, rgba(244, 248, 252, 0.5) 78%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(ellipse 60% 50% at 88% 108%, rgba(222, 237, 248, 0.95) 0%, rgba(255, 255, 255, 0) 100%),
+    #ffffff;
+  overflow: hidden;
+}
+.ring-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+  /* faint shadow under each coin, falling downward onto the page */
+  filter: drop-shadow(0 16px 14px rgba(15, 45, 75, 0.22)); }
+.ring-stage { background: url('assets/coin-ring.png') center / contain no-repeat; }
+.ring-stage.is-ready { background: none; }
+
+/* Products (Figma 36:1503 onwards) */
+.t-h4 { font-family: var(--font-display); font-weight: 500; font-size: 20px; line-height: 72px; letter-spacing: -0.8px; color: var(--black); margin: 0; }
+.t-small { font-family: var(--font-body); font-size: 14px; line-height: 24px; color: var(--text-88); margin: 0; }
+body:not(.m) .t-small { font-weight: 500; }
+body:not(.m) .t-small.t-reg { font-weight: 400; }
+.bento { background: rgba(54, 101, 149, 0.14); border-radius: 42px; }
+.p-card { background: var(--white); border-radius: 28px; }
+.p-card.clip { overflow: hidden; }
+/* Product switcher: two stacked cards whose size and position are set by js/products-switch.js */
+.prod-card {
+  position: absolute; left: 0; width: 417px; overflow: hidden; background: var(--white); border-radius: 28px;
+  transition: top 0.7s cubic-bezier(0.65, 0, 0.25, 1), height 0.7s cubic-bezier(0.65, 0, 0.25, 1), box-shadow 0.5s ease;
+}
+/* the open product card lifts off the box (Figma Rectangle 5955) */
+body:not(.m) .prod-card.is-open { box-shadow: 3px 4px 29.1px rgba(0, 0, 0, 0.3); }
+.pc-small, .pc-full { position: absolute; inset: 0; transition: opacity 0.35s ease; }
+.prod-card .pc-full { opacity: 0; pointer-events: none; }
+.prod-card.is-open .pc-full { opacity: 1; pointer-events: auto; transition-delay: 0.3s; }
+.prod-card.is-open .pc-small { opacity: 0; }
+.prod-card:not(.is-open) { cursor: pointer; }
+.prod-pane { opacity: 0; visibility: hidden; transition: opacity 0.45s ease, visibility 0s linear 0.45s; }
+.prod-pane.is-on { opacity: 1; visibility: visible; transition: opacity 0.55s ease 0.2s, visibility 0s; }
+.dash-well { background: rgba(227, 233, 240, 0.5); border-radius: 28px; }   /* fills the Capital Planning card edge to edge; its bottom corners follow the card */
+.dash-img { overflow: hidden; border-radius: 22px 22px 28px 28px; }
+.prod-pane .dash-img { border-radius: 0 0 28px 28px; }
+.dash-well { background: #eef2f5; }   /* the dashboard's own page grey, so the cropped screenshot sits flush */
+/* Crop to the "My Portfolio" area (screenshot px 470 to 2540 across, 196 to 1146 down): the screenshot and the
+   live chart drawn over it are zoomed together, so the chart stays lined up with the picture */
+.dash-zoom { position: absolute; left: 0; top: 0; width: 658px; height: 303.3px; transform-origin: 0 0; transform: scale(1.2367) translate(-120.8px, -50.4px); }
+.dash-img img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top; }  /* the screenshot's dark border is trimmed off the image itself */
+/* Allocation chart over the dashboard screenshot. Sizes are screenshot pixels x 0.25703 (the image's scale in the card) */
+.cycle { position: absolute; inset: 0; }
+.cy-cover { position: absolute; left: 143.9px; top: 164.5px; width: 322.6px; height: 118.2px; background: var(--white); }
+.cy-bars { position: absolute; inset: 0; }
+.cy-bar { position: absolute; width: 23.13px; border-radius: 0.5px; transition: top 0.7s cubic-bezier(0.65, 0, 0.25, 1), height 0.7s cubic-bezier(0.65, 0, 0.25, 1), transform 0.45s cubic-bezier(0.3, 1.4, 0.5, 1), box-shadow 0.35s ease; }
+.cy-bar i { position: absolute; left: 0; right: 0; display: block; transition: top 0.7s cubic-bezier(0.65, 0, 0.25, 1), height 0.7s cubic-bezier(0.65, 0, 0.25, 1); }
+.cy-bar .lt { top: 0; background: linear-gradient(180deg, #5abbe6 0%, #9eddfc 100%); }
+.cy-bar .dk { bottom: 0; background: linear-gradient(180deg, #3c5f89 0%, #143556 100%); }
+.cy-bar.is-hi { z-index: 2; transform: scale(1.38); border-radius: 1.6px;
+  box-shadow: 0 0 0 0.9px #fff, 0 0 0 2.1px #0e1a3c, 0 3px 6px 1.5px rgba(14, 26, 60, 0.32); }
+.cy-bar.is-hi .lt { background: linear-gradient(180deg, #2ec4ee 0%, #a6ebff 100%); }
+.cy-nav { position: absolute; left: 149.8px; top: 262px; width: 309px; height: 17.1px; border-radius: 9px; background: #ecf0fb; }
+.cy-pill { position: absolute; top: 0.6px; height: 15.9px; width: 87.4px; border-radius: 8px; background: #08153f; opacity: 0;
+  transition: left 0.55s cubic-bezier(0.65, 0, 0.25, 1), opacity 0.3s ease; }
+.cy-lab { position: absolute; top: 0; width: 87.4px; line-height: 17.1px; text-align: center; font-family: var(--font-display); font-weight: 500;
+  font-size: 7.3px; color: #111827; white-space: nowrap; transition: color 0.4s ease; }
+.cy-lab.is-on { color: var(--white); }
+@media (prefers-reduced-motion: reduce) { .cy-bar, .cy-bar i, .cy-pill, .cy-lab { transition: none; } }
+.t-num { font-family: var(--font-display); font-weight: 500; font-size: 50px; line-height: 72px; letter-spacing: -2px; color: var(--black); margin: 0; }
+.t-h4.tight { line-height: 40px; }
+@media (prefers-reduced-motion: reduce) { .prod-card, .pc-small, .pc-full, .prod-pane { transition: none; } }
+.p-icon { background: var(--navy); border-radius: 16px; }
+.p-icon .layer { display: block; }
+.p-icon .l2 { opacity: 0.6; }
+.p-icon .l3 { opacity: 0.3; }
+.btn-ink { background: #152d49; color: var(--white); font-family: var(--font-display); }
+.dep-line { background: #e2e2e2; }
+.chip { display: flex; flex-direction: column; align-items: center; padding-top: 4px; border-radius: 18px; color: var(--white); white-space: nowrap; }
+.chip b, .chip-t { font-family: var(--font-display); font-weight: 700; font-size: 15px; line-height: 38px; letter-spacing: -0.6px; text-align: center; white-space: nowrap; }
+.chip span, .chip-s { font-family: var(--font-body); font-weight: 500; font-size: 10px; line-height: 24px; color: rgba(255, 255, 255, 0.88); text-align: center; white-space: nowrap; }
+.chip b { display: block; margin-bottom: -7px; }
+.chip span { display: block; }
+.chip span + span { margin-top: -5px; }
+.chip-t { color: var(--white); }
+.chip-dark { background: var(--navy); }
+.chip-mid { background: #375987; }
+.chip-r { border-radius: 0 18px 18px 0; }
+.chip-light { background: rgba(255, 255, 255, 0.8); box-shadow: 3px 1px 18.3px 0 rgba(0, 0, 0, 0.25); color: var(--black); }
+.chip-light span { color: var(--text-88); }
+.live-line { background: #c5c5c5; }
+.live-dot { border-radius: 50%; background: var(--navy); }
+.live-dot.light { background: #355989; }
+.live-h { font-family: var(--font-display); font-weight: 600; font-size: 15px; line-height: 38px; letter-spacing: -0.6px; color: var(--black); margin: 0; }
+.live-date { font-family: var(--font-body); font-weight: 500; font-size: 10px; line-height: 24px; color: var(--text-88); margin: 0; }
+.live-tag { background: rgba(66, 184, 222, 0.3); border-radius: 6px; font-family: var(--font-body); font-size: 10px; line-height: 20px; color: var(--text-88); text-align: center; }
+.live-p { font-family: var(--font-body); font-size: 9px; line-height: 15px; color: var(--text-88); margin: 0; }
+.exit { display: flex; align-items: center; padding-left: 21px; border-radius: 10px 0 0 10px; }
+.exit b { font-family: var(--font-display); font-weight: 700; font-size: 15px; line-height: 38px; letter-spacing: -0.6px; color: var(--white); white-space: nowrap; }
+/* Exit routes slide in from the right, one after another, the first time the section is seen */
+.exit { transform: translateX(105%); transition: transform 0.75s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.exits-in .exit { transform: none; }
+.exits-in .e2x { transition-delay: 0.15s; }
+.exits-in .e3x { transition-delay: 0.3s; }
+.exits-in .e4x { transition-delay: 0.45s; }
+@media (prefers-reduced-motion: reduce) { .exit { transform: none; transition: none; } }
+/* product dots under the box: the open product's dot is navy */
+.prod-dots { display: flex; justify-content: center; gap: 10px; }
+.prod-dots i { width: 9px; height: 9px; border-radius: 50%; background: #d3d9e0; transition: background-color 0.4s ease; }
+.prod-dots i.is-on { background: #0f2d4b; }
+.e1x { background: var(--navy); }
+.e2x { background: #375987; }
+.e3x { background: #637b9d; }
+.e4x { background: #899bb1; }
+
+/* Allocation: night photo under a 69% dark wash (Figma 36:1152, 36:1153) */
+.alloc-photo { background: linear-gradient(rgba(1, 8, 19, 0.69), rgba(1, 8, 19, 0.69)), url('assets/alloc-photo.jpg') center / cover no-repeat; }
+.alloc-panels .ap-panel {
+  position: absolute; overflow: hidden;
+  /* left, top, width and height are set by js/alloc-panels.js; the default is panel 1 open */
+  transition: left 0.75s cubic-bezier(0.65, 0, 0.25, 1), top 0.75s cubic-bezier(0.65, 0, 0.25, 1),
+    width 0.75s cubic-bezier(0.65, 0, 0.25, 1), height 0.75s cubic-bezier(0.65, 0, 0.25, 1),
+    background-color 0.6s ease, border-radius 0.6s ease;
+}
+.ap-panel.is-open { background: rgba(255, 255, 255, 0.9); border-radius: 27px; }
+.ap-panel.is-shut { background: rgba(255, 255, 255, 0.2); border-radius: 16px; cursor: pointer; }
+/* card numbers (Figma 76:73, 76:81): dark on the open card, half-white on the folded ones */
+.ap-num { font-family: var(--font-display); font-weight: 500; font-size: 40px; line-height: 72px; letter-spacing: -1.6px; color: var(--black); margin: 0; }
+.ap-num-shut, .ap-title-shut { color: rgba(255, 255, 255, 0.8); opacity: 0; transition: opacity 0.25s ease; }
+.ap-panel.is-shut .ap-num-shut, .ap-panel.is-shut .ap-title-shut { opacity: 1; transition: opacity 0.45s ease 0.3s; }
+/* folded cards show a one-word title in the bottom-right corner (Figma 159:115, 159:117) */
+.ap-title.ap-title-shut { right: 24px; bottom: 0; color: rgba(255, 255, 255, 0.8); }
+.ap-title { font-family: var(--font-display); font-weight: 500; font-size: 30px; line-height: 72px; letter-spacing: -1.2px; color: var(--black); margin: 0; }
+.ap-body { position: absolute; left: 0; top: 0; width: 584px; height: 282px; transition: opacity 0.45s ease 0.3s; }
+.ap-panel.is-shut .ap-body { opacity: 0; transition: opacity 0.25s ease; }
+.ap-tab { position: absolute; inset: 0; background: none; padding: 0; z-index: 1; }
+.ap-panel.is-open .ap-tab { display: none; }
+@media (prefers-reduced-motion: reduce) { .alloc-panels .ap-panel, .ap-body, .ap-num-shut { transition: none; } }
+.alloc-art { display: block; pointer-events: none; opacity: 0; transform: translateY(14px) scale(0.97);
+  transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.alloc-art.is-on { opacity: 1; transform: none; transition-delay: 0.15s; }
+@media (prefers-reduced-motion: reduce) { .alloc-art, .alloc-art.is-on, .alloc-art.is-out { transition: none; } }
+
+/* Philosophy */
+.phil-photo {
+  border-radius: 25px;
+  background: linear-gradient(rgba(1, 8, 19, 0.69), rgba(1, 8, 19, 0.69)), url('assets/phil-photo.jpg') 0 0 / 100% 100% no-repeat;
+}
+.rule-white { height: 2px; background: var(--white); }
+.signup { display: flex; gap: 0; }
+.signup input {
+  width: 343px; height: 36px; padding: 8px 14px; border-radius: 5px;
+  background: rgba(224, 232, 237, 0.3); border: 0.5px solid rgba(255, 255, 255, 0.5);
+  color: var(--white); font-family: var(--font-body); font-size: 14px; line-height: 20px;
+}
+.signup input::placeholder { color: var(--white); opacity: 1; }
+.signup button {
+  position: absolute; left: 294px; top: 0;
+  height: 36px; padding: 8px 14px; border-radius: 5px; background: var(--white);
+  color: var(--black); font-family: var(--font-body); font-size: 14px; line-height: 20px; white-space: nowrap;
+}
+.signup-note { font-family: var(--font-body); font-size: 13px; line-height: 18px; color: var(--white); }
+
+/* FAQ */
+.faq-bg { background: linear-gradient(180deg, #ffffff 24.04%, #f4f9fd 51.44%, #e9f3fc 75.96%); }
+.faq-num { font-family: var(--font-display); font-weight: 400; font-size: 40px; line-height: 72px; letter-spacing: -1.6px; color: var(--black); margin: 0; }
+.faq-q { font-family: var(--font-body); font-weight: 500; font-size: 16px; line-height: 24px; color: var(--black); margin: 0; }
+.faq-btn { background: var(--navy); border-radius: 9px; display: flex; align-items: center; justify-content: center; padding: 0; transition: transform 0.2s ease; }
+.faq-btn svg { width: 22px; height: 11px; display: block; }
+.faq-btn[aria-expanded="true"] { transform: rotate(180deg); }
+.rule { height: 1px!; background: var(--divider); }
+
+/* Footer: the Figma footer is the earlier one enlarged 1.157 times */
+.footer-scale { transform: scale(1.157); transform-origin: 0 0; }
+.f-brand { white-space: nowrap; display: flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 700; font-size: 13px; line-height: 16px; color: var(--footer-head); }
+.f-brand img { width: 11px; height: 11px; }
+.f-copy { font-family: var(--font-body); font-size: 10px; line-height: 14px; color: var(--footer-link); margin: 0; }
+.f-col h4 { margin: 0 0 21px; font-family: var(--font-body); font-weight: 700; font-size: 10px; line-height: 12px; letter-spacing: 1.6px; color: var(--footer-head); }
+.f-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 19.5px; }
+.f-col li { font-family: var(--font-body); font-size: 11px; line-height: 14px; color: var(--footer-link); white-space: nowrap; }
+.f-col a:hover { color: var(--navy); }
+.wordmark {
+  font-family: var(--font-body); font-weight: 500; font-size: 200px; line-height: 28px; text-align: center; white-space: nowrap;
+  padding-top: 73px;
+  /* Figma 23:80's gradient, re-expressed for this taller box so the colours land at the same heights */
+  background: linear-gradient(0deg, #e6eefb 19.1%, #7b8da3 72.1%, #0f2d4b 147.7%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.sr-only { position: absolute; width: 1px!; height: 1px!; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Hero text entrance on page load: each line rises into its place and fades in, one after another */
+@keyframes rise-in { from { opacity: 0; translate: 0 28px; filter: blur(6px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+.enter { animation: rise-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.t-h1 .enter { display: block; }
+.e1 { animation-delay: 0.15s; }
+.e2 { animation-delay: 0.3s; }
+.e3 { animation-delay: 0.5s; }
+.e4 { animation-delay: 0.7s; }
+.e5 { animation-delay: 0.9s; }
+/* Scroll text reveal: each line slides up from behind a hidden edge as it scrolls into view */
+.rl { display: block; overflow: hidden; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+.rl-in { display: inline-block; transform: translateY(105%); opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.2, 0.75, 0.15, 1), opacity 0.9s ease; }
+.is-revealed .rl-in { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .rl-in { transform: none; opacity: 1; transition: none; }
+  .enter { animation: none; }
+  .btn, .faq-btn { transition: none; }
+  .logo-track { animation: none; }
+}
+
+/* Horizon stage cards: text swaps with the chart stage */
+.cy-card [data-f] { transition: opacity .25s ease, transform .25s ease; }
+.cy-card.is-swap [data-f] { opacity: 0; transform: translateY(6px); }
+
+/* Kurtosis Gradient panels */
+.t-path { font-family: var(--font-display); font-weight: 500; font-size: 30px; line-height: 72px; letter-spacing: -1.2px; color: var(--black); margin: 0; }
+.path-rule { height: 1px; background: #1a2836; }
+.step-pill { display: flex; align-items: center; justify-content: center; background: #1a2836; border-radius: 23px; color: var(--white);
+  font-family: var(--font-display); font-weight: 500; font-size: 14px; line-height: 20px; white-space: nowrap; }
+.ap-text { font-weight: 500; }
+
+/* Bookmark tab on the left edge of the open product card: navy, rounded on its outer side */
+.pc-mark { position: absolute; left: -10px; width: 10px; height: 265px; background: #1a2e4a; border-radius: 10px 0 0 10px;
+  transition: top 0.7s cubic-bezier(0.65, 0, 0.25, 1), background-color 0.5s ease; }
+.pc-mark[data-p="0"] { background: #0f2d4b; }   /* Ratings: navy */
+.pc-mark[data-p="1"] { background: #456e99; }   /* Horizon: mid blue */
+.pc-mark[data-p="2"] { background: #718ba7; }   /* Gradient: lighter blue */
+@media (prefers-reduced-motion: reduce) { .pc-mark { transition: none; } }
+.btn-sq { border-radius: 4px; }   /* Rate section button (Figma 1:392) */
+/* Who We Serve (Figma 1:427, 2:60 to 3:86): white-to-sky band, navy cards with a tinted photo and a white panel */
+.serve-bg { background: linear-gradient(180deg, #ffffff 5.3%, #f4f9fd 35.1%, #e9f3fc 60.1%); }
+.serve-card { background: #073765; border-radius: 27px; overflow: hidden; }
+.serve-img { display: block; object-fit: cover; border-radius: 27px 27px 0 0; }
+.serve-panel { background: var(--white); border-radius: 27px; }
+.serve-t { font-family: var(--font-display); font-weight: 500; font-size: 30px; line-height: 46px; letter-spacing: -1.2px; color: var(--black); margin: 0; }
+.serve-p { font-family: var(--font-body); font-weight: 500; font-size: 16px; line-height: 24px; color: var(--black); margin: 0; }
+.btn-display { font-family: var(--font-display); }   /* FAQ button: Plus Jakarta Sans, as in the new design */
+
+/* Site navigation. Top of page: transparent, laid out as in the hero (Figma 23:89).
+   Scrolled: a floating black bar, 748 x 44 with 9 px corners (Figma 80:4), centred 24 px from the top,
+   logo square only, with a slimmer 32 px button. */
+.site-nav {
+  --u: calc(100vw / 1440);
+  position: fixed; z-index: 50; top: 14px; left: 131px; width: 1151px; height: 56px; border-radius: 18px;
+  background: rgba(0, 0, 0, 0); box-shadow: 0 0 0 rgba(8, 20, 40, 0);
+  /* as in the reference video: the bar turns solid almost at once, then shrinks into the centred pill */
+  transition: top 0.8s cubic-bezier(0.22, 1, 0.36, 1), left 0.8s cubic-bezier(0.22, 1, 0.36, 1), width 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.8s cubic-bezier(0.22, 1, 0.36, 1), border-radius 0.8s ease, background-color 0.15s ease, box-shadow 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+.site-nav .brand, .site-nav .nav, .site-nav .nav-cta { position: absolute; top: 50%; transform: translateY(-50%);
+  transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1), right 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+.site-nav .brand { left: 0; }
+.site-nav .brand span { display: inline-block; max-width: 200px; overflow: hidden; transition: opacity 0.25s ease, max-width 0.45s ease; }
+.site-nav .nav { left: 432px; }   /* Figma: Products starts at x 563 */
+.site-nav .nav-cta { right: 0; }
+.site-nav.is-pill { top: 24px; left: 346px; width: 748px; height: 44px; border-radius: 9px; background: #000000; box-shadow: 0 10px 28px rgba(8, 20, 40, 0.18); }
+.site-nav.is-pill .brand { left: 14px; }
+.site-nav.is-pill .brand span { opacity: 0; max-width: 0; }
+.site-nav.is-pill .nav { left: 148px; }   /* Figma pill: links centred between the mark and the button */
+.site-nav.is-pill .nav-cta { right: 14px; height: 32px; padding: 6px 14px; border-radius: 4px; }
+.site-nav .nav-cta { transition: right 0.8s cubic-bezier(0.22, 1, 0.36, 1), height 0.8s cubic-bezier(0.22, 1, 0.36, 1), padding 0.8s ease, border-radius 0.8s ease, filter 0.15s ease; }
+/* hidden while the Products box sits under it (js/page.js) */
+.site-nav.is-away { transform: translateY(-140%); opacity: 0; pointer-events: none; }
+.site-nav { will-change: transform; }
+@media (prefers-reduced-motion: reduce) { .site-nav, .site-nav * { transition: none !important; } }
+
+/* 3D Allocation illustrations: once the 3D scene is ready the flat pictures are hidden */
+.alloc-3d { pointer-events: none; }
+.alloc-3d canvas { display: block; width: 100%; height: 100%; }
+.alloc-3d-ready .alloc-art { display: none; }
+
+/* Products menu (Figma group 21:631): opens under Products on click */
+.nav-item { position: relative; display: inline-block; }
+.nav-item > a { position: relative; }
+.nav-item > a[aria-expanded="true"]::before { content: ""; position: absolute; left: -16px; right: -17px; top: -8px; bottom: -8px; border-radius: 4px; background: rgba(184, 184, 184, 0.3); z-index: -1; }
+.nav-menu { position: absolute; left: -141px; top: 60px; width: 340px; height: 157px; background: #ffffff; border-radius: 8px;
+  box-shadow: 4px 4px 35.4px rgba(0, 0, 0, 0.25); font-family: var(--font-body); color: #000000; white-space: normal; text-align: left; }
+.nav-menu[hidden] { display: none; }
+.nav-menu .nm-label { position: absolute; left: 24px; top: 10px; margin: 0; font-size: 11px; line-height: 24px; color: rgba(0, 0, 0, 0.88); }
+.nav-menu .nm-1 { top: 33px; }   /* item positions scale with the card (were fixed pixels, so they drifted out on smaller screens) */
+.nav-menu .nm-2 { top: 92px; }
+.nav-menu .nm-item { position: absolute; left: 14px; width: 313px; height: 54px; border-radius: 5px; color: #000000; text-decoration: none; }
+.nav-menu .nm-item:hover, .nav-menu .nm-item:focus-visible, .nav-menu:not(:hover) .nm-item:first-of-type { background: rgba(171, 203, 236, 0.3); text-decoration: none; outline: none; }
+.nav-menu .nm-icon { position: absolute; left: 10px; top: 17px; width: 20px; height: 20px; border-radius: 6px; background: #0f2d4b; display: grid; place-items: center; }
+.nav-menu .nm-icon svg { width: 12px; height: 12px; display: block; }
+.nav-menu .nm-title { position: absolute; left: 37px; top: 5px; font-size: 12px; font-weight: 500; line-height: 24px; white-space: nowrap; }
+.nav-menu .nm-desc { position: absolute; left: 37px; top: 24px; font-size: 11px; line-height: 24px; white-space: nowrap; }
+.nav-item > a[aria-expanded="true"], .nav-item > a[aria-expanded="true"]:hover { text-decoration: none; }
+/* menu items keep black text on hover, focus and click (the nav links' white hover must not reach into the menu) */
+.nav .nav-menu .nm-item, .nav .nav-menu .nm-item:hover, .nav .nav-menu .nm-item:focus, .nav .nav-menu .nm-item:active, .nav .nav-menu .nm-item:visited { color: #000000; text-decoration: none; }

@@ -3,6 +3,16 @@ html { scroll-padding-top: 88px; }
 .badge { display: none; }
 .rl-dialog-close { display: none; }
 
+/* Readable shared controls and secondary text on the existing pale surfaces. */
+:focus-visible, .hx-scope :focus-visible, .pv2-go:focus-visible, .foot-col a:focus-visible { outline: 3px solid #176493; outline-offset: 3px; }
+.rl-card:focus-visible { outline-color: #176493; }
+.foot-col a, .foot-copy, .rl-fcol a, .rl-fid small { color: #52677d; }
+.cta-mail, .rl-cta .mail, .rl-cta .lbl,
+.pv2-rate .pv2-lbl, .hz-card-tag, .m-num { color: #24679a; }
+.hz-nav .btn-nav, .m-nav .btn-nav, .m-banner a { background: #24679a; color: #fff; }
+.hz-nav .btn-nav:hover, .m-nav .btn-nav:hover, .m-banner a:hover,
+.rl-cta .btn:hover, html.js .k52-grp.in .btn.k52-fd-late:hover { background: #1b527d; }
+
 /* Reserve the header and document links; only the positions list can scroll. */
 @media (min-width: 901px) {
   .rl { --rl-header-height: 84px; }
@@ -131,7 +141,7 @@ html { scroll-padding-top: 88px; }
   background: linear-gradient(145deg, #d7edfc, #eef7fd);
   box-shadow: none; color: #182841; text-decoration: none;
 }
-.ratings-preview:focus-visible { outline: 2px solid #1dacf3; outline-offset: 4px; }
+.ratings-preview:focus-visible { outline: 3px solid #176493; outline-offset: 4px; }
 .ratings-preview-header {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px;
   margin-bottom: 12px; font-size: 12px; line-height: 1.4; font-weight: 600;
@@ -161,9 +171,9 @@ html { scroll-padding-top: 88px; }
 .ratings-preview-chain b { display: block; font-size: 13px; line-height: 1.35; overflow-wrap: anywhere; }
 .ratings-preview-chain span { display: block; margin-top: 3px; font-size: 11px; line-height: 1.4; color: #4a5a75; }
 .ratings-preview-details { display: grid; gap: 12px; align-content: start; min-width: 0; }
-.ratings-preview-card .ratings-preview-token { font-size: 28px; line-height: 1.15; font-weight: 700; color: #459fe0; overflow-wrap: anywhere; }
+.ratings-preview-card .ratings-preview-token { font-size: 28px; line-height: 1.15; font-weight: 700; color: #1774af; overflow-wrap: anywhere; }
 .ratings-preview-card .ratings-preview-scrutiny { margin-top: 16px; }
-.ratings-preview-card .ratings-preview-percent { font-size: 32px; line-height: 1.15; font-weight: 700; color: #459fe0; }
+.ratings-preview-card .ratings-preview-percent { font-size: 32px; line-height: 1.15; font-weight: 700; color: #1774af; }
 .ratings-preview-meter { height: 10px; margin-top: 14px; border-radius: 5px; background: #e5f3ff; }
 .ratings-preview-meter span { display: block; width: 28.96%; height: 100%; border-radius: inherit; background: #59b5ee; }
 .ratings-preview-card .ratings-preview-caution { font-size: 11px; color: #4a5a75; }
@@ -185,7 +195,7 @@ html { scroll-padding-top: 88px; }
 }
 
 @media (max-width: 900px) {
-  .pv2 .pv2-rate { display: flex; flex-direction: column; padding: 28px 24px 24px; }
+  .pv2 .pv2-rate { display: flex; flex-direction: column; gap: 0; padding: 28px 24px 24px; }
   .pv2-rate > h3 { order: 0; padding-right: 0; }
   .pv2-rate > .pv2-rate-copy { order: 1; margin-top: 20px; }
   .pv2-rate > .pv2-go { order: 2; align-self: flex-start; margin-top: 22px; }
