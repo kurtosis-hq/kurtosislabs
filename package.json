@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "node scripts/build-site.mjs && node scripts/check-ratings-build.mjs",
     "preview": "vite preview",
-    "test": "node --test src/ratings/tests/*.test.ts scripts/landing-scroll.test.mjs",
+    "test": "node --test src/ratings/tests/*.test.ts",
     "check": "npm test && npm run build"
   },
   "devDependencies": {

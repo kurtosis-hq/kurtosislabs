@@ -1,5 +1,7 @@
-// Cards follow native page scrolling; clicking or tapping keeps the chosen item
-// selected until the section leaves the screen. Scrolling is never blocked.
+// Product switcher: Kurtosis Ratings and Horizon. One product card is open (icon, text,
+// button) and the other folds into a short title card; the right-hand panels cross-fade to match.
+// When the section reaches the middle of the screen it is held in place and one scroll step moves
+// to the next product. After the last one the page scrolls on; scrolling back up reverses it.
 (function () {
   var col = document.getElementById('prod-left');
   var bento = document.querySelector('.bento');
@@ -10,7 +12,8 @@
   var HZ = 1, STEPS = [{ p: 0, s: 3 }, { p: HZ, s: -1 }, { p: HZ, s: 0 }, { p: HZ, s: 1 }, { p: HZ, s: 2 }, { p: HZ, s: 3 }];
   var N = STEPS.length;
   var OPEN_H = 566, SHUT_H = 117, GAP = 17, MARK_H = 265;   // Figma pixels (two products: open card 566, folded card 117)
-  var idx = 0;
+  var STEP = 110, SETTLE = 650, STAGE_STEP = 60, STAGE_SETTLE = 300;   // SETTLE covers the full card and panel animation
+  var idx = 0, acc = 0, lockedAt = 0, locked = false;
 
   function u(n) { return 'calc(' + n + ' * var(--u))'; }
   // ---- Allocation chart. Screenshot pixels, scaled by K into page units
@@ -95,10 +98,11 @@
       p.setAttribute('aria-hidden', i === prod ? 'false' : 'true');
     });
   }
-  function go(i) { if (i === idx || i < 0 || i >= N) return false; idx = i; layout(); return true; }
+  function go(i) { if (i === idx || i < 0 || i >= N) return false; idx = i; acc = 0; lockedAt = Date.now(); layout(); return true; }
+  function onStages() { return STEPS[idx].p === HZ && idx >= firstStep(HZ); }   // on Horizon: each chart stage takes a quarter swipe
   function firstStep(p) { for (var k = 0; k < N; k++) if (STEPS[k].p === p) return k; return 0; }
-  cards.forEach(function (c, i) { window.KLScroll.button(c, function () { if (i !== STEPS[idx].p) follow.select(firstStep(i)); }); });
-  labs.forEach(function (l, i) { l.style.cursor = 'pointer'; window.KLScroll.button(l, function () { follow.select(firstStep(HZ) + 1 + i); }); });
+  cards.forEach(function (c, i) { c.addEventListener('click', function () { if (i !== STEPS[idx].p) go(firstStep(i)); }); });
+  labs.forEach(function (l, i) { l.style.cursor = 'pointer'; l.addEventListener('click', function () { go(firstStep(HZ) + 1 + i); }); });
   layout();
 
   // Exit Routes bars slide in once, when the section first comes into view
@@ -112,6 +116,73 @@
     } else exitCard.classList.add('exits-in');
   }
 
-  var follow = window.KLScroll.steps(bento, N, go);
-  window.setProduct = function (i) { follow.select(i); };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return; // cards still switch on click; no scroll hold
+
+  function target() { var h = bento.getBoundingClientRect().height; return Math.max(0, (window.innerHeight - h) / 2); }
+  function snap() { window.scrollTo({ top: (window.scrollY || window.pageYOffset) + bento.getBoundingClientRect().top - target(), behavior: 'instant' }); }
+  var lastInput = 0, lastTop = bento.getBoundingClientRect().top;   // when the user last scrolled by wheel, touch or key; where the box was
+
+  // returns true when the movement was used here (so the page must not move)
+  function take(dy) {
+    lastInput = Date.now();
+    var top = bento.getBoundingClientRect().top, t = target();
+    lastTop = top;
+    if (!locked) {
+      // engage on the scroll step that would carry the box past its hold point, so the page stops exactly
+      // there instead of overshooting and snapping back
+      if (dy > 0 && idx < N - 1 && top - dy <= t + 1 && top > t - window.innerHeight * 0.6) { locked = true; snap(); acc = 0; lockedAt = Date.now(); return true; }
+      if (dy < 0 && idx > 0 && top - dy >= t - 1 && top < t + window.innerHeight * 0.6) { locked = true; snap(); acc = 0; lockedAt = Date.now(); return true; }
+      return false;
+    }
+    if (Math.abs(top - t) > 2) snap();   // momentum slipped past: put the whole box back in the middle
+    if (Date.now() - lockedAt < (onStages() ? STAGE_SETTLE : SETTLE)) { acc = 0; return true; }   // chart stages animate faster   // ignore scrolling until the animation has finished
+    acc += dy;
+    var need = onStages() ? STAGE_STEP : STEP;
+    if (acc > need) {
+      if (idx < N - 1) go(idx + 1); else { locked = false; acc = 0; }   // past the last product: one more deliberate scroll lets the page move on
+    } else if (acc < -need) {
+      if (idx > 0) go(idx - 1); else { locked = false; acc = 0; }
+    }
+    return true;
+  }
+
+  window.addEventListener('wheel', function (e) {
+    var dy = e.deltaMode === 1 ? e.deltaY * 40 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
+    if (take(dy)) e.preventDefault();
+  }, { passive: false });
+
+  var lastY = null;
+  window.addEventListener('touchstart', function (e) { lastY = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchmove', function (e) {
+    if (lastY === null) return;
+    var y = e.touches[0].clientY, dy = (lastY - y) * 2; lastY = y;
+    if (take(dy)) e.preventDefault();
+  }, { passive: false });
+  window.addEventListener('touchend', function () { lastY = null; }, { passive: true });
+
+  window.addEventListener('keydown', function (e) {
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    var step = { ArrowDown: 120, ArrowUp: -120, PageDown: 600, PageUp: -600, ' ': e.shiftKey ? -600 : 600 }[e.key];
+    if (step && take(step > 0 ? STEP + 1 : -STEP - 1)) e.preventDefault();
+  });
+
+  // Keeps the whole box on screen while held, even if trackpad momentum (which some browsers
+  // don't let a page stop) moves the page. It also catches the box if a fast flick carries it past
+  // the middle before the hold engages. A scrollbar drag that leaves the section releases it.
+  window.addEventListener('scroll', function () {
+    var r = bento.getBoundingClientRect(), t = target(), top = r.top, prev = lastTop;
+    lastTop = top;
+    if (locked) {
+      if (r.bottom < 0 || r.top > window.innerHeight) { locked = false; return; }
+      if (Math.abs(top - t) > 2) snap();
+      return;
+    }
+    if (prev === null || Date.now() - lastInput > 1000) return;
+    var down = prev > t && top <= t && idx < N - 1, up = prev < t && top >= t && idx > 0;
+    if (down || up) { locked = true; acc = 0; lockedAt = Date.now(); snap(); }
+  }, { passive: true });
+
+  window.setProduct = function (i) { go(i); };
 })();

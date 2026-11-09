@@ -83,10 +83,9 @@
   <!-- The 01 to 03 points step through on their own; the coin ring animates independently and never holds the page -->
   <section class="abs sec-rate" style="left:calc(2 * var(--u));top:calc(846 * var(--u));width:calc(1438 * var(--u));height:calc(800 * var(--u));" aria-labelledby="rate-h" data-ring-wait="0" data-ring-hold="0">
     <h2 id="rate-h" class="reveal abs t-h2" style="left:calc(142 * var(--u));top:calc(175 * var(--u));width:calc(760 * var(--u));">Returns are easy to report<br>but hard to explain.</h2>
-    <!-- Three points, shown one at a time: native scrolling or the numbered buttons select 01, 02, 03 while the
+    <!-- Three points, shown one at a time: scrolling holds the section and steps 01, 02, 03 while the
          bar on the left fills a third at a time (js/rate-steps.js) -->
     <div class="abs rate-bar" aria-hidden="true" style="left:calc(146 * var(--u));top:calc(365 * var(--u));width:calc(5 * var(--u));height:calc(241 * var(--u));"><i class="rate-bar-fill"></i></div>
-    <div class="rate-controls" role="group" aria-label="Choose an investment risk"><button type="button" aria-label="Show risk 1" aria-pressed="true">01</button><button type="button" aria-label="Show risk 2" aria-pressed="false">02</button><button type="button" aria-label="Show risk 3" aria-pressed="false">03</button></div>
     <div class="rate-step is-on" data-i="0">
       <p class="abs ap-num nowrap" style="left:calc(202 * var(--u));top:calc(372 * var(--u));">01</p>
       <h3 class="abs ap-title nowrap" style="left:calc(202 * var(--u));top:calc(430 * var(--u));">Layers hide what you own</h3>
@@ -202,7 +201,7 @@
       <div class="abs dash-well" style="left:calc(608 * var(--u));top:calc(2082 * var(--u));width:calc(658 * var(--u));height:calc(309 * var(--u));"></div>
       <div class="abs dash-img" style="left:calc(608 * var(--u));top:calc(2088 * var(--u));width:calc(658 * var(--u));height:calc(303 * var(--u));"><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix.">
         <!-- Live chart drawn over the screenshot's chart: bars start level, then each scroll step moves through the cycle (js/products-switch.js) -->
-        <div id="cycle" class="cycle">
+        <div id="cycle" class="cycle" aria-hidden="true">
           <div class="cy-cover"></div>
           <div class="cy-bars"></div>
           <div class="cy-nav"><span class="cy-pill"></span><span class="cy-lab">Cycle Starts</span><span class="cy-lab">Transition</span><span class="cy-lab">Near Date</span><span class="cy-lab">Target Date</span></div>
@@ -331,7 +330,6 @@
 
 <script src="js/three.min.js"></script>
 <script src="js/coin-positions.js"></script>
-<script src="js/scroll-progress.js"></script>
 <script src="js/hero-flip.js"></script>
 <script src="js/coin-ring.js"></script>
 <script src="js/page.js"></script>
