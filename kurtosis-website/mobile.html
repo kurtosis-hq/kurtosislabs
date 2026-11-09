@@ -87,10 +87,11 @@
   <div class="abs logo-strip" style="left:calc(0 * var(--u));top:calc(752 * var(--u));width:calc(375 * var(--u));height:calc(60 * var(--u));" role="img" aria-label="Partners: Exponent, Presto, Arbitrum"><div class="logo-track"></div></div>
 
   <!-- ===== Rate (Figma 35:3467) ===== -->
-  <!-- While the points step through, the section stops with its heading just under the nav bar and the coins below the screen edge -->
+  <!-- The points follow native scroll progress and can also be selected using the numbered buttons -->
   <section class="abs sec-rate" style="left:calc(0 * var(--u));top:calc(812 * var(--u));width:calc(375 * var(--u));height:calc(1091 * var(--u));" aria-labelledby="rate-h" data-hold-at="10" data-hold-w="375" data-ring-wait="0" data-ring-hold="0">
     <h2 id="rate-h" class="reveal abs t-h2" style="left:calc(15 * var(--u));top:calc(87 * var(--u));width:calc(350 * var(--u));">Returns are easy to report but hard to explain.</h2>
     <div class="abs rate-bar" aria-hidden="true" style="left:calc(15 * var(--u));top:calc(273 * var(--u));width:calc(5 * var(--u));height:calc(290 * var(--u));"><i class="rate-bar-fill"></i></div>
+    <div class="rate-controls" role="group" aria-label="Choose an investment risk"><button type="button" aria-label="Show risk 1" aria-pressed="true">01</button><button type="button" aria-label="Show risk 2" aria-pressed="false">02</button><button type="button" aria-label="Show risk 3" aria-pressed="false">03</button></div>
     <div class="rate-step is-on" data-i="0">
       <p class="abs ap-num nowrap" style="left:calc(71 * var(--u));top:calc(280 * var(--u));">01</p>
       <h3 class="abs ap-title nowrap" style="left:calc(71 * var(--u));top:calc(332 * var(--u));">Layers hide what you own</h3>
@@ -172,7 +173,7 @@
       <p class="abs t-body" style="left:calc(15 * var(--u));top:calc(148 * var(--u));width:calc(296 * var(--u));">Tell Horizon the date you need your cash. It helps you pick investments that pay out before that date, so your money isn’t stuck when you need it.</p>
       <a href="contact.html" class="abs btn btn-ink" style="left:calc(16 * var(--u));top:calc(276 * var(--u));width:calc(293 * var(--u));height:calc(36 * var(--u));">Explore Horizon</a>
     </div>
-    <!-- Capital Planning and the two cards under it: held on screen while scrolling steps through
+    <!-- Capital Planning and the two cards under it: native scrolling or the chart controls select
          the four stages of the cycle, as on the desktop (js/m-products.js) -->
     <div id="m-cycle-zone" class="abs" aria-hidden="true" style="left:calc(24 * var(--u));top:calc(4008 * var(--u));width:calc(326 * var(--u));height:calc(781 * var(--u));"></div>
     <div class="abs p-card clip" style="left:calc(24 * var(--u));top:calc(4008 * var(--u));width:calc(326 * var(--u));height:calc(305 * var(--u));">
@@ -181,7 +182,7 @@
       <div class="abs dash-well m-well" style="left:0;top:calc(94 * var(--u));width:calc(326 * var(--u));height:calc(211 * var(--u));"></div>
       <div class="abs m-dash" style="left:0;top:calc(124 * var(--u));width:calc(326 * var(--u));height:calc(150 * var(--u));">
         <div class="dash-img m-dash-in"><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix.">
-          <div id="cycle" class="cycle" aria-hidden="true">
+          <div id="cycle" class="cycle">
             <div class="cy-cover"></div>
             <div class="cy-bars"></div>
             <div class="cy-nav"><span class="cy-pill"></span><span class="cy-lab">Cycle Starts</span><span class="cy-lab">Transition</span><span class="cy-lab">Near Date</span><span class="cy-lab">Target Date</span></div>
@@ -301,6 +302,7 @@
 <script src="js/three.min.js"></script>
 <script src="js/coin-positions.js"></script>
 <script src="js/m-coin-positions.js"></script>
+<script src="js/scroll-progress.js"></script>
 <script src="js/hero-flip.js"></script>
 <script src="js/coin-ring.js"></script>
 <script src="js/page.js"></script>

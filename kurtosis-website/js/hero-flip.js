@@ -319,69 +319,40 @@
   // Lets a recorder or test step to an exact moment
   window.setHeroTime = function (v) { running = false; draw(v); };
 
-  // The hero is held in place while you scroll: wheel, trackpad, touch and arrow keys
-  // play the flip instead of moving the page. Once every coin has turned back, the page
-  // scrolls normally. Scrolling up at the very top plays it back in reverse.
-  // T_END: the furthest coin finishes its last bounce (second turn lands after 0.25 s, then 1.5 s of hops)
-  var T_START = 0.3, T_END = S0 + 0.04 + 0.48 + DMAX / V2 + 0.25 + 1.5 + 0.1;   // +0.1 s so every coin is fully at rest
-  var SCROLL_RANGE = 600;          // wheel or swipe distance for the whole sequence
+  // Follow native scroll position. Never consume wheel, touch or keyboard input.
+  var T_START = 0.3, T_END = S0 + 0.04 + 0.48 + DMAX / V2 + 0.25 + 1.5 + 0.1;
   var running = false;
   function start() {
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { draw(T_END); return; } // show the finished dusk photo, no motion and no hold
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var current = T_START, target = T_START, visible = true, frameId = 0, lastNow = 0;
     running = true;
-    var p = (window.scrollY || window.pageYOffset) > 0 ? 1 : 0; // arriving part-way down: already done
-    var current = T_START + p * (T_END - T_START);
-    draw(current);
-
-    function atTop() { return (window.scrollY || window.pageYOffset) <= 1; }
-    // returns true when the movement was used by the animation (so the page must not move)
-    function take(dy) {
-      if (!atTop()) { if (p < 1) p = 1; return false; } // e.g. scrollbar dragged: treat as finished
-      // the page stays put until the animation itself has finished (every coin has turned to the
-      // dark image and stopped bouncing), not just until enough scrolling has been done
-      if (dy > 0 && (p < 1 || current < T_END - 0.002)) { p = Math.min(1, p + dy / SCROLL_RANGE); return true; }
-      if (dy < 0 && (p > 0 || current > T_START + 0.002)) { p = Math.max(0, p - (-dy) / SCROLL_RANGE); return true; }
-      return false;
+    function wake() {
+      if (!running || !visible || document.hidden || frameId) return;
+      frameId = requestAnimationFrame(frame);
     }
-    window.addEventListener('wheel', function (e) {
-      var dy = e.deltaMode === 1 ? e.deltaY * 40 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
-      if (take(dy)) e.preventDefault();
-    }, { passive: false });
-
-    var lastY = null;
-    window.addEventListener('touchstart', function (e) { lastY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener('touchmove', function (e) {
-      if (lastY === null) return;
-      var y = e.touches[0].clientY, dy = (lastY - y) * 2; lastY = y;
-      if (take(dy)) e.preventDefault();
-    }, { passive: false });
-    window.addEventListener('touchend', function () { lastY = null; }, { passive: true });
-
-    window.addEventListener('keydown', function (e) {
-      var tag = (e.target && e.target.tagName) || '';
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-      var step = { ArrowDown: 120, ArrowUp: -120, PageDown: 600, PageUp: -600, ' ': e.shiftKey ? -600 : 600 }[e.key];
-      if (step && take(step)) e.preventDefault();
-    });
-
-    window.heroFlipDone = function () { return current >= T_END - 0.002; };   // for tests
-    var lastNow = 0;
     function frame(now) {
-      if (!running) return;
-      var target = T_START + p * (T_END - T_START);
-      // glide toward the scroll position at the same pace on any screen refresh rate, and never
-      // jump more than 1/30 s of animation per frame, so separate wheel clicks blend into one motion
-      var dt = lastNow ? Math.min(0.05, (now - lastNow) / 1000) : 0.016; lastNow = now;
-      if (Math.abs(target - current) <= 0.0005 && current !== target) { current = target; draw(current); }
-      else if (Math.abs(target - current) > 0.0005) {
-        var step = (target - current) * (1 - Math.exp(-dt / 0.1));
-        var cap = dt * 4;                          // at most 4x real-time speed
-        current += Math.max(-cap, Math.min(cap, step));
-        draw(current);
-      }
-      requestAnimationFrame(frame);
+      frameId = 0;
+      if (!running || !visible || document.hidden) { lastNow = 0; return; }
+      var dt = lastNow ? Math.min(0.05, (now - lastNow) / 1000) : 0.016;
+      lastNow = now;
+      current += (target - current) * (1 - Math.exp(-dt / 0.08));
+      if (Math.abs(target - current) < 0.002) current = target;
+      draw(current);
+      if (current !== target) wake(); else lastNow = 0;
     }
-    requestAnimationFrame(frame);
+    function update(progress, inView) {
+      visible = inView;
+      var p = Math.max(0, Math.min(1, (window.scrollY || 0) / Math.max(320, window.innerHeight * 0.65)));
+      target = reduce.matches ? T_END : T_START + p * (T_END - T_START);
+      if (!visible || document.hidden) {
+        cancelAnimationFrame(frameId); frameId = 0; lastNow = 0;
+        current = target;
+      } else if (reduce.matches) { current = target; draw(current); }
+      else wake();
+    }
+    window.KLScroll.observe(stage, update);
+    document.addEventListener('visibilitychange', function () { update(0, visible); });
+    reduce.addEventListener('change', function () { update(0, visible); });
+    window.heroFlipDone = function () { return current >= T_END - 0.002; };
   }
 })();

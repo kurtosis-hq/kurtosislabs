@@ -367,7 +367,6 @@
 
   resize();
   stage.classList.add('is-ready');
-  requestAnimationFrame(frame);
 
   var qz = new THREE.Quaternion(), qp = new THREE.Quaternion(), qt = new THREE.Quaternion(), zAxis = new THREE.Vector3(0, 0, 1), axis = new THREE.Vector3();
 
@@ -396,77 +395,37 @@
     renderer.render(scene, camera);
   }
 
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var t = 0, last = 0, visible = true, started = reduce, introT = reduce ? FORM : -1, frozen = false;
-
-  // Only animate while the ring is on screen
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; }).observe(stage);
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var t = 0, last = 0, visible = false, started = reduce.matches;
+  var introT = reduce.matches ? FORM : -1, frozen = false, frameId = 0;
+  function stop() { cancelAnimationFrame(frameId); frameId = 0; last = 0; }
+  function wake() {
+    if (!frameId && visible && started && !frozen && !reduce.matches && !document.hidden) frameId = requestAnimationFrame(frame);
   }
-  // the intro starts once the page is about halfway past the hero (its bottom edge has risen to the
-  // middle of the screen), so the coins are already arriving as the section scrolls in
-  var hero = document.getElementById('hero-flip');
-  function checkStart() {
-    if (started) return;
-    var hb = hero ? hero.getBoundingClientRect().bottom : 0, r = stage.getBoundingClientRect();
-    if (hb <= window.innerHeight * 0.5 && r.top < window.innerHeight && r.bottom > 0) { started = true; introT = 0; }
-  }
-
-  window.ringIntroDone = function () { return introT >= FORM; };   // the Rate points wait for this (js/rate-steps.js)
-  window.ringIntroState = function () { return { started: started, introT: introT, dir: DIR }; };   // for tests
-  window.replayRingIntro = function () { started = true; introT = 0; frozen = false; };
-  window.setRingIntroTime = function (v, spin) { frozen = true; started = true; introT = v; t = spin || 0; draw(t, introT); };   // for tests
-
-  // Scroll hold: once the Rate section is fully on screen, scrolling down waits until the coins
-  // have closed the circle, then the page moves on as normal. Scrolling up is never held.
-  var sec = document.querySelector('.sec-rate');
-  function intoHold() { return !reduce && sec && sec.dataset.ringHold !== '0' && introT < FORM; }
-  function holdTarget() {
-    // a section taller than the screen (mobile) names the part to keep centred while held
-    var mk = sec.dataset.holdEl && sec.querySelector(sec.dataset.holdEl);
-    if (mk) { var r = mk.getBoundingClientRect(); return (window.innerHeight - r.height) / 2 - (r.top - sec.getBoundingClientRect().top); }
-    return Math.max(0, (window.innerHeight - sec.getBoundingClientRect().height) / 2);
-  }
-  function holdSnap() { window.scrollTo({ top: (window.scrollY || window.pageYOffset) + sec.getBoundingClientRect().top - holdTarget(), behavior: 'instant' }); }
-  var held = false;
-  function takeDown(dy) {                       // true when the page must not move
-    if (dy <= 0 || !intoHold()) { held = false; return false; }
-    var top = sec.getBoundingClientRect().top, t = holdTarget();
-    if (top - dy > t + 1 || top < t - window.innerHeight * 0.6) return false;   // this step won't reach the hold point yet, or already well past
-    if (!started) { started = true; introT = 0; }
-    held = true; holdSnap(); return true;
-  }
-  if (sec) {
-    window.addEventListener('wheel', function (e) { if (takeDown(e.deltaY)) e.preventDefault(); }, { passive: false });
-    var tY = null;
-    window.addEventListener('touchstart', function (e) { tY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener('touchmove', function (e) {
-      if (tY === null) return; var y = e.touches[0].clientY, dy = tY - y; tY = y;
-      if (takeDown(dy)) e.preventDefault();
-    }, { passive: false });
-    window.addEventListener('touchend', function () { tY = null; }, { passive: true });
-    window.addEventListener('keydown', function (e) {
-      var tag = (e.target && e.target.tagName) || '';
-      if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-      if ((e.key === 'ArrowDown' || e.key === 'PageDown' || (e.key === ' ' && !e.shiftKey)) && takeDown(1)) e.preventDefault();
-    });
-    // trackpad momentum can still move the page: keep the section in place while the hold is on
-    window.addEventListener('scroll', function () {
-      if (!held) return;
-      if (!intoHold()) { held = false; return; }
-      var top = sec.getBoundingClientRect().top, t = holdTarget();
-      if (top < t - 2) holdSnap(); else if (top > t + 2) held = false;   // scrolled back up: let go
-    }, { passive: true });
-  }
-
   function frame(now) {
-    var dt = last ? Math.min((now - last) / 1000, 0.1) : 0; last = now;
-    if (!frozen) checkStart();
-    if (!frozen && visible) {
-      if (!reduce) t = (t + dt) % (PERIOD * 4);
-      if (started) introT += dt;
-      draw(t, introT);
-    }
-    requestAnimationFrame(frame);
+    frameId = 0;
+    if (!visible || document.hidden || frozen || reduce.matches) { last = 0; return; }
+    var dt = last ? Math.min((now - last) / 1000, 0.1) : 0;
+    last = now;
+    t = (t + dt) % (PERIOD * 4); introT += dt;
+    draw(t, introT);
+    wake();
   }
+  window.KLScroll.observe(stage, function (progress, inView) {
+    visible = inView;
+    if (!started && visible && progress > 0) { started = true; introT = 0; }
+    if (!visible || document.hidden) stop();
+    else if (reduce.matches) { stop(); draw(t, FORM); }
+    else wake();
+  });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else wake(); });
+  window.addEventListener('resize', function () { if (visible && started) draw(t, introT); });
+  reduce.addEventListener('change', function () {
+    if (reduce.matches) { stop(); started = true; introT = FORM; draw(t, introT); }
+    else wake();
+  });
+  window.ringIntroDone = function () { return introT >= FORM; };
+  window.ringIntroState = function () { return { started: started, introT: introT, dir: DIR }; };
+  window.replayRingIntro = function () { started = true; introT = 0; frozen = false; wake(); };
+  window.setRingIntroTime = function (v, spin) { stop(); frozen = true; started = true; introT = v; t = spin || 0; draw(t, introT); };
 })();

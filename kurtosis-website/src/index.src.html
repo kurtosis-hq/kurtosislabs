@@ -83,9 +83,10 @@
   <!-- The 01 to 03 points step through on their own; the coin ring animates independently and never holds the page -->
   <section class="abs sec-rate" {{at 2,846,1438,800}} aria-labelledby="rate-h" data-ring-wait="0" data-ring-hold="0">
     <h2 id="rate-h" class="reveal abs t-h2" {{px left:142px;top:175px;width:760px;}}>Returns are easy to report<br>but hard to explain.</h2>
-    <!-- Three points, shown one at a time: scrolling holds the section and steps 01, 02, 03 while the
+    <!-- Three points, shown one at a time: native scrolling or the numbered buttons select 01, 02, 03 while the
          bar on the left fills a third at a time (js/rate-steps.js) -->
     <div class="abs rate-bar" aria-hidden="true" {{px left:146px;top:365px;width:5px;height:241px;}}><i class="rate-bar-fill"></i></div>
+    <div class="rate-controls" role="group" aria-label="Choose an investment risk"><button type="button" aria-label="Show risk 1" aria-pressed="true">01</button><button type="button" aria-label="Show risk 2" aria-pressed="false">02</button><button type="button" aria-label="Show risk 3" aria-pressed="false">03</button></div>
     <div class="rate-step is-on" data-i="0">
       <p class="abs ap-num nowrap" {{px left:202px;top:372px;}}>01</p>
       <h3 class="abs ap-title nowrap" {{px left:202px;top:430px;}}>Layers hide what you own</h3>
@@ -201,7 +202,7 @@
       <div class="abs dash-well" {{at 608,2082,658,309}}></div>
       <div class="abs dash-img" {{at 608,2088,658,303}}><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix.">
         <!-- Live chart drawn over the screenshot's chart: bars start level, then each scroll step moves through the cycle (js/products-switch.js) -->
-        <div id="cycle" class="cycle" aria-hidden="true">
+        <div id="cycle" class="cycle">
           <div class="cy-cover"></div>
           <div class="cy-bars"></div>
           <div class="cy-nav"><span class="cy-pill"></span><span class="cy-lab">Cycle Starts</span><span class="cy-lab">Transition</span><span class="cy-lab">Near Date</span><span class="cy-lab">Target Date</span></div>
@@ -330,6 +331,7 @@
 
 <script src="js/three.min.js"></script>
 <script src="js/coin-positions.js"></script>
+<script src="js/scroll-progress.js"></script>
 <script src="js/hero-flip.js"></script>
 <script src="js/coin-ring.js"></script>
 <script src="js/page.js"></script>

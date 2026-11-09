@@ -1,9 +1,5 @@
-// Mobile Products: both products are shown one under the other (Figma "Mobile view" 36:3497).
-// Horizon's live chart works as on the desktop: when Capital Planning and the two cards under it are on
-// screen they are held in place, and each scroll step moves the chart to the next stage of the cycle
-// (Cycle Starts, Transition, Near Date, Target Date). After the last stage the page scrolls on;
-// scrolling back up reverses it. The chart is drawn at the desktop's size and scaled down in CSS,
-// so the drawing code below is the desktop's (js/products-switch.js).
+// Cards follow native page scrolling; clicking or tapping keeps the chosen item
+// selected until the section leaves the screen. Scrolling is never blocked.
 (function () {
   var zone = document.getElementById('m-cycle-zone');
   if (!zone) return;
@@ -73,10 +69,9 @@
 
 
   var STEPS = [-1, 0, 1, 2, 3], N = STEPS.length;
-  var STEP = 60, SETTLE = 300;   // a quarter swipe per chart stage
-  var idx = 0, acc = 0, lockedAt = 0, locked = false;
-  function go(i) { if (i === idx || i < 0 || i >= N) return false; idx = i; acc = 0; lockedAt = Date.now(); drawCycle(STEPS[idx]); return true; }
-  labs.forEach(function (l, i) { l.style.cursor = 'pointer'; l.addEventListener('click', function () { go(i + 1); }); });
+  var idx = 0;
+  function go(i) { if (i === idx || i < 0 || i >= N) return false; idx = i; drawCycle(STEPS[idx]); return true; }
+  labs.forEach(function (l, i) { l.style.cursor = 'pointer'; window.KLScroll.button(l, function () { follow.select(i + 1); }); });
   drawCycle(-1);
 
   // The Checks bars slide in once, when the card first comes into view
@@ -88,61 +83,6 @@
     } else exitCard.classList.add('exits-in');
   }
 
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;   // stages still change on tap; no scroll hold
-
-  function target() { var h = zone.getBoundingClientRect().height; return (window.innerHeight - h) / 2; }
-  function snap() { window.scrollTo({ top: (window.scrollY || window.pageYOffset) + zone.getBoundingClientRect().top - target(), behavior: 'instant' }); }
-  var lastInput = 0, lastTop = zone.getBoundingClientRect().top;
-  function take(dy) {
-    lastInput = Date.now();
-    var top = zone.getBoundingClientRect().top, t = target();
-    lastTop = top;
-    if (!locked) {
-      if (dy > 0 && idx < N - 1 && top - dy <= t + 1 && top > t - window.innerHeight * 0.6) { locked = true; snap(); acc = 0; lockedAt = Date.now(); return true; }
-      if (dy < 0 && idx > 0 && top - dy >= t - 1 && top < t + window.innerHeight * 0.6) { locked = true; snap(); acc = 0; lockedAt = Date.now(); return true; }
-      return false;
-    }
-    if (Math.abs(top - t) > 2) snap();
-    if (Date.now() - lockedAt < SETTLE) { acc = 0; return true; }
-    acc += dy;
-    if (acc > STEP) { if (idx < N - 1) go(idx + 1); else { locked = false; acc = 0; } }
-    else if (acc < -STEP) { if (idx > 0) go(idx - 1); else { locked = false; acc = 0; } }
-    return true;
-  }
-  window.addEventListener('wheel', function (e) {
-    var dy = e.deltaMode === 1 ? e.deltaY * 40 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
-    if (take(dy)) e.preventDefault();
-  }, { passive: false });
-  var lastY = null;
-  window.addEventListener('touchstart', function (e) { lastY = e.touches[0].clientY; }, { passive: true });
-  window.addEventListener('touchmove', function (e) {
-    if (lastY === null) return;
-    var y = e.touches[0].clientY, dy = (lastY - y) * 2; lastY = y;
-    if (take(dy)) e.preventDefault();
-  }, { passive: false });
-  window.addEventListener('touchend', function () { lastY = null; }, { passive: true });
-  window.addEventListener('keydown', function (e) {
-    var tag = (e.target && e.target.tagName) || '';
-    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
-    var step = { ArrowDown: 120, ArrowUp: -120, PageDown: 600, PageUp: -600, ' ': e.shiftKey ? -600 : 600 }[e.key];
-    if (step && take(step > 0 ? STEP + 1 : -STEP - 1)) e.preventDefault();
-  });
-  window.addEventListener('scroll', function () {
-    var r = zone.getBoundingClientRect(), t = target(), top = r.top, prev = lastTop;
-    lastTop = top;
-    if (locked) {
-      if (r.bottom < 0 || r.top > window.innerHeight) { locked = false; return; }
-      if (Math.abs(top - t) > 2) snap();
-      return;
-    }
-    if (prev !== null && Date.now() - lastInput <= 1000) {
-      var down = prev > t && top <= t && idx < N - 1, up = prev < t && top >= t && idx > 0;
-      if (down || up) { locked = true; acc = 0; lockedAt = Date.now(); snap(); return; }
-    }
-    // not held: reset for the way the chart will next be entered, so a skip can't leave it part-way
-    if (top > t + 2 && idx !== 0) { idx = 0; drawCycle(STEPS[0]); }
-    else if (top < t - 2 && idx !== N - 1) { idx = N - 1; drawCycle(STEPS[N - 1]); }
-  }, { passive: true });
-  window.setCycleStep = function (i) { go(i); };   // for tests
+  var follow = window.KLScroll.steps(zone, N, go);
+  window.setCycleStep = function (i) { follow.select(i); };
 })();

@@ -87,10 +87,11 @@
   <div class="abs logo-strip" {{at 0,752,375,60}} role="img" aria-label="Partners: Exponent, Presto, Arbitrum"><div class="logo-track"></div></div>
 
   <!-- ===== Rate (Figma 35:3467) ===== -->
-  <!-- While the points step through, the section stops with its heading just under the nav bar and the coins below the screen edge -->
+  <!-- The points follow native scroll progress and can also be selected using the numbered buttons -->
   <section class="abs sec-rate" {{at 0,812,375,1091}} aria-labelledby="rate-h" data-hold-at="10" data-hold-w="375" data-ring-wait="0" data-ring-hold="0">
     <h2 id="rate-h" class="reveal abs t-h2" {{px left:15px;top:87px;width:350px;}}>Returns are easy to report but hard to explain.</h2>
     <div class="abs rate-bar" aria-hidden="true" {{px left:15px;top:273px;width:5px;height:290px;}}><i class="rate-bar-fill"></i></div>
+    <div class="rate-controls" role="group" aria-label="Choose an investment risk"><button type="button" aria-label="Show risk 1" aria-pressed="true">01</button><button type="button" aria-label="Show risk 2" aria-pressed="false">02</button><button type="button" aria-label="Show risk 3" aria-pressed="false">03</button></div>
     <div class="rate-step is-on" data-i="0">
       <p class="abs ap-num nowrap" {{px left:71px;top:280px;}}>01</p>
       <h3 class="abs ap-title nowrap" {{px left:71px;top:332px;}}>Layers hide what you own</h3>
@@ -172,7 +173,7 @@
       <p class="abs t-body" {{px left:15px;top:148px;width:296px;}}>Tell Horizon the date you need your cash. It helps you pick investments that pay out before that date, so your money isn’t stuck when you need it.</p>
       <a href="contact.html" class="abs btn btn-ink" {{px left:16px;top:276px;width:293px;height:36px;}}>Explore Horizon</a>
     </div>
-    <!-- Capital Planning and the two cards under it: held on screen while scrolling steps through
+    <!-- Capital Planning and the two cards under it: native scrolling or the chart controls select
          the four stages of the cycle, as on the desktop (js/m-products.js) -->
     <div id="m-cycle-zone" class="abs" aria-hidden="true" {{at 24,4008,326,781}}></div>
     <div class="abs p-card clip" {{at 24,4008,326,305}}>
@@ -181,7 +182,7 @@
       <div class="abs dash-well m-well" {{px left:0;top:94px;width:326px;height:211px;}}></div>
       <div class="abs m-dash" {{px left:0;top:124px;width:326px;height:150px;}}>
         <div class="dash-img m-dash-in"><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix.">
-          <div id="cycle" class="cycle" aria-hidden="true">
+          <div id="cycle" class="cycle">
             <div class="cy-cover"></div>
             <div class="cy-bars"></div>
             <div class="cy-nav"><span class="cy-pill"></span><span class="cy-lab">Cycle Starts</span><span class="cy-lab">Transition</span><span class="cy-lab">Near Date</span><span class="cy-lab">Target Date</span></div>
@@ -301,6 +302,7 @@
 <script src="js/three.min.js"></script>
 <script src="js/coin-positions.js"></script>
 <script src="js/m-coin-positions.js"></script>
+<script src="js/scroll-progress.js"></script>
 <script src="js/hero-flip.js"></script>
 <script src="js/coin-ring.js"></script>
 <script src="js/page.js"></script>
