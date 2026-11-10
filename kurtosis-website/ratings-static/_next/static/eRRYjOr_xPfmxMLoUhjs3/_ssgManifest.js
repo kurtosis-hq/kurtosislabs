@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fratings\u002Fpositions\u002F[slug]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

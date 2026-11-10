@@ -267,5 +267,6 @@
 }
 
 /* corner theme button: light outline on the dark page */
+a[aria-disabled="true"] { pointer-events: none; cursor: default; }
 :root[data-theme="dark"] .dark-corner { border-color: rgba(175, 196, 236, 0.45); color: #e8ebf3; }
 :root[data-theme="dark"] .dark-corner:hover { background: rgba(255, 255, 255, 0.08); }

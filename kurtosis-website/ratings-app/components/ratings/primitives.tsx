@@ -12,7 +12,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DISCLAIMER, MISSING_NOTE, SCENARIO_NOTE, icons, type EvidenceState, type Position } from "@/data/ratings";
+import { DISCLAIMER, MISSING_NOTE, SCENARIO_NOTE, SHOW_RESEARCH_NOTICES, icons, type EvidenceState, type Position } from "@/data/ratings";
 
 /* ---------- Brand marks ---------- */
 
@@ -121,6 +121,7 @@ const PILLS: Record<PillKind, { label: string; icon?: LucideIcon; cls: string }>
 };
 
 export function StatusPill({ kind, label, className }: { kind: PillKind; label?: string; className?: string }) {
+  if (kind === "preview" && !SHOW_RESEARCH_NOTICES) return null;
   const p = PILLS[kind];
   const Icon = p.icon;
   return (
@@ -183,10 +184,12 @@ export function GradeCell({
 /* ---------- Footnotes ---------- */
 
 export function ScenarioNote({ className }: { className?: string }) {
+  if (!SHOW_RESEARCH_NOTICES) return null;
   return <p className={cn("text-[12px] leading-4 text-muted-foreground", className)}>{SCENARIO_NOTE}</p>;
 }
 
 export function Footnotes({ className }: { className?: string }) {
+  if (!SHOW_RESEARCH_NOTICES) return null;
   return (
     <footer className={cn("space-y-2 border-t border-divider pt-6 text-[14px] leading-5 text-muted-foreground", className)}>
       <p>{SCENARIO_NOTE}</p>

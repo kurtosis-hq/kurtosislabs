@@ -1,21 +1,20 @@
 // Page footnotes plus the Kurtosis Labs footer, measured from the Figma footer
 // ("Frame 5" 1440 × 607 white, footer-links image 1438 × 311 at y 60, wordmark 200 px at y 514).
 import Link from "next/link";
-import { DISCLAIMER } from "@/data/ratings";
+import { DISCLAIMER, SHOW_RESEARCH_NOTICES } from "@/data/ratings";
 import { KMark } from "@/components/ratings/primitives";
 
-const SITE = "https://www.kurtosislabs.com";
-// Link labels come from the Figma footer. Targets the live site confirms point there;
-// the rest are placeholders until confirmed ([CONFIRM], see HANDOFF.md).
-const COLUMNS: { title: string; links: [string, string][] }[] = [
-  { title: "Product", links: [["Kurtosis Ratings", "/ratings"], ["Kurtosis Horizon", `${SITE}/index.html#product`], ["Explainable Vaults", `${SITE}/index.html#gradient`], ["Methodology", "/ratings/methodology"], ["Research", "/ratings/sources"]] },
-  { title: "Company", links: [["Who we serve", `${SITE}/index.html#who`], ["Philosophy", `${SITE}/index.html#philosophy`], ["Contact Kurtosis Labs", "#contact"]] },
-  { title: "Legal", links: [["Terms of Use", "#terms"], ["Privacy Policy", "#privacy"], ["Cookie Policy", "#cookies"], ["Disclosures", "#disclosures"]] },
-  { title: "Socials", links: [["X", "#x"], ["LinkedIn", "#linkedin"], ["Back to top", "#top"]] },
+// Keep unavailable destinations visible, but without an actionable href.
+const COLUMNS: { title: string; links: [string, string | null][] }[] = [
+  { title: "Product", links: [["Kurtosis Ratings", "/ratings"], ["Kurtosis Horizon", null], ["Explainable Vaults", null], ["Methodology", "/ratings/methodology"], ["Research", "/ratings/sources"]] },
+  { title: "Company", links: [["Who we serve", null], ["Philosophy", null], ["Contact Kurtosis Labs", null]] },
+  { title: "Legal", links: [["Terms of Use", null], ["Privacy Policy", null], ["Cookie Policy", null], ["Disclosures", null]] },
+  { title: "Socials", links: [["X", null], ["LinkedIn", null], ["Back to top", "#top"]] },
 ];
 
 /* Position-page footnotes (the other pages use Notes in components/ratings/pages/kit.tsx). */
 export function PageNotes({ notes }: { notes: string[] }) {
+  if (!SHOW_RESEARCH_NOTICES) return null;
   return (
     <footer className="mx-auto w-full max-w-[1240px] px-4 pt-12 pb-16">
       <div className="space-y-2 border-t border-divider pt-6 text-[13px] leading-5 text-steel">
@@ -48,7 +47,7 @@ export function LabsFooter() {
                 <ul className="mt-6 flex flex-col gap-[18px] text-[13px] leading-5">
                   {c.links.map(([l, h]) => (
                     <li key={l}>
-                      <a href={h} className="text-[var(--footer-link)] hover:text-ink" {...(h.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>
+                      <a href={h ?? undefined} role={h ? undefined : "link"} aria-disabled={h ? undefined : true} tabIndex={h ? undefined : -1} className="text-[var(--footer-link)] hover:text-ink">
                         {l}
                       </a>
                     </li>

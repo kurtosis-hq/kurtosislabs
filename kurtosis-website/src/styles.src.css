@@ -26,6 +26,7 @@ html, body { margin: 0; background: var(--white); }
 html, body { overscroll-behavior-y: none; }
 body { overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
+a[aria-disabled="true"] { pointer-events: none; cursor: default; }
 button { font: inherit; border: 0; cursor: pointer; }
 :focus-visible { outline: 2px solid #2b7bd6; outline-offset: 2px; }
 
@@ -59,7 +60,8 @@ body:not(.m) .t-eyebrow { font-size: 20px; letter-spacing: 0.4px; }
 .t-h2g { font-family: var(--font-display); font-weight: 500; font-size: 50px; line-height: 72px; letter-spacing: -2px; color: var(--black); margin: 0; }
 .t-h3 { font-family: var(--font-display); font-weight: 500; font-size: 40px; line-height: 72px; letter-spacing: -1.6px; color: var(--black); margin: 0; }
 .t-card { font-family: var(--font-display); font-weight: 500; font-size: 40px; line-height: 72px; letter-spacing: -1.6px; color: var(--white); margin: 0; }
-.t-body { font-family: var(--font-body); font-size: 16px; line-height: 24px; color: var(--text-88); margin: 0; }
+.t-body { font-family: var(--font-body); font-size: max(14px!, 16px); line-height: max(21px!, 24px); color: var(--text-88); margin: 0; }
+body:not(.m) .canvas .t-body { font-size: max(16px!, 16px); line-height: max(24px!, 24px); }
 body:not(.m) .t-body { font-weight: 500; }
 body:not(.m) .t-hero { font-family: '42dot Sans', var(--font-body); font-weight: 500; }   /* hero paragraph: 42dot Sans Medium */
 .t-body.on-dark { color: var(--white-88); }
@@ -70,7 +72,7 @@ body:not(.m) .t-hero { font-family: '42dot Sans', var(--font-body); font-weight:
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 8px 14px; border-radius: 4px;   /* Figma OFFICIAL-WEBSITE: every button 4 px */
-  font-size: 14px; line-height: 20px; font-weight: 700; white-space: nowrap;
+  min-height: 44px!; font-size: max(14px!, 14px); line-height: max(20px!, 20px); font-weight: 700; white-space: nowrap;
   transition: filter 0.15s ease, transform 0.15s ease;
 }
 .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
@@ -94,7 +96,7 @@ body:not(.m) .t-hero { font-family: '42dot Sans', var(--font-body); font-weight:
 .brand span { font-family: var(--font-body); font-weight: 500; font-size: 20px; line-height: 28px; color: var(--white); }
 .nav { display: flex; white-space: nowrap; gap: 40px; font-family: var(--font-body); font-size: 14px; line-height: 20px; color: var(--white-95); }
 .nav a:hover { color: var(--white); text-decoration: underline; text-underline-offset: 4px; }
-.t-hero { font-family: var(--font-body); font-weight: 400; font-size: 16px; line-height: 24px; color: var(--white); margin: 0; }
+.t-hero { font-family: var(--font-body); font-weight: 400; font-size: max(16px!, 16px); line-height: max(24px!, 24px); color: var(--white); margin: 0; }
 
 /* Partner logos: laid over the bottom of the photo at 70%; one 950-px set of logos repeated and scrolled left forever */
 .logo-strip { background: #e8e8ea; overflow: hidden; opacity: 0.7; }
@@ -351,8 +353,8 @@ body:not(.m) .prod-card.is-open { box-shadow: 3px 4px 29.1px rgba(0, 0, 0, 0.3);
    Scrolled: a floating black bar, 748 x 44 with 9 px corners (Figma 80:4), centred 24 px from the top,
    logo square only, with a slimmer 32 px button. */
 .site-nav {
-  --u: calc(100vw / 1440);
-  position: fixed; z-index: 50; top: 14px; left: 131px; width: 1151px; height: 56px; border-radius: 18px;
+  --u: 1px!;
+  position: fixed; z-index: 50; top: 14px; left: max(24px!, calc((100% - 1178px!) / 2)); width: min(1151px!, calc(100% - 48px!)); height: 56px; border-radius: 18px;
   background: rgba(0, 0, 0, 0); box-shadow: 0 0 0 rgba(8, 20, 40, 0);
   /* as in the reference video: the bar turns solid almost at once, then shrinks into the centred pill */
   transition: top 0.8s cubic-bezier(0.22, 1, 0.36, 1), left 0.8s cubic-bezier(0.22, 1, 0.36, 1), width 0.8s cubic-bezier(0.22, 1, 0.36, 1),
@@ -365,11 +367,12 @@ body:not(.m) .prod-card.is-open { box-shadow: 3px 4px 29.1px rgba(0, 0, 0, 0.3);
 .site-nav .brand span { display: inline-block; max-width: 200px; overflow: hidden; transition: opacity 0.25s ease, max-width 0.45s ease; }
 .site-nav .nav { left: 432px; }   /* Figma: Products starts at x 563 */
 .site-nav .nav-cta { right: 0; }
-.site-nav.is-pill { top: 24px; left: 346px; width: 748px; height: 44px; border-radius: 9px; background: #000000; box-shadow: 0 10px 28px rgba(8, 20, 40, 0.18); }
+.site-nav.is-pill { top: 24px; left: max(24px!, calc((100% - 748px!) / 2)); width: min(748px!, calc(100% - 48px!)); height: 56px; border-radius: 9px; background: #000000; box-shadow: 0 10px 28px rgba(8, 20, 40, 0.18); }
 .site-nav.is-pill .brand { left: 14px; }
 .site-nav.is-pill .brand span { opacity: 0; max-width: 0; }
 .site-nav.is-pill .nav { left: 148px; }   /* Figma pill: links centred between the mark and the button */
-.site-nav.is-pill .nav-cta { right: 14px; height: 32px; padding: 6px 14px; border-radius: 4px; }
+.site-nav .nav-cta { min-height: 44px; }
+.site-nav.is-pill .nav-cta { right: 14px; height: 44px; padding: 6px 14px; border-radius: 4px; }
 .site-nav .nav-cta { transition: right 0.8s cubic-bezier(0.22, 1, 0.36, 1), height 0.8s cubic-bezier(0.22, 1, 0.36, 1), padding 0.8s ease, border-radius 0.8s ease, filter 0.15s ease; }
 /* hidden while the Products box sits under it (js/page.js) */
 .site-nav.is-away { transform: translateY(-140%); opacity: 0; pointer-events: none; }

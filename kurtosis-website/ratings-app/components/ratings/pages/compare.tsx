@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, ChevronDown, CircleAlert, Eye, Link2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { SCENARIO_NOTE, extras, positions, requirementState, requirements, type Position } from "@/data/ratings";
+import { SCENARIO_NOTE, SHOW_RESEARCH_NOTICES, extras, positions, requirementState, requirements, type Position } from "@/data/ratings";
 import { TokenIcon } from "@/components/ratings/primitives";
 import { StateChip } from "@/components/ratings/position/ui";
 import { Accordion, Container, Notes, PageHeader } from "./kit";
@@ -164,7 +164,7 @@ export function ComparePage() {
           </span>
         </div>
         <Table />
-        <p className="pt-3 text-[12px] leading-5 text-steel">{SCENARIO_NOTE}</p>
+        {SHOW_RESEARCH_NOTICES && <p className="pt-3 text-[12px] leading-5 text-steel">{SCENARIO_NOTE}</p>}
         <p className="pt-3 text-[12px] leading-5 text-steel">All four current evidence ratings remain NR. Changed assumptions prompt reassessment, never an automatic upgrade.</p>
 
         <div className="flex flex-col gap-3 pt-10">

@@ -40,8 +40,8 @@ git push -u origin main
 ## What is where
 | Path | What it is |
 |---|---|
-| `index.html`, `styles.css` | Desktop landing page (520 px wide and up) |
-| `mobile.html`, `mobile.css` | Phone landing page (below 520 px). Each page switches to the other when the window crosses 520 px |
+| `index.html`, `styles.css` | Desktop landing page (1280 px wide and up) |
+| `mobile.html`, `mobile.css` | Stacked phone/tablet landing page (below 1280 px), centered with a 520 px reading-width limit. Each page switches to the other across 1280 px |
 | `contact.html`, `contact.css` | Request a walkthrough form (every "Request a demo" and "Sign up" button opens it). Not connected to an inbox yet |
 | `coming-soon.html` | About Us and Blog |
 | `ratings/`, `ratings-static/` | Kurtosis Ratings: static export of `ratings-app/`, light mode first, theme button in the corner |
@@ -63,8 +63,14 @@ npm install
 npm run build
 ```
 Then copy `ratings-app/out/ratings` to `ratings/`, `ratings-app/out/_next` to `ratings-static/_next`, and run
-`python3 src/ratings_fix.py` from the top folder. It makes the Ratings pages work in any folder, scale like the landing
-page and start in light mode. `ratings-app/_left-out-of-static-build/` holds pages kept out of the static build.
+`python3 src/ratings_fix.py` from the top folder. It makes the Ratings pages work in any folder and start in light mode,
+preserving their native responsive breakpoints and text sizes. It also restores breakpoints in older exports that were
+previously scaled as one canvas. `ratings-app/_left-out-of-static-build/` holds pages kept out of the static build.
+`src/ratings-responsive.css` supplies the exported navigation and footer's responsive corrections; the fixer embeds it
+in every Ratings page, so rerun the fixer and the root build after changing it.
+
+Contact and Coming Soon use fixed-size text and controls inside fluid containers. Contact fields stack below 600 px;
+the shared phone menu is used below 1024 px. Keep these thresholds independent of the landing-page composition.
 
 ## Not connected yet
 The contact form and the phone email field do not send anywhere.
