@@ -72,7 +72,7 @@ body:not(.m) .t-hero { font-family: '42dot Sans', var(--font-body); font-weight:
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: calc(8 * var(--u)) calc(14 * var(--u)); border-radius: calc(4 * var(--u));   /* Figma OFFICIAL-WEBSITE: every button 4 px */
-  min-height: 44px; font-size: max(14px, calc(14 * var(--u))); line-height: max(20px, calc(20 * var(--u))); font-weight: 700; white-space: nowrap;
+  min-height: calc(36 * var(--u)); font-size: max(14px, calc(14 * var(--u))); line-height: max(20px, calc(20 * var(--u))); font-weight: 700; white-space: nowrap;
   transition: filter 0.15s ease, transform 0.15s ease;
 }
 .btn:hover { filter: brightness(1.08); transform: translateY(calc(-1 * var(--u))); }
@@ -367,17 +367,21 @@ body:not(.m) .prod-card.is-open { box-shadow: calc(3 * var(--u)) calc(4 * var(--
 .site-nav .brand span { display: inline-block; max-width: calc(200 * var(--u)); overflow: hidden; transition: opacity 0.25s ease, max-width 0.45s ease; }
 .site-nav .nav { left: calc(432 * var(--u)); }   /* Figma: Products starts at x 563 */
 .site-nav .nav-cta { right: 0; }
-.site-nav.is-pill { top: calc(24 * var(--u)); left: max(24px, calc((100% - 748px) / 2)); width: min(748px, calc(100% - 48px)); height: calc(56 * var(--u)); border-radius: calc(9 * var(--u)); background: #000000; box-shadow: 0 calc(10 * var(--u)) calc(28 * var(--u)) rgba(8, 20, 40, 0.18); }
+.site-nav.is-pill { top: calc(24 * var(--u)); left: max(24px, calc((100% - 748px) / 2)); width: min(748px, calc(100% - 48px)); height: calc(44 * var(--u)); border-radius: calc(9 * var(--u)); background: #000000; box-shadow: 0 calc(10 * var(--u)) calc(28 * var(--u)) rgba(8, 20, 40, 0.18); }
 .site-nav.is-pill .brand { left: calc(14 * var(--u)); }
 .site-nav.is-pill .brand span { opacity: 0; max-width: 0; }
 .site-nav.is-pill .nav { left: calc(148 * var(--u)); }   /* Figma pill: links centred between the mark and the button */
-.site-nav .nav-cta { min-height: calc(44 * var(--u)); }
-.site-nav.is-pill .nav-cta { right: calc(14 * var(--u)); height: calc(44 * var(--u)); padding: calc(6 * var(--u)) calc(14 * var(--u)); border-radius: calc(4 * var(--u)); }
+.site-nav .nav-cta { min-height: calc(36 * var(--u)); }
+.site-nav.is-pill .nav-cta { right: calc(14 * var(--u)); min-height: calc(32 * var(--u)); height: calc(32 * var(--u)); padding: calc(6 * var(--u)) calc(14 * var(--u)); border-radius: calc(4 * var(--u)); }
 .site-nav .nav-cta { transition: right 0.8s cubic-bezier(0.22, 1, 0.36, 1), height 0.8s cubic-bezier(0.22, 1, 0.36, 1), padding 0.8s ease, border-radius 0.8s ease, filter 0.15s ease; }
 /* hidden while the Products box sits under it (js/page.js) */
 .site-nav.is-away { transform: translateY(-140%); opacity: 0; pointer-events: none; }
 .site-nav { will-change: transform; }
 @media (prefers-reduced-motion: reduce) { .site-nav, .site-nav * { transition: none !important; } }
+/* Preserve the original compact desktop proportions; give touch layouts more room. */
+@media (width < 1024px) {
+  .btn, .site-nav .nav-cta, .site-nav.is-pill .nav-cta { min-height: 44px; height: auto; }
+}
 
 /* 3D Allocation illustrations: once the 3D scene is ready the flat pictures are hidden */
 .alloc-3d { pointer-events: none; }

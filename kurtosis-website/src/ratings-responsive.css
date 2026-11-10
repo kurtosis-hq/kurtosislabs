@@ -35,7 +35,15 @@ nav[aria-label="Ratings"] > ul {
   }
 }
 a[aria-disabled="true"] { pointer-events: none; cursor: default; }
+/* Let the source count move below its help link on narrow screens. */
+main div:has(> output[aria-live="polite"]) { flex-wrap: wrap; gap: 8px 16px; }
 @media (64rem <= width < 80rem) {
   footer[class*="--footer-bg"] .grid { grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr)); }
   footer[class*="--footer-bg"] .grid > div:first-child { grid-column: auto; }
+}
+/* The original phone footer is one column; widen to two only when there is room. */
+@media (width < 40rem) {
+  footer[class*="--footer-bg"] > div > div { padding-inline: 16px; }
+  footer[class*="--footer-bg"] .grid { grid-template-columns: minmax(0, 1fr); }
+  footer[class*="--footer-bg"] > p { font-size: clamp(40px, 14.9333vw, 96px) !important; }
 }
