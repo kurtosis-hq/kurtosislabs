@@ -36,7 +36,7 @@ nav[aria-label="Ratings"] > ul {
 }
 a[aria-disabled="true"] { pointer-events: none; cursor: default; }
 /* Let the source count move below its help link on narrow screens. */
-main div:has(> output[aria-live="polite"]) { flex-wrap: wrap; gap: 8px 16px; }
+div:has(> output[aria-live="polite"]) { flex-wrap: wrap; gap: 8px 16px; }
 @media (64rem <= width < 80rem) {
   footer[class*="--footer-bg"] .grid { grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr)); }
   footer[class*="--footer-bg"] .grid > div:first-child { grid-column: auto; }

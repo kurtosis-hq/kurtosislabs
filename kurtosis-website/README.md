@@ -50,7 +50,7 @@ git push -u origin main
 | `ratings/`, `ratings-static/` | Kurtosis Ratings: static export of `ratings-app/`, light mode first, theme button in the corner |
 | `js/` | Animations and behaviour (coin flip, coin ring, scroll holds, Horizon chart, nav, contact form) |
 | `assets/` | Images, logos, token artwork |
-| `src/` | Editable sources; `python -X utf8 src/build.py` rebuilds HTML, CSS and the shared homepage preview |
+| `src/` | Editable sources; `python -X utf8 src/build.py` rebuilds HTML, CSS and all three standalone previews |
 | `quick-view/` | Standalone homepage, Contact and Coming Soon previews, plus an alias for the old mobile preview |
 | `ratings-app/` | Next.js source of Kurtosis Ratings (see below) |
 
@@ -81,7 +81,9 @@ previously scaled as one canvas. `ratings-app/_left-out-of-static-build/` holds 
 in every Ratings page, so rerun the fixer and the root build after changing it.
 
 Contact and Coming Soon use fixed-size text and controls inside fluid containers. Contact fields stack below 600 px;
-the shared collapsed menu is used below 1024 px.
+the shared collapsed menu is used below 1024 px. Their original desktop spacing, background composition and compact
+buttons are preserved; touch layouts use larger controls. Ratings keeps its original cards and tables, with a stacked
+phone footer and columns on wider screens. Standalone previews are generated from these same pages and styles.
 
 ## Not connected yet
 The contact form does not send anywhere.

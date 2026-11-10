@@ -33,7 +33,7 @@ open(os.path.join(OUT, 'mobile.html'), 'w', encoding='utf-8').write('''<!doctype
 # Contact and Coming Soon still share these menu styles.
 open(os.path.join(OUT, 'menu.css'), 'w', encoding='utf-8').write(to_units(open(os.path.join(HERE, 'menu.src.css'), encoding='utf-8').read()))
 
-# Contact page stylesheet: same Figma-pixel units, scaled by --u set in the file itself
+# Contact and Coming Soon resolve design units to ordinary CSS pixels.
 C_CSS = os.path.join(HERE, 'contact.src.css')
 if os.path.exists(C_CSS):
     open(os.path.join(OUT, 'contact.css'), 'w', encoding='utf-8').write(to_units(open(C_CSS, encoding='utf-8').read()))
@@ -41,4 +41,4 @@ if os.path.exists(C_CSS):
 
 from build_quick_view import build_quick_view
 build_quick_view()
-print('built the shared standalone preview')
+print('built the shared homepage, Contact and Coming Soon standalone previews')
