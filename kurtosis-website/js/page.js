@@ -21,7 +21,8 @@
   var box = document.querySelector('.bento');
   function update() {
     nav.classList.toggle('is-pill', (window.scrollY || window.pageYOffset) > 8);
-    if (!box || document.body.classList.contains('responsive')) return;
+    if (!box) return;
+    if (document.body.classList.contains('responsive') && window.innerWidth < 1024) { nav.classList.remove('is-away'); return; }
     var r = box.getBoundingClientRect(), navBottom = nav.offsetTop + nav.offsetHeight;   // resting position, unaffected by the slide
     nav.classList.toggle('is-away', r.top < navBottom + 24 && r.bottom > 0);
   }

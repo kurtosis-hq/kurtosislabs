@@ -110,9 +110,23 @@
   function onStages() { return STEPS[idx].p === HZ && idx >= firstStep(HZ); }   // on Horizon: each chart stage takes a quarter swipe
   function firstStep(p) { for (var k = 0; k < N; k++) if (STEPS[k].p === p) return k; return 0; }
   cards.forEach(function (c, i) { c.addEventListener('click', function () { if (i !== STEPS[idx].p) go(firstStep(i)); }); });
-  labs.forEach(function (l, i) { l.style.cursor = 'pointer'; l.addEventListener('click', function () { go(firstStep(HZ) + 1 + i); }); });
+  labs.forEach(function (l, i) { l.style.cursor = 'pointer'; if (!l.hasAttribute('data-cycle')) l.addEventListener('click', function () { go(firstStep(HZ) + 1 + i); }); });
   cycleControls.forEach(function (button, i) { button.addEventListener('click', function () { go(firstStep(HZ) + 1 + i); }); });
   layout();
+
+  // Keep the original chart control readable on narrow screens, using the same buttons.
+  if (fluid && cyc) {
+    var cycleNav = cyc.querySelector('.cy-nav');
+    var planning = document.querySelector('.capital-planning');
+    var compactChart = window.matchMedia('(width < 768px)');
+    function fitChartControl() {
+      if (!cycleNav || !planning) return;
+      cycleNav.classList.toggle('cycle-fluid', compactChart.matches);
+      (compactChart.matches ? planning : cyc).appendChild(cycleNav);
+    }
+    compactChart.addEventListener('change', fitChartControl);
+    fitChartControl();
+  }
 
   // Exit Routes bars slide in once, when the section first comes into view
   var exitCard = document.getElementById('exit-card');

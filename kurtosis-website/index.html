@@ -40,17 +40,13 @@
     <div class="rate-layout container">
       <div class="rate-copy">
         <h2 id="rate-h" class="t-h2">Returns are easy to report<br>but hard to explain.</h2>
-        <div class="rate-controls" role="group" aria-label="Why returns need explaining">
-          <button type="button" data-rate="0" aria-label="Layers hide what you own" aria-pressed="true">01</button>
-          <button type="button" data-rate="1" aria-label="A good month can hide a problem" aria-pressed="false">02</button>
-          <button type="button" data-rate="2" aria-label="Things change while you sleep" aria-pressed="false">03</button>
+        
+        <div class="rate-steps"><div class="rate-bar" role="group" aria-label="Why returns need explaining"><i class="rate-bar-fill" aria-hidden="true"></i><button type="button" data-rate="0" aria-label="01: Layers hide what you own" aria-pressed="true"></button><button type="button" data-rate="1" aria-label="02: A good month can hide a problem" aria-pressed="false"></button><button type="button" data-rate="2" aria-label="03: Things change while you sleep" aria-pressed="false"></button></div>
+          <div class="rate-step is-on" data-i="0"><p class="ap-num">01</p><h3 class="ap-title">Layers hide what you own</h3><p class="t-body">One asset can be wrapped, deposited into a yield protocol, split into principal and yield tokens and used as collateral elsewhere. Each step changes what can go wrong.</p></div>
+          <div class="rate-step" data-i="1" aria-hidden="true"><p class="ap-num">02</p><h3 class="ap-title">A good month can hide a problem</h3><p class="t-body">A market-neutral portfolio can make additional profits from an unknown interest-rate or credit exposure. The profit does not make that exposure acceptable.</p></div>
+          <div class="rate-step" data-i="2" aria-hidden="true"><p class="ap-num">03</p><h3 class="ap-title">Things change while you sleep</h3><p class="t-body">An exploit, a depeg or a liquidation can happen overnight. Checking X and Telegram is not a monitoring process.</p></div>
         </div>
-        <div class="rate-steps">
-          <div class="rate-step is-on" data-i="0"><h3 class="ap-title">Layers hide what you own</h3><p class="t-body">One asset can be wrapped, deposited into a yield protocol, split into principal and yield tokens and used as collateral elsewhere. Each step changes what can go wrong.</p></div>
-          <div class="rate-step" data-i="1" aria-hidden="true"><h3 class="ap-title">A good month can hide a problem</h3><p class="t-body">A market-neutral portfolio can make additional profits from an unknown interest-rate or credit exposure. The profit does not make that exposure acceptable.</p></div>
-          <div class="rate-step" data-i="2" aria-hidden="true"><h3 class="ap-title">Things change while you sleep</h3><p class="t-body">An exploit, a depeg or a liquidation can happen overnight. Checking X and Telegram is not a monitoring process.</p></div>
-        </div>
-        <a href="contact.html" class="btn btn-navy">Request a demo</a>
+        <a href="contact.html" class="btn btn-navy btn-sq">Request a demo</a>
       </div>
       <div id="coin-ring" class="ring-stage" data-fluid="true" data-assets="assets/" role="img" aria-label="Ten Kurtosis token coins circling in a tilted ring, each turning slowly."></div>
     </div>
@@ -59,60 +55,76 @@
   <section id="products" class="section container" aria-labelledby="products-h">
     <div class="section-heading centered"><p class="t-eyebrow">Our Products</p><h2 id="products-h" class="t-h2">Research that stays with the position</h2><p class="t-body">From the first look to the day you exit, Ratings, Horizon and Gradient work from the same research.</p></div>
     <div class="bento">
-      <div id="prod-left" class="prod-col">
-        <article class="prod-card is-open" data-i="0">
-          <h3><button class="product-toggle" type="button" aria-expanded="true" aria-controls="ratings-copy ratings-preview">Kurtosis Ratings<span aria-hidden="true">↗</span></button></h3>
-          <div id="ratings-copy" class="pc-full">
-            <div class="p-icon" aria-hidden="true"><img src="assets/layer.svg" alt=""></div>
-            <p class="t-body">Ratings peels back each layer to show what you actually own, what could make you lose money and how you’d get your money out. After you invest, it keeps checking and tells you why the value went up or down.</p>
-            <a href="ratings/" class="btn btn-ink">Discover Ratings</a>
-          </div>
-        </article>
-        <article class="prod-card" data-i="1">
-          <h3><button class="product-toggle" type="button" aria-expanded="false" aria-controls="horizon-copy horizon-preview">Kurtosis Horizon<span aria-hidden="true">↗</span></button></h3>
-          <div id="horizon-copy" class="pc-full" aria-hidden="true" inert>
-            <div class="p-icon" aria-hidden="true"><img src="assets/horizon-icon.svg" alt=""></div>
-            <p class="t-body">Tell Horizon the date you need your cash. It helps you pick investments that pay out before that date, so your money isn’t stuck when you need it.</p>
-            <a href="contact.html" class="btn btn-ink">Explore Horizon</a>
-          </div>
-        </article>
-      </div>
-      <div id="ratings-preview" class="prod-pane is-on" data-i="0">
-        <div class="p-card dependencies">
-          <h3 class="t-h4">Position Dependencies</h3><p class="t-small">Trace your position layer by layer.</p>
-          <div class="dependency-chain">
-            <div class="chip chip-mid"><b>Exponent vault</b><span>Wrapper and vault</span><span>Economic Dependency</span></div>
-            <div class="chip chip-dark"><b>srONyc</b><span>Senior Tranche Claim</span><span>Economic Dependency</span></div>
-            <div class="chip chip-mid"><b>ONyc</b><span>NAV-based Token</span><span>Economic Dependency</span></div>
-            <div class="chip chip-mid"><b>OnRe segregated account</b><span>Economic Claim and Account</span><span>Economic Dependency</span></div>
-          </div>
-          <div class="chip chip-light protection"><b>jrONyc first-loss capital</b><span>Protection Dependency • Not a held asset</span></div>
-        </div>
-        <div class="p-card live-updates">
-          <h3 class="t-h4">Live Updates</h3><p class="t-small">Stay on top of the latest events</p>
-          <div class="live-event"><h4 class="live-h">Exponent and OnRe renew $8,000 in rewards</h4><p class="live-date">26 Oct 2026, 17:18 UTC</p><p class="live-p">Exponent and OnRe have renewed rewards for ONyc and srONyc limit orders and srONyc liquidity provision, with $6,000 allocated to limit orders and $2,000 to liquidity.</p></div>
-          <div class="live-event"><h4 class="live-h">BulkTrade will close its BulkSOL market</h4><p class="live-date">26 Oct 2026, 13:35 UTC</p></div>
-        </div>
-        <div id="exit-card" class="p-card"><h3 class="t-h4">The Checks</h3><p class="t-small">What are you exposed to?</p><div class="checks"><div class="exit e1x"><b>What you hold</b></div><div class="exit e2x"><b>How it works</b></div><div class="exit e3x"><b>What backs it</b></div><div class="exit e4x"><b>How you get out</b></div></div></div>
-      </div>
+      <div id="prod-left" class="prod-col"><article class="prod-card is-open" data-i="0">
+      <div class="p-icon" aria-hidden="true"><img src="assets/layer.svg" alt="" class="layer l3"><img src="assets/layer.svg" alt="" class="layer l2"><img src="assets/layer.svg" alt="" class="layer l1"></div><h3 class="t-h3"><button class="product-toggle" type="button" aria-expanded="true" aria-controls="ratings-copy ratings-preview">Kurtosis Ratings</button></h3>
+      <div id="ratings-copy" class="pc-full"><p class="t-body">Ratings peels back each layer to show what you actually own, what could make you lose money and how you’d get your money out. After you invest, it keeps checking and tells you why the value went up or down.</p><a href="ratings/" class="btn btn-ink">Discover Ratings</a></div>
+    </article><article class="prod-card" data-i="1">
+      <div class="p-icon" aria-hidden="true"><img src="assets/horizon-icon.svg" alt=""></div><h3 class="t-h3"><button class="product-toggle" type="button" aria-expanded="false" aria-controls="horizon-copy horizon-preview">Kurtosis Horizon</button></h3>
+      <div id="horizon-copy" class="pc-full" aria-hidden="true" inert><p class="t-body">Tell Horizon the date you need your cash. It helps you pick investments that pay out before that date, so your money isn’t stuck when you need it.</p><a href="contact.html" class="btn btn-ink">Explore Horizon</a></div>
+    </article></div>
+      <div id="ratings-preview" class="prod-pane is-on" data-i="0"><div class="p-card clip diagram-card dependencies" style="--art-width:658;aspect-ratio:658/382"><div class="preview-art">
+      <p class="abs t-h4 nowrap" style="left:calc(29 * var(--u));top:calc(8 * var(--u));">Position Dependencies</p>
+      <p class="abs t-small nowrap" style="left:calc(29 * var(--u));top:calc(65 * var(--u));">Trace your position layer by layer.</p>
+      <div class="abs dep-line" style="left:calc(4 * var(--u));top:calc(189 * var(--u));width:calc(650 * var(--u));height:calc(4 * var(--u));"></div>
+      <div class="abs chip chip-mid chip-r" style="left:calc(-22 * var(--u));top:calc(144 * var(--u));width:calc(89 * var(--u));height:calc(90 * var(--u));"></div>
+      <b class="abs chip-t" style="left:calc(-71 * var(--u));top:calc(148 * var(--u));width:calc(101 * var(--u));">Exponent vault</b>
+      <span class="abs chip-s" style="left:calc(-51 * var(--u));top:calc(179 * var(--u));width:calc(84 * var(--u));">wrapper and vault</span>
+      <span class="abs chip-s" style="left:calc(-80 * var(--u));top:calc(198 * var(--u));width:calc(104 * var(--u));">Economic Dependency</span>
+      <div class="abs chip chip-dark" style="left:calc(93 * var(--u));top:calc(144 * var(--u));width:calc(221 * var(--u));height:calc(90 * var(--u));"><b>srONyc</b><span>Senior Tranche Claim</span><span>Economic Dependency</span></div>
+      <div class="abs chip chip-mid" style="left:calc(342 * var(--u));top:calc(144 * var(--u));width:calc(221 * var(--u));height:calc(90 * var(--u));"><b>ONyc</b><span>NAV-based Token</span><span>Economic Dependency</span></div>
+      <div class="abs chip chip-mid" style="left:calc(592 * var(--u));top:calc(144 * var(--u));width:calc(221 * var(--u));height:calc(90 * var(--u));"><b>OnRe segregated account</b><span>Economic Claim and Account</span><span>Economic Dependency</span></div>
+      <img src="assets/connector.svg" alt="" class="abs" style="left:calc(128 * var(--u));top:calc(234 * var(--u));width:calc(33.3 * var(--u));height:calc(75.4 * var(--u));">
+      <svg class="abs" viewBox="0 0 10 14" fill="none" aria-hidden="true" style="left:calc(152 * var(--u));top:calc(300 * var(--u));width:calc(9.5 * var(--u));height:calc(14 * var(--u));"><path d="M1.5 1.5 8 7l-6.5 5.5" stroke="#C8C8C8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="abs chip chip-light" style="left:calc(166 * var(--u));top:calc(257 * var(--u));width:calc(246 * var(--u));height:calc(90 * var(--u));"><b>jrONyc first-loss capital</b><span>Protection Dependency • Not a held asset</span><span>Protection Dependency</span></div>
+    </div></div><div class="p-card clip diagram-card live-updates" style="--art-width:322;aspect-ratio:322/304"><div class="preview-art">
+      <p class="abs t-h4 nowrap" style="left:calc(32 * var(--u));top:calc(3 * var(--u));">Live Updates</p>
+      <p class="abs t-small nowrap" style="left:calc(33 * var(--u));top:calc(60 * var(--u));">Stay on top of the latest events</p>
+      <div class="abs live-line" style="left:calc(41.25 * var(--u));top:calc(121.9 * var(--u));width:calc(2 * var(--u));height:calc(182.1 * var(--u));"></div>
+      <span class="abs live-dot" style="left:calc(32 * var(--u));top:calc(117 * var(--u));width:calc(19 * var(--u));height:calc(19 * var(--u));"></span>
+      <span class="abs live-dot light" style="left:calc(32 * var(--u));top:calc(231 * var(--u));width:calc(19 * var(--u));height:calc(19 * var(--u));"></span>
+      <p class="abs live-h nowrap" style="left:calc(70 * var(--u));top:calc(107 * var(--u));">Exponent and OnRe renew $8,000 in O</p>
+      <p class="abs live-date nowrap" style="left:calc(70 * var(--u));top:calc(140 * var(--u));">26 Oct 2026, 17:18 UTC</p>
+      <span class="abs live-tag" style="left:calc(194 * var(--u));top:calc(142 * var(--u));width:calc(71 * var(--u));height:calc(20 * var(--u));">2 days ago</span>
+      <p class="abs live-p" style="left:calc(69 * var(--u));top:calc(166 * var(--u));width:calc(453 * var(--u));">Exponent and OnRe have renewed rewards for ONyc and srONyc limit orders and srONyc liquidity provision, with $6,000 allocated to limit orders and $2,000 to liquidity. The pr</p>
+      <p class="abs live-h nowrap" style="left:calc(70 * var(--u));top:calc(222 * var(--u));">BulkTrade will close its BulkSOL market</p>
+      <p class="abs live-date nowrap" style="left:calc(70 * var(--u));top:calc(255 * var(--u));">26 Oct 2026, 13:35 UTC</p>
+      <span class="abs live-tag" style="left:calc(194 * var(--u));top:calc(257 * var(--u));width:calc(71 * var(--u));height:calc(20 * var(--u));">2 days ago</span>
+      <p class="abs live-p nowrap" style="left:calc(69 * var(--u));top:calc(281 * var(--u));">BulkTrade says the BulkSOL market on Exponent will close at</p>
+    </div></div><div class="p-card clip diagram-card checks" id="exit-card" style="--art-width:323;aspect-ratio:323/304"><div class="preview-art">
+      <p class="abs t-h4 nowrap" style="left:calc(33 * var(--u));top:calc(3 * var(--u));">The Checks</p>
+      <p class="abs t-small nowrap" style="left:calc(33 * var(--u));top:calc(60 * var(--u));">What are you exposed to?</p>
+      <div class="abs exit e1x" style="left:calc(41 * var(--u));top:calc(115 * var(--u));width:calc(282 * var(--u));height:calc(33 * var(--u));"><b>What you hold</b></div>
+      <div class="abs exit e2x" style="left:calc(85 * var(--u));top:calc(157 * var(--u));width:calc(238 * var(--u));height:calc(33 * var(--u));"><b>How it works</b></div>
+      <div class="abs exit e3x" style="left:calc(139 * var(--u));top:calc(199 * var(--u));width:calc(184 * var(--u));height:calc(33 * var(--u));"><b>What backs it</b></div>
+      <div class="abs exit e4x" style="left:calc(185 * var(--u));top:calc(241 * var(--u));width:calc(138 * var(--u));height:calc(33 * var(--u));"><b>How you get out</b></div>
+    </div></div></div>
       <div id="horizon-preview" class="prod-pane" data-i="1" aria-hidden="true" inert>
         <div class="p-card capital-planning"><h3 class="t-h4">Capital Planning</h3><p class="t-small">Track your cash’s needs</p>
-          <div class="dash-img"><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix."><div id="cycle" class="cycle" aria-hidden="true"><div class="cy-cover"></div><div class="cy-bars"></div><div class="cy-nav"><span class="cy-pill"></span><span class="cy-lab">Cycle Starts</span><span class="cy-lab">Transition</span><span class="cy-lab">Near Date</span><span class="cy-lab">Target Date</span></div></div></div></div>
-          <div class="cycle-controls" role="group" aria-label="Capital planning stage"><button type="button" data-cycle="0" aria-pressed="true">Cycle Starts</button><button type="button" data-cycle="1" aria-pressed="false">Transition</button><button type="button" data-cycle="2" aria-pressed="false">Near Date</button><button type="button" data-cycle="3" aria-pressed="false">Target Date</button></div>
+          <div class="dash-img"><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix."><div id="cycle" class="cycle"><div class="cy-cover"></div><div class="cy-bars"></div><div class="cy-nav" role="group" aria-label="Capital planning stage"><span class="cy-pill"></span><button type="button" class="cy-lab" data-cycle="0" aria-pressed="true">Cycle Starts</button><button type="button" class="cy-lab" data-cycle="1" aria-pressed="false">Transition</button><button type="button" class="cy-lab" data-cycle="2" aria-pressed="false">Near Date</button><button type="button" class="cy-lab" data-cycle="3" aria-pressed="false">Target Date</button></div></div></div></div>
+          
         </div>
         <div class="p-card cy-card" id="cy-step"><p class="t-num" data-f="n">01</p><h3 class="t-h4" data-f="t">Keep your options open.</h3><p class="t-small" data-f="b">Start with eligible variable-rate positions. Check how easily you could sell or redeem each holding.</p></div>
         <div class="p-card cy-card" id="cy-check"><h3 class="t-h4" data-f="t">Know Your Limit</h3><p class="t-small"><b>What matters here:</b><br><span data-f="m">Your mandate, position sizes and available cash</span></p><p class="t-small"><b>Before committing:</b><br><span data-f="c">Invest only within approved limits.</span></p></div>
       </div>
     </div>
+    <div class="prod-dots" aria-hidden="true"><i class="is-on"></i><i></i></div>
   </section>
 
   <section class="alloc-photo section" aria-labelledby="alloc-h">
     <div class="container"><div class="section-heading"><p class="t-eyebrow">How we work</p><h2 id="alloc-h" class="t-h2">Research you can check</h2><p class="t-body">Every Kurtosis finding comes with its method, its sources and its dates. Where we have a stake, we say so.</p></div>
-      <div id="alloc-panels" class="alloc-panels">
-        <div class="ap-panel is-open" data-i="0"><button class="ap-tab" type="button" aria-expanded="true" aria-controls="method-detail"><span class="ap-num">01</span><span class="ap-title">Published method</span></button><div id="method-detail" class="ap-body"><p class="t-body">Our Russian Doll method looks through each token to the assets, protocols and exit routes behind it.</p></div></div>
-        <div class="ap-panel is-shut" data-i="1"><button class="ap-tab" type="button" aria-expanded="false" aria-controls="evidence-detail"><span class="ap-num">02</span><span class="ap-title">Dated evidence</span></button><div id="evidence-detail" class="ap-body" aria-hidden="true"><p class="t-body">Every finding shows its source, its date and what is still unverified.</p></div></div>
-        <div class="ap-panel is-shut" data-i="2"><button class="ap-tab" type="button" aria-expanded="false" aria-controls="conflicts-detail"><span class="ap-num">03</span><span class="ap-title">Conflicts on the table</span></button><div id="conflicts-detail" class="ap-body" aria-hidden="true"><p class="t-body">We run our own strategies and test our ratings on them. We also publish our exposures.</p></div></div>
-      </div>
+      <div id="alloc-panels" class="alloc-panels"><div class="ap-panel is-open" data-i="0">
+      <button class="ap-tab" type="button" aria-label="Show published method" aria-expanded="true" aria-controls="method-detail"></button>
+      <p class="ap-num ap-num-shut" aria-hidden="true">01</p><p class="ap-title ap-title-shut" aria-hidden="true">Published</p>
+      <div id="method-detail" class="ap-body"><p class="ap-num">01</p><h3 class="ap-title">Published method</h3><p class="t-body">Our Russian Doll method looks through each token to the assets, protocols and exit routes behind it.</p></div>
+    </div><div class="ap-panel is-shut" data-i="1">
+      <button class="ap-tab" type="button" aria-label="Show dated evidence" aria-expanded="false" aria-controls="evidence-detail"></button>
+      <p class="ap-num ap-num-shut" aria-hidden="true">02</p><p class="ap-title ap-title-shut" aria-hidden="true">Dated</p>
+      <div id="evidence-detail" class="ap-body" aria-hidden="true"><p class="ap-num">02</p><h3 class="ap-title">Dated evidence</h3><p class="t-body">Every finding shows its source, its date and what is still unverified.</p></div>
+    </div><div class="ap-panel is-shut" data-i="2">
+      <button class="ap-tab" type="button" aria-label="Show conflicts on the table" aria-expanded="false" aria-controls="conflicts-detail"></button>
+      <p class="ap-num ap-num-shut" aria-hidden="true">03</p><p class="ap-title ap-title-shut" aria-hidden="true">Disclosed</p>
+      <div id="conflicts-detail" class="ap-body" aria-hidden="true"><p class="ap-num">03</p><h3 class="ap-title">Conflicts on the table</h3><p class="t-body">We run our own strategies and test our ratings on them. We also publish our exposures.</p></div>
+    </div></div>
     </div>
   </section>
 
@@ -138,14 +150,15 @@
     </div>
     <p class="wordmark" aria-hidden="true">Kurtosis Labs</p>
   </footer>
-<script src="js/home.js?v=responsive-1"></script>
+<script src="js/home.js?v=restored-2"></script>
 <script src="js/three.min.js"></script>
 <script src="js/coin-positions.js"></script>
-<script src="js/hero-flip.js?v=responsive-1"></script>
-<script src="js/coin-ring.js?v=responsive-1"></script>
-<script src="js/page.js?v=responsive-1"></script>
-<script src="js/alloc-panels.js?v=responsive-1"></script>
-<script src="js/rate-steps.js?v=responsive-1"></script>
-<script src="js/products-switch.js?v=responsive-1"></script>
+<script src="js/hero-flip.js?v=restored-2"></script>
+<script src="js/coin-ring.js?v=restored-2"></script>
+<script src="js/page.js?v=restored-2"></script>
+<script src="js/alloc-panels.js?v=restored-2"></script>
+<script src="js/rate-steps.js?v=restored-2"></script>
+<script src="js/products-switch.js?v=restored-2"></script>
+<script src="js/scroll-reveal.js?v=restored-2"></script>
 </body>
 </html>

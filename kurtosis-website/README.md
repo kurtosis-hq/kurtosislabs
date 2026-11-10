@@ -56,14 +56,16 @@ git push -u origin main
 
 ## Edit the landing pages
 Edit `src/index.src.html` and `src/home.css` for the homepage, then run `python -X utf8 src/build.py`.
-The homepage uses normal document flow, flexible grids and bounded type sizes. Its main layout changes at
-576, 768 and 1024 CSS pixels, while widths between those thresholds remain fluid. The same links, content,
-product selection and animations remain in the document when resizing. Scroll-driven card sequences run only
-when their whole section fits on a wide screen; buttons remain available at every size.
+The homepage preserves the original visual design: the compact floating navigation, vertical rate progress,
+product bento and dependency illustration, folded research panels, imagery and typography. Normal document
+flow, flexible grids and bounded type sizes adapt that design at 480, 768, 1024 and 1200 CSS pixels, with fluid
+widths between them. The same links, content, product selection and animations remain when resizing.
+Scroll sequences run only when the relevant content fits the screen; the vertical progress bar, product
+headings, chart labels and research panels also support clicking and keyboard input at every size.
 
 `src/styles.src.css`, `src/menu.src.css` and `src/contact.src.css` maintain the shared styles and secondary pages.
 These older shared sources still use the build's `px!` notation for fixed CSS pixels. `src/home.css` is copied
-unchanged and does not use design-canvas units, except inside the decorative Horizon dashboard illustration.
+unchanged and uses local design units only inside the original dashboard and product illustrations.
 
 ## Rebuild Kurtosis Ratings
 ```

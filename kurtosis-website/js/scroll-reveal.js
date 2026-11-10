@@ -16,14 +16,14 @@
   ].join('\n');
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
-  var canvas = document.querySelector('.canvas');
+  var canvas = document.querySelector('.home-main, .canvas');
   if (!canvas) return;
   function pageTop(el) { var r = el.getBoundingClientRect(); return r.top + (window.scrollY || window.pageYOffset); }
   var heroBottom = (function () { var h = document.getElementById('hero-flip'); return h ? pageTop(h) + h.getBoundingClientRect().height : 0; })();
   function belowHero(el) { return pageTop(el) >= heroBottom - 2; }
 
   // text that JavaScript rewrites (chart stage cards) or that sits inside moving parts is left alone
-  var SKIP = '#cycle, #cy-step, #cy-check, .chip, .exit, .live-tag, .faq-btn, .btn, button, label, #signup-note, header';
+  var SKIP = '#cycle, #cy-step, #cy-check, .preview-art, .chip, .exit, .live-tag, .faq-btn, .btn, button, label, #signup-note, header';
   var TEXT = 'h2, h3, p, .t-h4, .t-path, .t-num, .faq-q, .faq-num';
   // (cards that already animate on their own, like the product cards, are revealed through their column instead;
   // the Allocation background photo stays still)

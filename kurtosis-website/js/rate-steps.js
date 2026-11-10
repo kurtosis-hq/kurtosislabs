@@ -13,7 +13,8 @@
   var idx = 0, acc = 0, lockedAt = 0, locked = false;
   var fluid = document.body.classList.contains('responsive');
   var controls = Array.prototype.slice.call(sec.querySelectorAll('[data-rate]'));
-  function canHold() { return !fluid || (window.innerWidth >= 1024 && sec.getBoundingClientRect().height <= window.innerHeight - 120); }
+  var copy = sec.querySelector('.rate-copy');
+  function canHold() { return !fluid || (copy && copy.getBoundingClientRect().height <= window.innerHeight - 140); }
 
   function layout() {
     steps.forEach(function (s, i) {
@@ -33,6 +34,7 @@
 
   // where the section sits while held: centred, or top-aligned if it's taller than the screen
   function target() {
+    if (fluid && copy) { var cr = copy.getBoundingClientRect(); return (window.innerHeight - cr.height) / 2 - (cr.top - sec.getBoundingClientRect().top); }
     // a section taller than the screen (mobile) names the part to keep centred while held
     // mobile: the section's top edge stops this many Figma px below the top of the screen
     if (sec.dataset.holdAt) return parseFloat(sec.dataset.holdAt) * sec.getBoundingClientRect().width / parseFloat(sec.dataset.holdW || 375);
