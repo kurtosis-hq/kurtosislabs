@@ -1,7 +1,7 @@
 // The position page template from the Figma "Position tabs" page. One template renders every token.
 import Link from "next/link";
 import { ArrowLeft, Download, FileText } from "lucide-react";
-import { MISSING_NOTE, SCENARIO_NOTE, extras, positions, type EvidenceState, type Position } from "@/data/ratings";
+import { MISSING_NOTE, SCENARIO_NOTE, SHOW_RESEARCH_NOTICES, extras, positions, type EvidenceState, type Position } from "@/data/ratings";
 import { TokenIcon } from "@/components/ratings/primitives";
 import { PositionSwitcher } from "@/components/site/chrome";
 import { PillTabs } from "./pill-tabs";
@@ -152,7 +152,7 @@ export function PositionView({ p, q }: { p: Position; q: Query }) {
           <div className="min-w-0">
             <h1 className="text-[32px] leading-9 tracking-[-0.03em] text-ink">{p.symbol}</h1>
             <p className="text-[14px] leading-6 text-steel">
-              {p.network} / {p.protocol} · {p.tokenType} · Research preview
+              {p.network} / {p.protocol} · {p.tokenType}{SHOW_RESEARCH_NOTICES && " · Research preview"}
             </p>
           </div>
           <div className="ml-auto flex gap-2">
@@ -162,7 +162,7 @@ export function PositionView({ p, q }: { p: Position; q: Query }) {
         </div>
         <div className="mt-6">
           <GradeStrip p={p} />
-          <p className="pt-2 text-[12px] leading-4 text-steel">{SCENARIO_NOTE}</p>
+          {SHOW_RESEARCH_NOTICES && <p className="pt-2 text-[12px] leading-4 text-steel">{SCENARIO_NOTE}</p>}
         </div>
         <p className="mt-6 border-l-[3px] border-navy pl-4 font-display text-[16px] leading-6 font-medium text-ink">{p.bottomLine}</p>
 

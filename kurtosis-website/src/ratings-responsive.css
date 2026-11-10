@@ -1,0 +1,41 @@
+/* Export-shell corrections. Keep the app's native grids, typography and breakpoints. */
+html { background: #f4f9fd; }
+html[data-theme="dark"] { background: #070f1f; color-scheme: dark; }
+
+/* The full bar and separate theme control need more room than the md breakpoint. */
+@media (width < 64rem) {
+  .dark-corner { display: none; }
+  nav[aria-label="Ratings"] [class~="md:flex"] { display: none; }
+  nav[aria-label="Ratings"] [class~="md:hidden"] { display: revert; }
+}
+nav[aria-label="Ratings"] button[aria-label="Menu"] { min-width: 44px; min-height: 44px; }
+nav[aria-label="Ratings"] > ul {
+  max-height: calc(100dvh - 84px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* The original footer uses five fixed Figma columns. Reflow those columns before
+   they extend past the viewport, keeping the wordmark below the actual content. */
+@media (width < 80rem) {
+  footer[class*="--footer-bg"] { height: auto; }
+  footer[class*="--footer-bg"] > div > div {
+    height: auto;
+    padding: 64px 24px 48px;
+  }
+  footer[class*="--footer-bg"] .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px 24px;
+  }
+  footer[class*="--footer-bg"] .grid > div:first-child { grid-column: 1 / -1; }
+  footer[class*="--footer-bg"] > p {
+    position: static;
+    margin-top: 32px;
+    font-size: clamp(40px, 13.9vw, 200px) !important;
+  }
+}
+a[aria-disabled="true"] { pointer-events: none; cursor: default; }
+@media (64rem <= width < 80rem) {
+  footer[class*="--footer-bg"] .grid { grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr)); }
+  footer[class*="--footer-bg"] .grid > div:first-child { grid-column: auto; }
+}

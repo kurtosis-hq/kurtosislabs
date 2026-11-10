@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kurtosis Labs | Onchain Fixed-Income you can defend</title>
 <meta name="description" content="Kurtosis rates every position layer by layer, then manages capital through the Horizon vault using those ratings.">
-<!-- Desktop layout from 520 px wide; below that (phones) the mobile layout. 520 px is where the mobile layout stops
-     growing, so the switch happens as soon as it would otherwise stop filling the window. Resizing the window across
-     520 px fades over to the other layout at the same place on the page. -->
+<!-- The wide composition needs 1280 px to keep its text and controls readable.
+     Smaller windows use the bounded, stacked phone/tablet composition. -->
 <script>(function () {
   var other = document.documentElement.getAttribute('data-mobile') || 'mobile.html';
   var KEY = 'kl-switch';
@@ -26,7 +25,7 @@
     }
   } catch (e) {}
   if (!window.matchMedia || /[?&]desktop/.test(location.search)) return;
-  var mq = window.matchMedia('(max-width: 519px)'), going = false;
+  var mq = window.matchMedia('(width < 1280px)'), going = false;
   // where the reader is on the page, kept from before the window started changing size (a resize
   // changes the page's height and moves the scroll position, so it can't be measured at switch time)
   var lastR = 0, resizedAt = 0;
@@ -317,10 +316,10 @@
     <div class="abs footer-scale" {{at -59.5,5392.5}}>
       <div class="abs f-brand" {{at 191,24}}><img src="assets/logo-mark-navy.svg" alt="">Kurtosis Labs</div>
       <p class="abs f-copy nowrap" {{at 188,59}}>© 2026 Kurtosis Labs. All rights reserved.</p>
-      <div class="abs f-col" {{at 448,21}}><h4>PRODUCT</h4><ul><li><a href="#">Kurtosis Ratings</a></li><li><a href="#">Kurtosis Horizon</a></li><li><a href="#">Explainable Vaults</a></li><li><a href="#">Methodology</a></li><li><a href="#">Research</a></li></ul></div>
-      <div class="abs f-col" {{at 654,21}}><h4>COMPANY</h4><ul><li><a href="#">Who we serve</a></li><li><a href="#">Philosophy</a></li><li><a href="#">Contact Kurtosis Labs</a></li></ul></div>
-      <div class="abs f-col" {{at 860,21}}><h4>LEGAL</h4><ul><li><a href="#">Terms of Use</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">Disclosures</a></li></ul></div>
-      <div class="abs f-col" {{at 1066,21}}><h4>SOCIALS</h4><ul><li><a href="#">X</a></li><li><a href="#">LinkedIn</a></li><li><a href="#top">Back to top</a></li></ul></div>
+      <div class="abs f-col" {{at 448,21}}><h4>PRODUCT</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Kurtosis Ratings</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Kurtosis Horizon</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Explainable Vaults</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Methodology</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Research</a></li></ul></div>
+      <div class="abs f-col" {{at 654,21}}><h4>COMPANY</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Who we serve</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Philosophy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Contact Kurtosis Labs</a></li></ul></div>
+      <div class="abs f-col" {{at 860,21}}><h4>LEGAL</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Terms of Use</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Privacy Policy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Cookie Policy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Disclosures</a></li></ul></div>
+      <div class="abs f-col" {{at 1066,21}}><h4>SOCIALS</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">X</a></li><li><a role="link" aria-disabled="true" tabindex="-1">LinkedIn</a></li><li><a href="#top">Back to top</a></li></ul></div>
     </div>
     <p class="abs wordmark" aria-hidden="true" {{at 85,5743,1271,235}}>Kurtosis Labs</p>
   </footer>

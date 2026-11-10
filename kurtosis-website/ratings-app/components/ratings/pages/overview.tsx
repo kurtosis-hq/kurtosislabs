@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Eye, Info, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { MISSING_NOTE, SCENARIO_NOTE, extras, library, overviewRow, positions, type Position } from "@/data/ratings";
+import { MISSING_NOTE, SCENARIO_NOTE, SHOW_RESEARCH_NOTICES, extras, library, overviewRow, positions, type Position } from "@/data/ratings";
 import { TokenIcon } from "@/components/ratings/primitives";
 import { Container, Notes, PageHeader, RubricPill } from "./kit";
 
@@ -14,6 +14,7 @@ type Net = "all" | "Solana" | "Arbitrum One" | "watchlist" | "matured";
 const COLS = "grid-cols-[250px_124px_100px_220px_82px_minmax(0,1fr)_100px]";
 
 function PreviewPill() {
+  if (!SHOW_RESEARCH_NOTICES) return null;
   return (
     <span className="inline-flex h-[22px] items-center gap-1 rounded-full bg-sky px-2 font-display text-[12px] leading-3 font-bold text-navy">
       <Info className="size-3.5" aria-hidden="true" />

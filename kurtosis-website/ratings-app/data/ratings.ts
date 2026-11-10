@@ -199,6 +199,10 @@ export const updates = [
   },
 ];
 
+// Temporarily hide research-preview labels and the accompanying notes on the live
+// Ratings pages. Keep their copy and components below; set true to restore them.
+export const SHOW_RESEARCH_NOTICES = false;
+
 export const SCENARIO_NOTE =
   "Scenario letters reflect unverified assumptions, not established differences in current credit quality.";
 export const MISSING_NOTE =

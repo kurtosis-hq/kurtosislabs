@@ -2,7 +2,7 @@
 // (frames "Ratings / Overview — Desktop", "Ratings / Compare — Desktop", Sources and Methodology).
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { DISCLAIMER, RUBRIC, RUBRIC_DATE } from "@/data/ratings";
+import { DISCLAIMER, RUBRIC, RUBRIC_DATE, SHOW_RESEARCH_NOTICES } from "@/data/ratings";
 
 /* 1240 px column with 16 px gutters (content 1208 px wide). */
 export function Container({ className, children }: { className?: string; children: React.ReactNode }) {
@@ -36,6 +36,7 @@ export function RubricPill() {
 
 /* Footnotes block: 48 px above, hairline, 24 px, 13/20 lines 8 px apart, 64 px below. */
 export function Notes({ lines }: { lines: string[] }) {
+  if (!SHOW_RESEARCH_NOTICES) return null;
   return (
     <Container className="pt-12 pb-16">
       <footer className="space-y-2 border-t border-divider pt-6 text-[13px] leading-5 text-steel">
