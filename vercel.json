@@ -1,11 +1,22 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": false,
+  "trailingSlash": true,
   "headers": [
     { "source": "/ratings-data/:path*", "headers": [
       { "key": "X-Content-Type-Options", "value": "nosniff" },
       { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
     ] }
   ],
-  "rewrites": [
-    { "source": "/", "destination": "/concept-85.html" }
+  "redirects": [
+    { "source": "/concept-85.html", "destination": "/", "permanent": false },
+    { "source": "/ratings.html", "destination": "/ratings/", "permanent": false },
+    { "source": "/ratings-methodology.html", "destination": "/ratings/methodology/", "permanent": false },
+    { "source": "/methodology.html", "destination": "/ratings/methodology/", "permanent": false },
+    { "source": "/horizon.html", "destination": "/contact.html", "permanent": false },
+    { "source": "/horizon-01.html", "destination": "/contact.html", "permanent": false }
   ]
 }
