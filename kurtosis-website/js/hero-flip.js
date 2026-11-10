@@ -62,6 +62,7 @@
     camera.updateProjectionMatrix();
   }
   window.addEventListener('resize', resize);
+  if ('ResizeObserver' in window) new ResizeObserver(resize).observe(stage);
 
   function loadImage(src) {
     return new Promise(function (res, rej) {

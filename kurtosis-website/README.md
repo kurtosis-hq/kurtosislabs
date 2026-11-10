@@ -1,11 +1,12 @@
-# Kurtosis Labs website (V160, 2026-11-08)
+# Kurtosis Labs website (responsive homepage, 2026-11-10)
 
-Everything in one repository: the landing page (desktop and phone), the contact page, the Coming Soon page,
+Everything in one repository: one responsive landing page, the contact page, the Coming Soon page,
 the Kurtosis Ratings pages, and the Ratings app source code.
 
 ## See it
-- **Quickest:** open `quick-view/Kurtosis-Labs-Website.html` in a browser. The four files in `quick-view/` each work
-  on their own (everything is built in) and link to each other. They do not include the Ratings pages.
+- **Quickest:** open `quick-view/Kurtosis-Labs-Website.html` in a browser. This standalone homepage adapts to every
+  screen width and links to the standalone Contact and Coming Soon previews. The old mobile preview forwards to it.
+  Fonts need an internet connection; Ratings needs the local server below.
 - **Everything, Ratings included:** double-click `start-website-mac.command` (Mac) or `start-website-windows.bat`
   (Windows). It runs the site at http://localhost:8080. Needs Python, which Macs already have.
   Opening `index.html` straight from the folder will not work properly: browsers block the 3D coins and the Ratings
@@ -40,21 +41,29 @@ git push -u origin main
 ## What is where
 | Path | What it is |
 |---|---|
-| `index.html`, `styles.css` | Desktop landing page (1280 px wide and up) |
-| `mobile.html`, `mobile.css` | Stacked phone/tablet landing page (below 1280 px), centered with a 520 px reading-width limit. Each page switches to the other across 1280 px |
+| `index.html`, `home.css` | One responsive homepage for desktop, tablet and mobile; content reflows without navigating or reloading |
+| `styles.css` | Shared brand styles and artwork styles |
+| `mobile.html` | Compatibility redirect for old bookmarks; contains no separate layout |
+| `menu.css` | Shared collapsed navigation styles for Contact and Coming Soon |
 | `contact.html`, `contact.css` | Request a walkthrough form (every "Request a demo" and "Sign up" button opens it). Not connected to an inbox yet |
 | `coming-soon.html` | About Us and Blog |
 | `ratings/`, `ratings-static/` | Kurtosis Ratings: static export of `ratings-app/`, light mode first, theme button in the corner |
 | `js/` | Animations and behaviour (coin flip, coin ring, scroll holds, Horizon chart, nav, contact form) |
 | `assets/` | Images, logos, token artwork |
-| `src/` | Editable sources. Pages are written in Figma pixels; `python3 src/build.py` rebuilds the HTML and CSS |
-| `quick-view/` | Single-file copies of the four pages, for sharing by email or opening without a server |
+| `src/` | Editable sources; `python -X utf8 src/build.py` rebuilds HTML, CSS and the shared homepage preview |
+| `quick-view/` | Standalone homepage, Contact and Coming Soon previews, plus an alias for the old mobile preview |
 | `ratings-app/` | Next.js source of Kurtosis Ratings (see below) |
 
 ## Edit the landing pages
-Edit `src/index.src.html`, `src/mobile.src.html`, `src/styles.src.css`, `src/mobile.src.css` or `src/contact.src.css`,
-then run `python3 src/build.py`. Sizes are Figma pixels on the 1440 px (desktop) and 375 px (phone) frames; the build
-turns them into widths that scale with the window.
+Edit `src/index.src.html` and `src/home.css` for the homepage, then run `python -X utf8 src/build.py`.
+The homepage uses normal document flow, flexible grids and bounded type sizes. Its main layout changes at
+576, 768 and 1024 CSS pixels, while widths between those thresholds remain fluid. The same links, content,
+product selection and animations remain in the document when resizing. Scroll-driven card sequences run only
+when their whole section fits on a wide screen; buttons remain available at every size.
+
+`src/styles.src.css`, `src/menu.src.css` and `src/contact.src.css` maintain the shared styles and secondary pages.
+These older shared sources still use the build's `px!` notation for fixed CSS pixels. `src/home.css` is copied
+unchanged and does not use design-canvas units, except inside the decorative Horizon dashboard illustration.
 
 ## Rebuild Kurtosis Ratings
 ```
@@ -70,7 +79,7 @@ previously scaled as one canvas. `ratings-app/_left-out-of-static-build/` holds 
 in every Ratings page, so rerun the fixer and the root build after changing it.
 
 Contact and Coming Soon use fixed-size text and controls inside fluid containers. Contact fields stack below 600 px;
-the shared phone menu is used below 1024 px. Keep these thresholds independent of the landing-page composition.
+the shared collapsed menu is used below 1024 px.
 
 ## Not connected yet
-The contact form and the phone email field do not send anywhere.
+The contact form does not send anywhere.

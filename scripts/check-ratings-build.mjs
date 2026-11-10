@@ -50,6 +50,10 @@ for (const file of fs.readdirSync(root, { recursive: true })) {
 }
 assert.equal(fs.readFileSync(path.join(root, 'index.html'), 'utf8'),
   fs.readFileSync('kurtosis-website/index.html', 'utf8'), 'Homepage must be V2');
+const homepage = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+assert.doesNotMatch(homepage, /location\.replace|kl-switch|mobile\.html/, 'Homepage must resize without navigation');
+assert.match(homepage, /href="home\.css"/, 'Responsive homepage styles must be published');
+assert.doesNotMatch(fs.readFileSync(path.join(root, 'mobile.html'), 'utf8'), /<main|class="m"/, 'Old mobile URL must only be an alias');
 for (const excluded of ['docs', 'src', 'ratings-app', 'quick-view', 'README.md', 'concept-85.html']) {
   assert.ok(!fs.existsSync(path.join(root, excluded)), `Unpublished file was included: ${excluded}`);
 }

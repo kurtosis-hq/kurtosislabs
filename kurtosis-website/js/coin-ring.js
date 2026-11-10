@@ -28,14 +28,18 @@
   // so no coin is ever clipped; the ring itself keeps its 655 px square at X0, Y0.
   // (the mobile page passes its own numbers through data- attributes on the stage; the defaults are the desktop's)
   var G = stage.dataset;
+  var fluid = G.fluid === 'true';
   var BOX = +(G.box || 655), X0 = +(G.x0 || 776), Y0 = +(G.y0 || 893);          // Figma px: the ring's square
   var SEC_TOP = +(G.secTop || 846), SEC_BOT = +(G.secBot || 1646);           // Rate section edges (Figma 1:388)
   var PAGE_W = +(G.pageW || 1440);
   var EXT_L = +(G.extL || 376), EXT_R = PAGE_W - X0 - BOX, EXT_T = Y0 - SEC_TOP, EXT_B = SEC_BOT - Y0 - BOX;
+  if (fluid) EXT_L = EXT_R = EXT_T = EXT_B = 0;
+  if (!fluid) {
   stage.style.left = 'calc(' + (X0 - EXT_L) + ' * var(--u))';
   stage.style.top = 'calc(' + (Y0 - EXT_T) + ' * var(--u))';
   stage.style.width = 'calc(' + (BOX + EXT_L + EXT_R) + ' * var(--u))';
   stage.style.height = 'calc(' + (BOX + EXT_T + EXT_B) + ' * var(--u))';
+  }
   stage.style.pointerEvents = 'none';
 
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -71,6 +75,7 @@
     camera.setViewOffset(BOX * k, BOX * k, -EXT_L * k, -EXT_T * k, w, h);
   }
   window.addEventListener('resize', resize);
+  if (fluid && 'ResizeObserver' in window) new ResizeObserver(resize).observe(stage);
 
   function loadImage(src) {
     return new Promise(function (res, rej) {

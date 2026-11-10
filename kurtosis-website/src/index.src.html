@@ -5,55 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kurtosis Labs | Onchain Fixed-Income you can defend</title>
 <meta name="description" content="Kurtosis rates every position layer by layer, then manages capital through the Horizon vault using those ratings.">
-<!-- The wide composition needs 1280 px to keep its text and controls readable.
-     Smaller windows use the bounded, stacked phone/tablet composition. -->
-<script>(function () {
-  var other = document.documentElement.getAttribute('data-mobile') || 'mobile.html';
-  var KEY = 'kl-switch';
-  // arriving from the other layout: fade in and return to the same share of the page
-  try {
-    var s = JSON.parse(sessionStorage.getItem(KEY) || 'null');
-    if (s && Date.now() - s.t < 5000) {
-      sessionStorage.removeItem(KEY);
-      document.documentElement.style.opacity = '0';
-      window.addEventListener('load', function () {
-        var max = document.documentElement.scrollHeight - window.innerHeight;
-        if (s.r > 0) window.scrollTo(0, Math.round(s.r * max));
-        document.documentElement.style.transition = 'opacity 0.45s ease';
-        requestAnimationFrame(function () { document.documentElement.style.opacity = '1'; });
-      });
-    }
-  } catch (e) {}
-  if (!window.matchMedia || /[?&]desktop/.test(location.search)) return;
-  var mq = window.matchMedia('(width < 1280px)'), going = false;
-  // where the reader is on the page, kept from before the window started changing size (a resize
-  // changes the page's height and moves the scroll position, so it can't be measured at switch time)
-  var lastR = 0, resizedAt = 0;
-  function measure() { var max = document.documentElement.scrollHeight - window.innerHeight; return max > 0 ? (window.scrollY || 0) / max : 0; }
-  window.addEventListener('resize', function () { resizedAt = Date.now(); });
-  window.addEventListener('scroll', function () { if (Date.now() - resizedAt > 400) lastR = measure(); }, { passive: true });
-  function go() {
-    if (going || !mq.matches) return; going = true;
-    try { sessionStorage.setItem(KEY, JSON.stringify({ t: Date.now(), r: lastR })); } catch (e) {}
-    var html = document.documentElement;
-    if (!document.body) { location.replace(other + location.hash); return; }   // still loading: switch straight away
-    html.style.transition = 'opacity 0.3s ease'; html.style.opacity = '0';
-    setTimeout(function () { location.replace(other + location.hash); }, 300);
-  }
-  go();
-  if (mq.addEventListener) mq.addEventListener('change', go); else if (mq.addListener) mq.addListener(go);
-})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=42dot+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=42dot+Sans:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="home.css">
 </head>
-<body>
-<!-- Site navigation (Figma nav): transparent across the top of the hero, then once the page
-     scrolls it slides into a floating black bar that stays at the top (js/page.js) -->
+<body class="responsive" id="top">
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-nav" id="site-nav">
-  <a href="#" class="brand nowrap"><img src="assets/logo-mark-light.svg" alt=""><span>Kurtosis Labs</span></a>
-  <nav class="nav" aria-label="Main">
+  <a href="#top" class="brand nowrap"><img src="assets/logo-mark-light.svg" alt=""><span>Kurtosis Labs</span></a>
+  <div id="main-links" class="main-links"><nav class="nav" aria-label="Main">
     <span class="nav-item"><a href="#products" id="nav-products" aria-haspopup="true" aria-expanded="false" aria-controls="nav-menu-products">Products</a><div class="nav-menu" id="nav-menu-products" hidden>
       <p class="nm-label">Products</p>
       <a class="nm-item nm-1" href="ratings/"><span class="nm-icon"><svg viewBox="0 0 12 12" fill="none" stroke="#fff" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"><path d="M6 1.5 11 4 6 6.5 1 4Z"/><path d="M1 6l5 2.5L11 6"/><path d="M1 8l5 2.5L11 8"/></svg></span><span class="nm-title">Kurtosis Ratings</span><span class="nm-desc">Know what you own, and why it moved.</span></a>
@@ -61,281 +23,129 @@
     </div></span><a href="coming-soon.html">About Us</a><a href="#customers">Customers</a><a href="coming-soon.html">Blog</a>
   </nav>
   <a href="contact.html" class="btn btn-light nav-cta">Request a demo</a>
-</header>
-<div class="page">
-<main class="canvas">
-
-  <!-- ===== Hero (Figma frame 23:143) ===== -->
-  <div id="hero-flip" class="abs hero-photo" data-assets="assets/" {{at 0,0,1440,846}} role="img" aria-label="New York skyline at sunrise; coins flip across it to reveal token logos, then the scene turns to Ho Chi Minh City at night."></div>
-  <!-- A light tint behind the nav keeps it readable; its colour follows the photo -->
-  <div id="hero-shade-fade" class="abs shade-fade" {{at 0,0,1440,280}}></div>
-
-
-  <h1 class="abs t-h1 center enter e2" {{at 220,128,1000}}><span class="big nowrap">Explainable Returns</span><span class="sub enter e3">in Real-time</span></h1>
-  <p class="abs t-hero center enter e4" {{at 341,313,758}}>At Kurtosis Labs, we build institutional-grade investment process tooling for onchain assets, bringing accessibility to new generation of yield. We help you understand what you’re investing in, why you’re making or losing money, and how to get your cash back.</p>
-  <a href="contact.html" class="abs btn btn-light enter e5" {{at 650,431}}>Request a demo</a>
-
-  <!-- Partner logos (Figma 23:139), laid over the bottom of the photo at 70% -->
-  <div class="abs logo-strip" {{at 0,786,1440,60}} role="img" aria-label="Partners: Exponent, Presto, Arbitrum"><div class="logo-track"></div></div>
-
-  <!-- ===== Rate (Figma frame 23:20) ===== -->
-  <!-- The 01 to 03 points step through on their own; the coin ring animates independently and never holds the page -->
-  <section class="abs sec-rate" {{at 2,846,1438,800}} aria-labelledby="rate-h" data-ring-wait="0" data-ring-hold="0">
-    <h2 id="rate-h" class="reveal abs t-h2" {{px left:142px;top:175px;width:760px;}}>Returns are easy to report<br>but hard to explain.</h2>
-    <!-- Three points, shown one at a time: scrolling holds the section and steps 01, 02, 03 while the
-         bar on the left fills a third at a time (js/rate-steps.js) -->
-    <div class="abs rate-bar" aria-hidden="true" {{px left:146px;top:365px;width:5px;height:241px;}}><i class="rate-bar-fill"></i></div>
-    <div class="rate-step is-on" data-i="0">
-      <p class="abs ap-num nowrap" {{px left:202px;top:372px;}}>01</p>
-      <h3 class="abs ap-title nowrap" {{px left:202px;top:430px;}}>Layers hide what you own</h3>
-      <p class="abs t-body" {{px left:202px;top:527px;width:540px;}}>One asset can be wrapped, deposited into a yield protocol, split into principal and yield tokens and used as collateral elsewhere. Each step changes what can go wrong.</p>
+</div><button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-links"><span></span><span></span><span></span></button></header>
+<main id="main" class="home-main">
+  <section class="hero" aria-labelledby="hero-h">
+    <div id="hero-flip" class="hero-photo" data-assets="assets/" role="img" aria-label="New York skyline at sunrise; coins flip across it to reveal token logos, then the scene turns to Ho Chi Minh City at night."></div>
+    <div id="hero-shade-fade" class="shade-fade"></div>
+    <div class="hero-copy container">
+      <h1 id="hero-h" class="t-h1 enter e2"><span class="big">Explainable Returns</span><span class="sub enter e3">in Real-time</span></h1>
+      <p class="t-hero enter e4">At Kurtosis Labs, we build institutional-grade investment process tooling for onchain assets, bringing accessibility to new generation of yield. We help you understand what you’re investing in, why you’re making or losing money, and how to get your cash back.</p>
+      <a href="contact.html" class="btn btn-light enter e5">Request a demo</a>
     </div>
-    <div class="rate-step" data-i="1" aria-hidden="true">
-      <p class="abs ap-num nowrap" {{px left:202px;top:372px;}}>02</p>
-      <h3 class="abs ap-title nowrap" {{px left:202px;top:430px;}}>A good month can hide a problem</h3>
-      <p class="abs t-body" {{px left:202px;top:527px;width:540px;}}>A market-neutral portfolio can make additional profits from an unknown interest-rate or credit exposure. The profit does not make that exposure acceptable.</p>
-    </div>
-    <div class="rate-step" data-i="2" aria-hidden="true">
-      <p class="abs ap-num nowrap" {{px left:202px;top:372px;}}>03</p>
-      <h3 class="abs ap-title nowrap" {{px left:202px;top:430px;}}>Things change while you sleep</h3>
-      <p class="abs t-body" {{px left:202px;top:527px;width:540px;}}>An exploit, a depeg or a liquidation can happen overnight. Checking X and Telegram is not a monitoring process.</p>
-    </div>
-    <a href="contact.html" class="abs btn btn-navy btn-sq" {{px left:142px;top:653px;}}>Request a demo</a>
+    <div class="logo-strip" role="img" aria-label="Partners: Exponent, Presto, Arbitrum"><div class="logo-track"></div></div>
   </section>
-  <div id="coin-ring" class="abs ring-stage" data-assets="assets/" {{at 776,893,655,655}} role="img" aria-label="Ten Kurtosis token coins circling in a tilted ring, each turning slowly."></div>
 
-  <!-- ===== Products (Figma 23:7, 23:8, 32:200, 36:1503 onwards) ===== -->
-  <section id="products" aria-labelledby="products-h">
-    <p class="reveal abs t-eyebrow center nowrap" {{at 620,1728,200}}>Our Products</p>
-    <h2 id="products-h" class="reveal abs t-h2 center nowrap" {{at 170,1781,1100}}>Research that stays with the position</h2>
-    <p class="reveal abs t-body center" {{at 170,1884,1100}}>From the first look to the day you exit, Ratings, Horizon and Gradient work from the same research.</p>
+  <section class="sec-rate section" aria-labelledby="rate-h" data-ring-wait="0" data-ring-hold="0">
+    <div class="rate-layout container">
+      <div class="rate-copy">
+        <h2 id="rate-h" class="t-h2">Returns are easy to report<br>but hard to explain.</h2>
+        <div class="rate-controls" role="group" aria-label="Why returns need explaining">
+          <button type="button" data-rate="0" aria-label="Layers hide what you own" aria-pressed="true">01</button>
+          <button type="button" data-rate="1" aria-label="A good month can hide a problem" aria-pressed="false">02</button>
+          <button type="button" data-rate="2" aria-label="Things change while you sleep" aria-pressed="false">03</button>
+        </div>
+        <div class="rate-steps">
+          <div class="rate-step is-on" data-i="0"><h3 class="ap-title">Layers hide what you own</h3><p class="t-body">One asset can be wrapped, deposited into a yield protocol, split into principal and yield tokens and used as collateral elsewhere. Each step changes what can go wrong.</p></div>
+          <div class="rate-step" data-i="1" aria-hidden="true"><h3 class="ap-title">A good month can hide a problem</h3><p class="t-body">A market-neutral portfolio can make additional profits from an unknown interest-rate or credit exposure. The profit does not make that exposure acceptable.</p></div>
+          <div class="rate-step" data-i="2" aria-hidden="true"><h3 class="ap-title">Things change while you sleep</h3><p class="t-body">An exploit, a depeg or a liquidation can happen overnight. Checking X and Telegram is not a monitoring process.</p></div>
+        </div>
+        <a href="contact.html" class="btn btn-navy">Request a demo</a>
+      </div>
+      <div id="coin-ring" class="ring-stage" data-fluid="true" data-assets="assets/" role="img" aria-label="Ten Kurtosis token coins circling in a tilted ring, each turning slowly."></div>
+    </div>
+  </section>
 
-    <div class="abs bento" {{at 157,1962,1127,734}}></div>
-    <!-- which product is open: Ratings, Horizon (js/products-switch.js) -->
-    <div class="abs prod-dots" aria-hidden="true" {{at 670,2739,100,9}}><i class="is-on"></i><i></i></div>
-
-    <!-- Product cards (left column): the open card shows its icon, text and button; the other
-         folds into a short title card. Scrolling holds the section and swaps them (js/products-switch.js) -->
-    <div id="prod-left" class="abs prod-col" {{at 174,1979,417,700.4}}>
-      <span class="pc-mark" aria-hidden="true"></span>   <!-- bookmark tab beside the open product card -->
-      <div class="prod-card is-open" data-i="0">
-        <div class="pc-small"><h3 class="abs t-h3 nowrap" {{px left:36px;top:22px;}}>Kurtosis Ratings</h3></div>
-        <div class="pc-full">
-          <div class="abs p-icon" aria-hidden="true" {{px left:36px;top:63px;width:62px;height:62px;}}>
-            <img src="assets/layer.svg" alt="" class="abs layer l3" {{px left:10.8px;top:26.6px;width:40.5px;height:22.8px;}}>
-            <img src="assets/layer.svg" alt="" class="abs layer l2" {{px left:10.8px;top:18.6px;width:40.5px;height:22.8px;}}>
-            <img src="assets/layer.svg" alt="" class="abs layer" {{px left:10.8px;top:11.6px;width:40.5px;height:22.8px;}}>
+  <section id="products" class="section container" aria-labelledby="products-h">
+    <div class="section-heading centered"><p class="t-eyebrow">Our Products</p><h2 id="products-h" class="t-h2">Research that stays with the position</h2><p class="t-body">From the first look to the day you exit, Ratings, Horizon and Gradient work from the same research.</p></div>
+    <div class="bento">
+      <div id="prod-left" class="prod-col">
+        <article class="prod-card is-open" data-i="0">
+          <h3><button class="product-toggle" type="button" aria-expanded="true" aria-controls="ratings-copy ratings-preview">Kurtosis Ratings<span aria-hidden="true">↗</span></button></h3>
+          <div id="ratings-copy" class="pc-full">
+            <div class="p-icon" aria-hidden="true"><img src="assets/layer.svg" alt=""></div>
+            <p class="t-body">Ratings peels back each layer to show what you actually own, what could make you lose money and how you’d get your money out. After you invest, it keeps checking and tells you why the value went up or down.</p>
+            <a href="ratings/" class="btn btn-ink">Discover Ratings</a>
           </div>
-          <h3 class="abs t-h3 nowrap" {{px left:36px;top:167px;}}>Kurtosis Ratings</h3>
-          <p class="abs t-body" {{px left:38px;top:253px;width:311px;}}>Ratings peels back each layer to show what you actually own, what could make you lose money and how you’d get your money out. After you invest, it keeps checking and tells you why the value went up or down.</p>
-          <a href="ratings/" class="abs btn btn-ink" {{px left:38px;top:448px;}}>Discover Ratings</a>
-        </div>
-      </div>
-      <div class="prod-card" data-i="1">
-        <div class="pc-small"><h3 class="abs t-h3 nowrap" {{px left:36px;top:22px;}}>Kurtosis Horizon</h3></div>
-        <div class="pc-full">
-          <div class="abs p-icon" aria-hidden="true" {{px left:36px;top:63px;width:62px;height:62px;}}>
-            <img src="assets/horizon-icon.svg" alt="" class="abs" {{px left:0;top:0;width:62px;height:62px;}}>
+        </article>
+        <article class="prod-card" data-i="1">
+          <h3><button class="product-toggle" type="button" aria-expanded="false" aria-controls="horizon-copy horizon-preview">Kurtosis Horizon<span aria-hidden="true">↗</span></button></h3>
+          <div id="horizon-copy" class="pc-full" aria-hidden="true" inert>
+            <div class="p-icon" aria-hidden="true"><img src="assets/horizon-icon.svg" alt=""></div>
+            <p class="t-body">Tell Horizon the date you need your cash. It helps you pick investments that pay out before that date, so your money isn’t stuck when you need it.</p>
+            <a href="contact.html" class="btn btn-ink">Explore Horizon</a>
           </div>
-          <h3 class="abs t-h3 nowrap" {{px left:36px;top:181px;}}>Kurtosis Horizon</h3>
-          <p class="abs t-body" {{px left:38px;top:273px;width:311px;}}>Tell Horizon the date you need your cash. It helps you pick investments that pay out before that date, so your money isn’t stuck when you need it.</p>
-          <a href="contact.html" class="abs btn btn-ink" {{px left:38px;top:443px;}}>Explore Horizon</a>
+        </article>
+      </div>
+      <div id="ratings-preview" class="prod-pane is-on" data-i="0">
+        <div class="p-card dependencies">
+          <h3 class="t-h4">Position Dependencies</h3><p class="t-small">Trace your position layer by layer.</p>
+          <div class="dependency-chain">
+            <div class="chip chip-mid"><b>Exponent vault</b><span>Wrapper and vault</span><span>Economic Dependency</span></div>
+            <div class="chip chip-dark"><b>srONyc</b><span>Senior Tranche Claim</span><span>Economic Dependency</span></div>
+            <div class="chip chip-mid"><b>ONyc</b><span>NAV-based Token</span><span>Economic Dependency</span></div>
+            <div class="chip chip-mid"><b>OnRe segregated account</b><span>Economic Claim and Account</span><span>Economic Dependency</span></div>
+          </div>
+          <div class="chip chip-light protection"><b>jrONyc first-loss capital</b><span>Protection Dependency • Not a held asset</span></div>
         </div>
-      </div>
-    </div>
-
-    <!-- Right panels for Kurtosis Ratings -->
-    <div class="prod-pane is-on" data-i="0">
-    <!-- Position Dependencies: chips run off both edges of the card, as in Figma -->
-    <div class="abs p-card clip" {{at 608,1979,658,382}}>
-      <p class="abs t-h4 nowrap" {{px left:29px;top:8px;}}>Position Dependencies</p>
-      <p class="abs t-small nowrap" {{px left:29px;top:65px;}}>Trace your position layer by layer.</p>
-      <div class="abs dep-line" {{px left:4px;top:189px;width:650px;height:4px;}}></div>
-      <div class="abs chip chip-mid chip-r" {{px left:-22px;top:144px;width:89px;height:90px;}}></div>
-      <b class="abs chip-t" {{px left:-71px;top:148px;width:101px;}}>Exponent vault</b>
-      <span class="abs chip-s" {{px left:-51px;top:179px;width:84px;}}>wrapper and vault</span>
-      <span class="abs chip-s" {{px left:-80px;top:198px;width:104px;}}>Economic Dependency</span>
-      <div class="abs chip chip-dark" {{px left:93px;top:144px;width:221px;height:90px;}}><b>srONyc</b><span>Senior Tranche Claim</span><span>Economic Dependency</span></div>
-      <div class="abs chip chip-mid" {{px left:342px;top:144px;width:221px;height:90px;}}><b>ONyc</b><span>NAV-based Token</span><span>Economic Dependency</span></div>
-      <div class="abs chip chip-mid" {{px left:592px;top:144px;width:221px;height:90px;}}><b>OnRe segregated account</b><span>Economic Claim and Account</span><span>Economic Dependency</span></div>
-      <img src="assets/connector.svg" alt="" class="abs" {{px left:128px;top:234px;width:33.3px;height:75.4px;}}>
-      <svg class="abs" viewBox="0 0 10 14" fill="none" aria-hidden="true" {{px left:152px;top:300px;width:9.5px;height:14px;}}><path d="M1.5 1.5 8 7l-6.5 5.5" stroke="#C8C8C8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <div class="abs chip chip-light" {{px left:166px;top:257px;width:246px;height:90px;}}><b>jrONyc first-loss capital</b><span>Protection Dependency • Not a held asset</span><span>Protection Dependency</span></div>
-    </div>
-
-    <!-- Live Updates (Figma 36:1811) -->
-    <div class="abs p-card clip" {{at 607,2375,322,304}}>
-      <p class="abs t-h4 nowrap" {{px left:32px;top:3px;}}>Live Updates</p>
-      <p class="abs t-small nowrap" {{px left:33px;top:60px;}}>Stay on top of the latest events</p>
-      <div class="abs live-line" {{px left:41.25px;top:121.9px;width:2px;height:182.1px;}}></div>
-      <span class="abs live-dot" {{px left:32px;top:117px;width:19px;height:19px;}}></span>
-      <span class="abs live-dot light" {{px left:32px;top:231px;width:19px;height:19px;}}></span>
-      <p class="abs live-h nowrap" {{px left:70px;top:107px;}}>Exponent and OnRe renew $8,000 in O</p>
-      <p class="abs live-date nowrap" {{px left:70px;top:140px;}}>26 Oct 2026, 17:18 UTC</p>
-      <span class="abs live-tag" {{px left:194px;top:142px;width:71px;height:20px;}}>2 days ago</span>
-      <p class="abs live-p" {{px left:69px;top:166px;width:453px;}}>Exponent and OnRe have renewed rewards for ONyc and srONyc limit orders and srONyc liquidity provision, with $6,000 allocated to limit orders and $2,000 to liquidity. The pr</p>
-      <p class="abs live-h nowrap" {{px left:70px;top:222px;}}>BulkTrade will close its BulkSOL market</p>
-      <p class="abs live-date nowrap" {{px left:70px;top:255px;}}>26 Oct 2026, 13:35 UTC</p>
-      <span class="abs live-tag" {{px left:194px;top:257px;width:71px;height:20px;}}>2 days ago</span>
-      <p class="abs live-p nowrap" {{px left:69px;top:281px;}}>BulkTrade says the BulkSOL market on Exponent will close at</p>
-    </div>
-
-    <!-- The Checks (was Exit Routes) -->
-    <div id="exit-card" class="abs p-card clip" {{at 942,2375,323,304}}>
-      <p class="abs t-h4 nowrap" {{px left:33px;top:3px;}}>The Checks</p>
-      <p class="abs t-small nowrap" {{px left:33px;top:60px;}}>What are you exposed to?</p>
-      <div class="abs exit e1x" {{px left:41px;top:115px;width:282px;height:33px;}}><b>What you hold</b></div>
-      <div class="abs exit e2x" {{px left:85px;top:157px;width:238px;height:33px;}}><b>How it works</b></div>
-      <div class="abs exit e3x" {{px left:139px;top:199px;width:184px;height:33px;}}><b>What backs it</b></div>
-      <div class="abs exit e4x" {{px left:185px;top:241px;width:138px;height:33px;}}><b>How you get out</b></div>
-    </div>
-    </div>
-
-    <!-- Right panels for Kurtosis Horizon (Figma frame "kurtosis horizon", 41:1833) -->
-    <div class="prod-pane" data-i="1" aria-hidden="true">
-      <div class="abs p-card" {{at 608,1979,658,412}}>
-        <p class="abs t-h4 nowrap" {{px left:30px;top:9px;}}>Capital Planning</p>
-        <p class="abs t-small t-reg nowrap" {{px left:30px;top:60px;}}>Track your cash’s needs</p>
-      </div>
-      <div class="abs dash-well" {{at 608,2082,658,309}}></div>
-      <div class="abs dash-img" {{at 608,2088,658,303}}><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix.">
-        <!-- Live chart drawn over the screenshot's chart: bars start level, then each scroll step moves through the cycle (js/products-switch.js) -->
-        <div id="cycle" class="cycle" aria-hidden="true">
-          <div class="cy-cover"></div>
-          <div class="cy-bars"></div>
-          <div class="cy-nav"><span class="cy-pill"></span><span class="cy-lab">Cycle Starts</span><span class="cy-lab">Transition</span><span class="cy-lab">Near Date</span><span class="cy-lab">Target Date</span></div>
-        </div></div>
-      </div>
-      <div class="abs p-card cy-card" id="cy-step" {{at 608,2411,317,266}}>
-        <p class="abs t-num nowrap" data-f="n" {{px left:30px;top:23px;}}>01</p>
-        <p class="abs t-h4 tight" data-f="t" {{px left:30px;top:105px;width:262px;}}>Keep your options open.</p>
-        <p class="abs t-small" data-f="b" {{px left:30px;top:153px;width:232px;}}>Start with eligible variable-rate positions. Check how easily you could sell or redeem each holding.</p>
-      </div>
-      <div class="abs p-card cy-card" id="cy-check" {{at 949,2411,317,266}}>
-        <p class="abs t-h4 nowrap" data-f="t" {{px left:32px;top:15px;}}>Know Your Limit</p>
-        <p class="abs t-small" {{px left:32px;top:86px;width:255px;}}><b>What matters here:</b><br><span data-f="m">Your mandate, position sizes and available cash</span></p>
-        <p class="abs t-small" {{px left:32px;top:175px;width:255px;}}><b>Before committing:</b><br><span data-f="c">Invest only within approved limits.</span></p>
-      </div>
-    </div>
-
-  </section>
-
-
-  <!-- ===== Allocation (Figma 36:1152, 36:1153, 23:66 to 23:78) ===== -->
-  <div class="abs alloc-photo" {{at 0,2840,1440,760}}></div>
-  <section aria-labelledby="alloc-h">
-    <p class="reveal abs t-eyebrow ink-white nowrap" {{at 156,2934}}>How we work</p>
-    <h2 id="alloc-h" class="reveal abs t-h2 ink-white nowrap" {{at 156,2979}}>Research you can check</h2>
-    <p class="reveal abs t-body on-dark" {{at 156,3068,862}}>Every Kurtosis finding comes with its method, its sources and its dates. Where we have a stake, we say so.</p>
-    <!-- Three cards in a row (Figma 23:76, 36:1147, 76:96 and frames 76:100, 76:133): the open white card
-         shows its number, title and text; the others fold into frosted cards showing just their number.
-         Scrolling holds the section in place and opens each card in turn (js/alloc-panels.js) -->
-    <div id="alloc-panels" class="abs alloc-panels" {{at 156,3168,1040,282}}>
-      <div class="ap-panel" data-i="0">
-        <button class="ap-tab" type="button" aria-label="Show panel 1"></button>
-        <p class="abs ap-num ap-num-shut nowrap" aria-hidden="true" {{px left:24px;top:3px;}}>01</p>
-        <p class="abs ap-title ap-title-shut nowrap" aria-hidden="true">Published</p>
-        <div class="ap-body" aria-hidden="false">
-          <p class="abs ap-num nowrap" {{px left:54px;top:35px;}}>01</p>
-          <h3 class="abs ap-title nowrap" {{px left:54px;top:108px;}}>Published method</h3>
-          <p class="abs t-body ink-black ap-text" {{px left:61px;top:188px;width:445px;}}>Our Russian Doll method looks through each token to the assets, protocols and exit routes behind it.</p>
+        <div class="p-card live-updates">
+          <h3 class="t-h4">Live Updates</h3><p class="t-small">Stay on top of the latest events</p>
+          <div class="live-event"><h4 class="live-h">Exponent and OnRe renew $8,000 in rewards</h4><p class="live-date">26 Oct 2026, 17:18 UTC</p><p class="live-p">Exponent and OnRe have renewed rewards for ONyc and srONyc limit orders and srONyc liquidity provision, with $6,000 allocated to limit orders and $2,000 to liquidity.</p></div>
+          <div class="live-event"><h4 class="live-h">BulkTrade will close its BulkSOL market</h4><p class="live-date">26 Oct 2026, 13:35 UTC</p></div>
         </div>
+        <div id="exit-card" class="p-card"><h3 class="t-h4">The Checks</h3><p class="t-small">What are you exposed to?</p><div class="checks"><div class="exit e1x"><b>What you hold</b></div><div class="exit e2x"><b>How it works</b></div><div class="exit e3x"><b>What backs it</b></div><div class="exit e4x"><b>How you get out</b></div></div></div>
       </div>
-      <div class="ap-panel" data-i="1">
-        <button class="ap-tab" type="button" aria-label="Show panel 2"></button>
-        <p class="abs ap-num ap-num-shut nowrap" aria-hidden="true" {{px left:24px;top:3px;}}>02</p>
-        <p class="abs ap-title ap-title-shut nowrap" aria-hidden="true">Dated</p>
-        <div class="ap-body" aria-hidden="false">
-          <p class="abs ap-num nowrap" {{px left:54px;top:35px;}}>02</p>
-          <h3 class="abs ap-title nowrap" {{px left:54px;top:108px;}}>Dated evidence</h3>
-          <p class="abs t-body ink-black ap-text" {{px left:61px;top:188px;width:445px;}}>Every finding shows its source, its date and what is still unverified.</p>
+      <div id="horizon-preview" class="prod-pane" data-i="1" aria-hidden="true" inert>
+        <div class="p-card capital-planning"><h3 class="t-h4">Capital Planning</h3><p class="t-small">Track your cash’s needs</p>
+          <div class="dash-img"><div class="dash-zoom"><img src="assets/horizon-dashboard.png" alt="Kurtosis Horizon dashboard: My Portfolio with allocation through the cycle and exposure mix."><div id="cycle" class="cycle" aria-hidden="true"><div class="cy-cover"></div><div class="cy-bars"></div><div class="cy-nav"><span class="cy-pill"></span><span class="cy-lab">Cycle Starts</span><span class="cy-lab">Transition</span><span class="cy-lab">Near Date</span><span class="cy-lab">Target Date</span></div></div></div></div>
+          <div class="cycle-controls" role="group" aria-label="Capital planning stage"><button type="button" data-cycle="0" aria-pressed="true">Cycle Starts</button><button type="button" data-cycle="1" aria-pressed="false">Transition</button><button type="button" data-cycle="2" aria-pressed="false">Near Date</button><button type="button" data-cycle="3" aria-pressed="false">Target Date</button></div>
         </div>
-      </div>
-      <div class="ap-panel" data-i="2">
-        <button class="ap-tab" type="button" aria-label="Show panel 3"></button>
-        <p class="abs ap-num ap-num-shut nowrap" aria-hidden="true" {{px left:24px;top:3px;}}>03</p>
-        <p class="abs ap-title ap-title-shut nowrap" aria-hidden="true">Disclosed</p>
-        <div class="ap-body" aria-hidden="false">
-          <p class="abs ap-num nowrap" {{px left:54px;top:35px;}}>03</p>
-          <h3 class="abs ap-title nowrap" {{px left:54px;top:108px;}}>Conflicts on the table</h3>
-          <p class="abs t-body ink-black ap-text" {{px left:61px;top:188px;width:445px;}}>We run our own strategies and test our ratings on them. We also publish our exposures.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- The Allocation illustrations are no longer shown (the Figma layout has none). The pictures stay in
-       assets/ (alloc-tray-v2.png, alloc-evidence-v2.png, alloc-globe-v2.png) if they are wanted back:
-       <img class="abs alloc-art is-on" data-i="0" src="assets/alloc-tray-v2.png" alt="" {{at 961.6,3085.4,500.1,461.6}}>
-       <img class="abs alloc-art" data-i="1" src="assets/alloc-evidence-v2.png" alt="" {{at 992.7,3073.5,411.8,481.6}}>
-       <img class="abs alloc-art" data-i="2" src="assets/alloc-globe-v2.png" alt="" {{at 974.9,3043.6,477.1,511.8}}> -->
-  <!-- 3D versions of the three illustrations (js/alloc-3d.js) are switched off: the flat pictures above
-       just appear. To bring the 3D back, restore this div and the alloc-3d.js script tag near the end:
-       <div id="alloc-3d" class="abs alloc-3d" aria-hidden="true" {{at 880,2850,640,800}}></div> -->
-
-
-  <!-- ===== Who We Serve (Figma 1:427, 2:56 to 3:86) ===== -->
-  <div class="abs serve-bg" id="customers" {{at 0,3600,1437,936}}></div>
-  <section aria-labelledby="serve-h">
-    <p class="reveal abs t-eyebrow nowrap" {{at 156,3724}}>Who We Serve</p>
-    <h2 id="serve-h" class="reveal abs t-h2 nowrap" {{at 156,3769}}>Built for teams entrusted with investor capital</h2>
-    <p class="reveal abs t-body" {{at 156,3858,862}}>Choose how you hold capital, and see what Kurtosis does for you.</p>
-    <div class="abs serve-card" {{at 156,3971,342,463}}>
-      <img class="abs serve-img" src="assets/serve-managers.jpg" alt="" {{px left:0;top:0;width:342px;height:223px;}}>
-      <div class="abs serve-panel" {{px left:0;top:179px;width:342px;height:284px;}}>
-        <h3 class="abs serve-t" {{px left:48px;top:31px;width:173px;}}>Asset<br>Managers</h3>
-        <p class="abs serve-p" {{px left:48px;top:155px;width:245px;}}>Weigh portfolio changes against your mandate, trading costs and downside risk.</p>
-      </div>
-    </div>
-    <div class="abs serve-card" {{at 548,3971,342,463}}>
-      <img class="abs serve-img" src="assets/serve-treasuries.jpg" alt="" {{px left:0;top:0;width:342px;height:228px;}}>
-      <div class="abs serve-panel" {{px left:0;top:179px;width:342px;height:284px;}}>
-        <h3 class="abs serve-t" {{px left:49px;top:31px;width:173px;}}>Treasuries<br>&amp; DAOs</h3>
-        <p class="abs serve-p" {{px left:49px;top:155px;width:245px;}}>Build your investment case with the risks, exit options and supporting evidence in view.</p>
-      </div>
-    </div>
-    <div class="abs serve-card" {{at 941,3971,342,463}}>
-      <img class="abs serve-img" src="assets/serve-allocators.jpg" alt="" {{px left:0;top:0;width:342px;height:208px;}}>
-      <div class="abs serve-panel" {{px left:0;top:179px;width:342px;height:284px;}}>
-        <h3 class="abs serve-t" {{px left:57px;top:31px;width:173px;}}>Institutional<br>Allocators</h3>
-        <p class="abs serve-p" {{px left:57px;top:155px;width:245px;}}>Align allocations with operating needs and explain each decision to token holders.</p>
+        <div class="p-card cy-card" id="cy-step"><p class="t-num" data-f="n">01</p><h3 class="t-h4" data-f="t">Keep your options open.</h3><p class="t-small" data-f="b">Start with eligible variable-rate positions. Check how easily you could sell or redeem each holding.</p></div>
+        <div class="p-card cy-card" id="cy-check"><h3 class="t-h4" data-f="t">Know Your Limit</h3><p class="t-small"><b>What matters here:</b><br><span data-f="m">Your mandate, position sizes and available cash</span></p><p class="t-small"><b>Before committing:</b><br><span data-f="c">Invest only within approved limits.</span></p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Philosophy (Figma 23:11 to 23:65) ===== -->
-  <section aria-labelledby="phil-h">
-    <div class="abs phil-photo" {{at 53,4604,1331,661}}></div>
-    <p class="reveal abs t-eyebrow center nowrap ink-white" {{at 605,4790,227}}>Request a walkthrough</p>
-    <h2 id="phil-h" class="reveal abs t-h2 center ink-white" {{at 315,4848,807}}>Bring a portfolio.<br>We’ll explain the rest.</h2>
-    <a href="contact.html" class="abs btn btn-light" {{at 663,5043,111,36}}>Sign up now</a>
+  <section class="alloc-photo section" aria-labelledby="alloc-h">
+    <div class="container"><div class="section-heading"><p class="t-eyebrow">How we work</p><h2 id="alloc-h" class="t-h2">Research you can check</h2><p class="t-body">Every Kurtosis finding comes with its method, its sources and its dates. Where we have a stake, we say so.</p></div>
+      <div id="alloc-panels" class="alloc-panels">
+        <div class="ap-panel is-open" data-i="0"><button class="ap-tab" type="button" aria-expanded="true" aria-controls="method-detail"><span class="ap-num">01</span><span class="ap-title">Published method</span></button><div id="method-detail" class="ap-body"><p class="t-body">Our Russian Doll method looks through each token to the assets, protocols and exit routes behind it.</p></div></div>
+        <div class="ap-panel is-shut" data-i="1"><button class="ap-tab" type="button" aria-expanded="false" aria-controls="evidence-detail"><span class="ap-num">02</span><span class="ap-title">Dated evidence</span></button><div id="evidence-detail" class="ap-body" aria-hidden="true"><p class="t-body">Every finding shows its source, its date and what is still unverified.</p></div></div>
+        <div class="ap-panel is-shut" data-i="2"><button class="ap-tab" type="button" aria-expanded="false" aria-controls="conflicts-detail"><span class="ap-num">03</span><span class="ap-title">Conflicts on the table</span></button><div id="conflicts-detail" class="ap-body" aria-hidden="true"><p class="t-body">We run our own strategies and test our ratings on them. We also publish our exposures.</p></div></div>
+      </div>
+    </div>
   </section>
 
-  <!-- ===== Footer (Figma 23:74 and 23:80). The footer in Figma is the earlier footer
-       enlarged 1.157 times, so it is drawn at its earlier positions inside a scaled group. ===== -->
-  <footer>
-    <div class="abs footer-scale" {{at -59.5,5392.5}}>
-      <div class="abs f-brand" {{at 191,24}}><img src="assets/logo-mark-navy.svg" alt="">Kurtosis Labs</div>
-      <p class="abs f-copy nowrap" {{at 188,59}}>© 2026 Kurtosis Labs. All rights reserved.</p>
-      <div class="abs f-col" {{at 448,21}}><h4>PRODUCT</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Kurtosis Ratings</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Kurtosis Horizon</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Explainable Vaults</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Methodology</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Research</a></li></ul></div>
-      <div class="abs f-col" {{at 654,21}}><h4>COMPANY</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Who we serve</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Philosophy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Contact Kurtosis Labs</a></li></ul></div>
-      <div class="abs f-col" {{at 860,21}}><h4>LEGAL</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Terms of Use</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Privacy Policy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Cookie Policy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Disclosures</a></li></ul></div>
-      <div class="abs f-col" {{at 1066,21}}><h4>SOCIALS</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">X</a></li><li><a role="link" aria-disabled="true" tabindex="-1">LinkedIn</a></li><li><a href="#top">Back to top</a></li></ul></div>
+  <section id="customers" class="serve-bg section" aria-labelledby="serve-h"><div class="container">
+    <div class="section-heading"><p class="t-eyebrow">Who We Serve</p><h2 id="serve-h" class="t-h2">Built for teams entrusted with investor capital</h2><p class="t-body">Choose how you hold capital, and see what Kurtosis does for you.</p></div>
+    <div class="serve-grid">
+      <article class="serve-card"><img class="serve-img" src="assets/serve-managers.jpg" alt="" loading="lazy"><div class="serve-panel"><h3 class="serve-t">Asset<br>Managers</h3><p class="serve-p">Weigh portfolio changes against your mandate, trading costs and downside risk.</p></div></article>
+      <article class="serve-card"><img class="serve-img" src="assets/serve-treasuries.jpg" alt="" loading="lazy"><div class="serve-panel"><h3 class="serve-t">Treasuries<br>&amp; DAOs</h3><p class="serve-p">Build your investment case with the risks, exit options and supporting evidence in view.</p></div></article>
+      <article class="serve-card"><img class="serve-img" src="assets/serve-allocators.jpg" alt="" loading="lazy"><div class="serve-panel"><h3 class="serve-t">Institutional<br>Allocators</h3><p class="serve-p">Align allocations with operating needs and explain each decision to token holders.</p></div></article>
     </div>
-    <p class="abs wordmark" aria-hidden="true" {{at 85,5743,1271,235}}>Kurtosis Labs</p>
-  </footer>
+  </div></section>
 
+  <section class="walkthrough" aria-labelledby="phil-h"><div class="phil-photo"><p class="t-eyebrow">Request a walkthrough</p><h2 id="phil-h" class="t-h2">Bring a portfolio.<br>We’ll explain the rest.</h2><a href="contact.html" class="btn btn-light">Sign up now</a></div></section>
 </main>
-</div>
-
+<footer>
+    <div class="footer-grid container">
+      <div class="footer-brand"><div class="f-brand"><img src="assets/logo-mark-navy.svg" alt="">Kurtosis Labs</div>
+      <p class="f-copy nowrap">© 2026 Kurtosis Labs. All rights reserved.</p></div>
+      <div class="f-col"><h4>PRODUCT</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Kurtosis Ratings</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Kurtosis Horizon</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Explainable Vaults</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Methodology</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Research</a></li></ul></div>
+      <div class="f-col"><h4>COMPANY</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Who we serve</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Philosophy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Contact Kurtosis Labs</a></li></ul></div>
+      <div class="f-col"><h4>LEGAL</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">Terms of Use</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Privacy Policy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Cookie Policy</a></li><li><a role="link" aria-disabled="true" tabindex="-1">Disclosures</a></li></ul></div>
+      <div class="f-col"><h4>SOCIALS</h4><ul><li><a role="link" aria-disabled="true" tabindex="-1">X</a></li><li><a role="link" aria-disabled="true" tabindex="-1">LinkedIn</a></li><li><a href="#top">Back to top</a></li></ul></div>
+    </div>
+    <p class="wordmark" aria-hidden="true">Kurtosis Labs</p>
+  </footer>
+<script src="js/home.js?v=responsive-1"></script>
 <script src="js/three.min.js"></script>
 <script src="js/coin-positions.js"></script>
-<script src="js/hero-flip.js"></script>
-<script src="js/coin-ring.js"></script>
-<script src="js/page.js"></script>
-<script src="js/scroll-reveal.js"></script>
-<script src="js/alloc-panels.js"></script>
-<script src="js/rate-steps.js"></script>
-<script src="js/products-switch.js"></script>
-<!-- <script src="js/alloc-3d.js"></script>   3D Allocation models, switched off -->
+<script src="js/hero-flip.js?v=responsive-1"></script>
+<script src="js/coin-ring.js?v=responsive-1"></script>
+<script src="js/page.js?v=responsive-1"></script>
+<script src="js/alloc-panels.js?v=responsive-1"></script>
+<script src="js/rate-steps.js?v=responsive-1"></script>
+<script src="js/products-switch.js?v=responsive-1"></script>
 </body>
 </html>

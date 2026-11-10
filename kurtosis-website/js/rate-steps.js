@@ -11,6 +11,9 @@
   var STEP = 110;      // wheel or swipe distance that moves one point (about half a trackpad swipe)
   var SETTLE = 450;    // ms to ignore input after a change, so trackpad momentum can't skip a point
   var idx = 0, acc = 0, lockedAt = 0, locked = false;
+  var fluid = document.body.classList.contains('responsive');
+  var controls = Array.prototype.slice.call(sec.querySelectorAll('[data-rate]'));
+  function canHold() { return !fluid || (window.innerWidth >= 1024 && sec.getBoundingClientRect().height <= window.innerHeight - 120); }
 
   function layout() {
     steps.forEach(function (s, i) {
@@ -18,8 +21,10 @@
       s.setAttribute('aria-hidden', i === idx ? 'false' : 'true');
     });
     if (fill) fill.style.height = ((idx + 1) / N * 100) + '%';
+    controls.forEach(function (button, i) { button.setAttribute('aria-pressed', String(i === idx)); });
   }
   function go(i) { if (i === idx || i < 0 || i >= N) return false; idx = i; acc = 0; lockedAt = Date.now(); layout(); return true; }
+  controls.forEach(function (button, i) { button.addEventListener('click', function () { go(i); }); });
   layout();
 
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -40,6 +45,7 @@
 
   // returns true when the movement was used here (so the page must not move)
   function take(dy) {
+    if (!canHold()) { locked = false; return false; }
     lastInput = Date.now();
     var top = sec.getBoundingClientRect().top, t = target();
     lastTop = top;
@@ -77,7 +83,7 @@
 
   window.addEventListener('keydown', function (e) {
     var tag = (e.target && e.target.tagName) || '';
-    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (/^(INPUT|TEXTAREA|BUTTON|A|SELECT)$/.test(tag)) return;
     var step = { ArrowDown: 120, ArrowUp: -120, PageDown: 600, PageUp: -600, ' ': e.shiftKey ? -600 : 600 }[e.key];
     if (step && take(step > 0 ? STEP + 1 : -STEP - 1)) e.preventDefault();
   });
@@ -86,6 +92,7 @@
   // flick carries it past the middle before the hold engages. When not held, the points reset for the
   // way the section will next be entered (01 from above, 03 from below), so a skip can't switch it off.
   window.addEventListener('scroll', function () {
+    if (!canHold()) { locked = false; return; }
     var r = sec.getBoundingClientRect(), t = target(), top = r.top, prev = lastTop;
     lastTop = top;
     if (locked) {

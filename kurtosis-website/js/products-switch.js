@@ -14,6 +14,9 @@
   var OPEN_H = 566, SHUT_H = 117, GAP = 17, MARK_H = 265;   // Figma pixels (two products: open card 566, folded card 117)
   var STEP = 110, SETTLE = 650, STAGE_STEP = 60, STAGE_SETTLE = 300;   // SETTLE covers the full card and panel animation
   var idx = 0, acc = 0, lockedAt = 0, locked = false;
+  var fluid = document.body.classList.contains('responsive');
+  var cycleControls = Array.prototype.slice.call(document.querySelectorAll('[data-cycle]'));
+  function canHold() { return !fluid || (window.innerWidth >= 1024 && bento.getBoundingClientRect().height <= window.innerHeight - 120); }
 
   function u(n) { return 'calc(' + n + ' * var(--u))'; }
   // ---- Allocation chart. Screenshot pixels, scaled by K into page units
@@ -33,6 +36,7 @@
     labs.forEach(function (l, i) { l.style.left = u((LAB_C[i] - 170) * K); });
   }
   function drawCycle(stage) {                                       // stage -1: as on arrival, Cycle Starts selected, no bar raised
+    cycleControls.forEach(function (button, i) { button.setAttribute('aria-pressed', String(i === Math.max(stage, 0))); });
     bars.forEach(function (b, i) {
       var t = TOP[i], bo = BOT[i];
       b.style.left = u(BX[i] * K); b.style.width = u(BW * K);
@@ -86,16 +90,20 @@
     drawCycle(idx === 0 ? -1 : STEPS[idx].s);   // before Horizon the chart waits at its arrival state
     cards.forEach(function (c, i) {
       var open = i === prod, h = open ? OPEN_H : SHUT_H;
-      c.style.top = u(y); c.style.height = u(h);
+      if (!fluid) { c.style.top = u(y); c.style.height = u(h); }
       if (open && mark) { mark.style.top = u(y + (OPEN_H - MARK_H) / 2); mark.dataset.p = i; }   // bookmark centred on the open card, in that product's colour
       c.classList.toggle('is-open', open);
       c.querySelector('.pc-full').setAttribute('aria-hidden', open ? 'false' : 'true');
+      c.querySelector('.pc-full').toggleAttribute('inert', !open);
+      var button = c.querySelector('.product-toggle');
+      if (button) button.setAttribute('aria-expanded', String(open));
       y += h + GAP;
     });
     dots.forEach(function (d, i) { d.classList.toggle('is-on', i === prod); });
     panes.forEach(function (p, i) {
       p.classList.toggle('is-on', i === prod);
       p.setAttribute('aria-hidden', i === prod ? 'false' : 'true');
+      p.toggleAttribute('inert', i !== prod);
     });
   }
   function go(i) { if (i === idx || i < 0 || i >= N) return false; idx = i; acc = 0; lockedAt = Date.now(); layout(); return true; }
@@ -103,6 +111,7 @@
   function firstStep(p) { for (var k = 0; k < N; k++) if (STEPS[k].p === p) return k; return 0; }
   cards.forEach(function (c, i) { c.addEventListener('click', function () { if (i !== STEPS[idx].p) go(firstStep(i)); }); });
   labs.forEach(function (l, i) { l.style.cursor = 'pointer'; l.addEventListener('click', function () { go(firstStep(HZ) + 1 + i); }); });
+  cycleControls.forEach(function (button, i) { button.addEventListener('click', function () { go(firstStep(HZ) + 1 + i); }); });
   layout();
 
   // Exit Routes bars slide in once, when the section first comes into view
@@ -125,6 +134,7 @@
 
   // returns true when the movement was used here (so the page must not move)
   function take(dy) {
+    if (!canHold()) { locked = false; return false; }
     lastInput = Date.now();
     var top = bento.getBoundingClientRect().top, t = target();
     lastTop = top;
@@ -163,7 +173,7 @@
 
   window.addEventListener('keydown', function (e) {
     var tag = (e.target && e.target.tagName) || '';
-    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (/^(INPUT|TEXTAREA|BUTTON|A|SELECT)$/.test(tag)) return;
     var step = { ArrowDown: 120, ArrowUp: -120, PageDown: 600, PageUp: -600, ' ': e.shiftKey ? -600 : 600 }[e.key];
     if (step && take(step > 0 ? STEP + 1 : -STEP - 1)) e.preventDefault();
   });
@@ -172,6 +182,7 @@
   // don't let a page stop) moves the page. It also catches the box if a fast flick carries it past
   // the middle before the hold engages. A scrollbar drag that leaves the section releases it.
   window.addEventListener('scroll', function () {
+    if (!canHold()) { locked = false; return; }
     var r = bento.getBoundingClientRect(), t = target(), top = r.top, prev = lastTop;
     lastTop = top;
     if (locked) {

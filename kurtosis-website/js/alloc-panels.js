@@ -17,6 +17,8 @@
   var STEP = 75;       // wheel or swipe distance that moves one card (about a third of a trackpad swipe)
   var SETTLE = 400;    // ms to ignore input after a change: the full card animation, so trackpad momentum can't skip or release early
   var idx = 0, acc = 0, lockedAt = 0, locked = false;
+  var fluid = document.body.classList.contains('responsive');
+  function canHold() { return !fluid || (window.innerWidth >= 1024 && photo.getBoundingClientRect().height <= window.innerHeight - 120); }
 
   function u(n) { return 'calc(' + n + ' * var(--u))'; }
   function layout() {
@@ -34,6 +36,12 @@
     var x = 0;
     panels.forEach(function (p, i) {
       var open = i === idx;
+      if (fluid) {
+        p.classList.toggle('is-open', open); p.classList.toggle('is-shut', !open);
+        p.querySelector('.ap-body').setAttribute('aria-hidden', String(!open));
+        p.querySelector('.ap-tab').setAttribute('aria-expanded', String(open));
+        return;
+      }
       if (VERT) {
         var hv = open ? OPEN_H : SHUT_H;
         p.style.left = u(0); p.style.width = u(COL_W); p.style.top = u(x); p.style.height = u(hv);
@@ -64,6 +72,7 @@
 
   // returns true when the movement was used here (so the page must not move)
   function take(dy) {
+    if (!canHold()) { locked = false; return false; }
     lastInput = Date.now();
     var top = photo.getBoundingClientRect().top, t = target();
     lastTop = top;
@@ -101,7 +110,7 @@
 
   window.addEventListener('keydown', function (e) {
     var tag = (e.target && e.target.tagName) || '';
-    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (/^(INPUT|TEXTAREA|BUTTON|A|SELECT)$/.test(tag)) return;
     var step = { ArrowDown: 120, ArrowUp: -120, PageDown: 600, PageUp: -600, ' ': e.shiftKey ? -600 : 600 }[e.key];
     if (step && take(step > 0 ? STEP + 1 : -STEP - 1)) e.preventDefault();
   });
@@ -111,6 +120,7 @@
   // don't let a page stop) moves the page. It also catches the box if a fast flick carries it past
   // the middle before the hold engages. A scrollbar drag that leaves the section releases it.
   window.addEventListener('scroll', function () {
+    if (!canHold()) { locked = false; return; }
     var r = photo.getBoundingClientRect(), t = target(), top = r.top, prev = lastTop;
     lastTop = top;
     if (locked) {

@@ -7,7 +7,7 @@ V2 in `kurtosis-website/` is the active website. Use Node 24 and npm.
 - `npm run preview` serves that production output locally.
 - `npm run check` also runs the research-data tests.
 
-Vercel uses the repository root, runs `npm run build`, and serves `dist/`, as declared in `vercel.json`. The homepage is V2's `index.html`; phones use `mobile.html`. Ratings is at `/ratings/`, including its comparison, methodology, sources and position pages. Old homepage, Ratings, methodology and Horizon URLs redirect to their V2 destinations.
+Vercel uses the repository root, runs `npm run build`, and serves `dist/`, as declared in `vercel.json`. The homepage uses one responsive `index.html` for desktop, tablet and mobile. The old `mobile.html` address only forwards to that homepage. Ratings is at `/ratings/`, including its comparison, methodology, sources and position pages. Old homepage, Ratings, methodology and Horizon URLs redirect to their V2 destinations.
 
 The build copies only V2's public pages, styles, scripts, images and prebuilt Ratings export, then generates the existing canonical research downloads. It does not publish the Next.js source, internal handoffs, quick-view copies or the earlier root-level website. Those earlier files remain in the repository for reference and rollback.
 

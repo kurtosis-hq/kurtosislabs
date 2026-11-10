@@ -21,7 +21,7 @@
   var box = document.querySelector('.bento');
   function update() {
     nav.classList.toggle('is-pill', (window.scrollY || window.pageYOffset) > 8);
-    if (!box) return;
+    if (!box || document.body.classList.contains('responsive')) return;
     var r = box.getBoundingClientRect(), navBottom = nav.offsetTop + nav.offsetHeight;   // resting position, unaffected by the slide
     nav.classList.toggle('is-away', r.top < navBottom + 24 && r.bottom > 0);
   }
@@ -48,7 +48,9 @@
     var el = id && document.getElementById(id);
     if (!el) return false;
     var y = el.getBoundingClientRect().top + (window.scrollY || window.pageYOffset);
-    window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'instant' });
+    if (document.body.classList.contains('responsive') && id !== 'top') y -= 96;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: y, behavior: smooth && !reduce ? 'smooth' : 'instant' });
     return true;
   }
   document.addEventListener('click', function (e) {

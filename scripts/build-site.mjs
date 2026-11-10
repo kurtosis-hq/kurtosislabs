@@ -18,7 +18,7 @@ fs.mkdirSync(output);
 // with Vite, and keep source, internal handoffs and quick-view copies unpublished.
 const published = [
   'index.html', 'mobile.html', 'contact.html', 'coming-soon.html',
-  'styles.css', 'mobile.css', 'contact.css', 'favicon.ico',
+  'styles.css', 'home.css', 'menu.css', 'contact.css', 'favicon.ico',
   'assets', 'js', 'ratings', 'ratings-static',
 ];
 for (const entry of published) {
@@ -47,4 +47,4 @@ function localizeDownloads(directory) {
 }
 localizeDownloads(path.join(output, 'ratings'));
 localizeDownloads(path.join(output, 'ratings-static'));
-console.log('Built V2 desktop, mobile, contact and Ratings pages in dist/.');
+console.log('Built the responsive homepage, contact and Ratings pages in dist/.');
